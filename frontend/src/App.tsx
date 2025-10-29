@@ -1,5 +1,7 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/common/Navbar/Navbar';
+import HeroSection from './components/Home/HeroSection/HeroSection';
+import ClientSection from './components/home/ClientSection/ClientSection';
 
 
 function App() {
@@ -8,6 +10,8 @@ function App() {
       <div className="App">
         <ErrorBoundary>
           <Navbar />
+          <HeroSection/>
+          <ClientSection/>
         </ErrorBoundary>
       </div>
     </Router>
