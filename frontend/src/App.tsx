@@ -1,5 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/common/Navbar/Navbar';
+import HeroSection from './components/Home/HeroSection/HeroSection';
 
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <div className="App">
         <ErrorBoundary>
           <Navbar />
+          <HeroSection/>
         </ErrorBoundary>
       </div>
     </Router>
