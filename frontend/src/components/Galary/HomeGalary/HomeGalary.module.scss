@@ -1,0 +1,300 @@
+* {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="%234dd4d4" stroke-width="2" fill="rgba(77, 212, 212, 0.1)"/></svg>') 12 12, auto !important;
+}
+
+button,
+a {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="%234dd4d4" stroke-width="2.5" fill="rgba(77, 212, 212, 0.2)"/></svg>') 12 12, pointer !important;
+}
+
+.homeGallery {
+  background: #0a0a0a;
+  padding: 80px 40px;
+  min-height: 100vh;
+}
+
+.galleryContainer {
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.galleryHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.galleryTitle {
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.galleryTitleHighlight {
+  background: linear-gradient(90deg, #FE8FEB 0%, #01E6DD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gallerySubtitle {
+  font-size: 14px;
+  color: #999999;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+}
+
+.carouselWrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+.carouselButton {
+  background: rgba(77, 212, 212, 0.1);
+  border: 1px solid rgba(77, 212, 212, 0.3);
+  color: #4dd4d4;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 32px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+
+  &:hover:not(:disabled) {
+    background: rgba(77, 212, 212, 0.2);
+    border-color: rgba(77, 212, 212, 0.6);
+    transform: scale(1.1);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+
+.carouselContainer {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.carouselTrack {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 25px;
+  padding: 5px;
+}
+
+.galleryCard {
+  padding: 0;
+  background: #000000;
+  border-radius: 32px;
+  border: 2px solid #1f1f1f;
+  padding: 18px;
+  height: 200px;
+}
+
+.cardInner {
+  background: #000000;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  height: 190px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid #1a1a1a;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+    border-color: #2a2a2a;
+
+    .galleryCardImage {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+
+    .cardOverlay {
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.3) 30%,
+        rgba(0, 0, 0, 0.85) 100%
+      );
+    }
+
+    .cardTitle {
+      color: #e0e0e0;
+    }
+  }
+}
+
+.galleryCardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
+  filter: brightness(0.95);
+}
+
+.cardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.2) 30%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  transition: all 0.4s ease;
+}
+
+.cardContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 38px 32px 36px 32px;
+  z-index: 1;
+}
+
+.cardTitle {
+  font-size: 28px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 10px;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+.cardDescription {
+  font-size: 15px;
+  color: #c0c0c0;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+  font-weight: 300;
+}
+
+@media (max-width: 1400px) {
+  .carouselTrack {
+    gap: 20px;
+  }
+
+  .cardInner {
+    height: 350px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .homeGallery {
+    padding: 60px 30px;
+  }
+
+  .galleryTitle {
+    font-size: 40px;
+    letter-spacing: 4px;
+  }
+
+  .carouselButton {
+    width: 45px;
+    height: 45px;
+    font-size: 28px;
+  }
+
+  .carouselTrack {
+    gap: 18px;
+  }
+
+  .cardInner {
+    height: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .homeGallery {
+    padding: 50px 20px;
+  }
+
+  .galleryHeader {
+    margin-bottom: 40px;
+  }
+
+  .galleryTitle {
+    font-size: 32px;
+    letter-spacing: 3px;
+  }
+
+  .gallerySubtitle {
+    font-size: 13px;
+  }
+
+  .carouselWrapper {
+    gap: 15px;
+  }
+
+  .carouselButton {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+
+  .galleryCard {
+    padding: 12px;
+  }
+
+  .cardInner {
+    height: 320px;
+  }
+
+  .cardContent {
+    padding: 28px 24px;
+  }
+
+  .cardTitle {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .galleryTitle {
+    font-size: 26px;
+    letter-spacing: 2px;
+  }
+
+  .carouselWrapper {
+    gap: 10px;
+  }
+
+  .carouselButton {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+
+  .cardInner {
+    height: 280px;
+    border-radius: 20px;
+  }
+
+  .cardTitle {
+    font-size: 16px;
+  }
+
+  .cardDescription {
+    font-size: 12px;
+  }
+}
