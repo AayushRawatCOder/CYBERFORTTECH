@@ -10,6 +10,7 @@ import FeaturesSection from './components/home/FeatureSection/FeatureSection';
 import HeroSection from './components/home/HeroSection/HeroSection';
 import ImpactStats from './components/home/ImpactStats/ImpactStats';
 import SecuritySolutions from './components/home/SecuritySolutions/SecuritySolution';
+import Footer from './components/common/Footer/footer';
 // import ImpactNumbers from './components/home/ImpactStats/ImpactNumber';
 
 
@@ -30,6 +31,7 @@ function App() {
           <SuccessStories/>
           <FAQ/>
           <ContactForm/>
+          <Footer/>
         </ErrorBoundary>
       </div>
    </Router>
