@@ -8,6 +8,9 @@ import FAQ from './components/Home/FAQ/FAQ';
 import ContactForm from './components/common/ContactForm/ContactForm';
 import FeaturesSection from './components/home/FeatureSection/FeatureSection';
 import HeroSection from './components/home/HeroSection/HeroSection';
+import ImpactStats from './components/home/ImpactStats/ImpactStats';
+import SecuritySolutions from './components/home/SecuritySolutions/SecuritySolution';
+// import ImpactNumbers from './components/home/ImpactStats/ImpactNumber';
 
 
 function App() {
@@ -17,7 +20,16 @@ function App() {
         <ErrorBoundary>
           <Navbar />
           <HeroSection/>
+          
           <ClientSection/>
+          <FeaturesSection/>
+          <ImpactStats/>
+          {/* <ImpactNumbers/> */}
+          <SecuritySolutions/>
+          <HomeGallery/>
+          <SuccessStories/>
+          <FAQ/>
+          <ContactForm/>
         </ErrorBoundary>
       </div>
    </Router>
