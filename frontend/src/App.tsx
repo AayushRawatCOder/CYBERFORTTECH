@@ -2,6 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/common/Navbar/Navbar';
 import ClientSection from './components/home/ClientSection/ClientSection';
+import HomeGallery from './components/Galary/HomeGalary/HomeGalary';
+import SuccessStories from './components/Home/Testimonial/SuccessStories';
+import FAQ from './components/Home/FAQ/FAQ';
+import ContactForm from './components/common/ContactForm/ContactForm';
 import FeaturesSection from './components/home/FeatureSection/FeatureSection';
 import HeroSection from './components/home/HeroSection/HeroSection';
 
@@ -14,7 +18,6 @@ function App() {
           <Navbar />
           <HeroSection/>
           <ClientSection/>
-          <FeaturesSection/>
         </ErrorBoundary>
       </div>
    </Router>
