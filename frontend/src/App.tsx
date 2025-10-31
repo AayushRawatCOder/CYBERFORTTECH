@@ -1,7 +1,9 @@
+import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/common/Navbar/Navbar';
-import HeroSection from './components/Home/HeroSection/HeroSection';
 import ClientSection from './components/home/ClientSection/ClientSection';
+import FeaturesSection from './components/home/FeatureSection/FeatureSection';
+import HeroSection from './components/home/HeroSection/HeroSection';
 
 
 function App() {
@@ -12,18 +14,37 @@ function App() {
           <Navbar />
           <HeroSection/>
           <ClientSection/>
+          <FeaturesSection/>
         </ErrorBoundary>
       </div>
-    </Router>
+   </Router>
   );
 }
 
-function ErrorBoundary({ children }) {
-  try {
-    return children;
-  } catch (err) {
-    console.error('Navbar Error:', err);
-    return <div style={{ color: 'red' }}>Navbar crashed: {String(err)}</div>;
+class ErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean; error?: Error }
+> {
+  state = { hasError: false };
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, info: React.ErrorInfo) {
+    console.error('Boundary caught:', error, info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ color: 'red', padding: 20 }}>
+          Something went wrong: {String(this.state.hasError)}
+        </div>
+      );
+    }
+    return this.props.children;
   }
 }
+
  export default App;
