@@ -1,0 +1,237 @@
+.comparisonSection {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  background: #000000;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.mainTitle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.highlight {
+ background: linear-gradient(180deg, #01E6DD 0%, #FE8FEB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 400;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: 16px;
+  background: rgba(20, 20, 24, 0.5);
+  padding: 2px;
+}
+
+.comparisonTable {
+  width: 80%;
+  border-collapse: separate;
+  border-spacing: 0;
+  align-self: center;
+  justify-self: center;
+  
+  thead tr {
+    background: rgba(30, 30, 35, 0.8);
+  }
+  
+  th {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 24px 32px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .featureHeader {
+    text-align: left;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(30, 30, 35, 0.8);
+  }
+  
+  .cyberfortHeader {
+    background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
+    color: #ffffff;
+  }
+  
+  .competitorHeader {
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(30, 30, 35, 0.8);
+  }
+  
+  tbody tr {
+    &:nth-child(odd) {
+      background: rgba(25, 25, 30, 0.6);
+    }
+    
+    &:nth-child(even) {
+      background: rgba(20, 20, 25, 0.6);
+    }
+    
+    &:hover {
+      background: rgba(30, 30, 35, 0.8);
+    }
+  }
+  
+  td {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 28px 32px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  }
+  
+  .featureCell {
+    text-align: left;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .cyberfortCell {
+    background: linear-gradient(135deg, rgba(13, 148, 136, 0.15) 0%, rgba(15, 118, 110, 0.15) 100%);
+    border-left: 2px solid rgba(20, 184, 166, 0.3);
+    border-right: 2px solid rgba(20, 184, 166, 0.3);
+  }
+  
+  .competitorCell {
+    background: transparent;
+  }
+  
+  tbody tr:last-child {
+    .cyberfortCell,
+    td {
+      border-bottom: none;
+    }
+  }
+}
+
+.checkIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #14B8A6;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.crossIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #DC2626;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.textValue {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 1024px) {
+  .mainTitle {
+    font-size: 36px;
+  }
+  
+  .comparisonTable {
+    th {
+      padding: 20px 24px;
+      font-size: 12px;
+    }
+    
+    td {
+      padding: 24px 20px;
+    }
+    
+    .featureCell {
+      font-size: 14px;
+    }
+  }
+  
+  .textValue {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .comparisonSection {
+    padding: 60px 20px;
+  }
+  
+  .header {
+    margin-bottom: 40px;
+  }
+  
+  .mainTitle {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+  }
+  
+  .tableWrapper {
+    overflow-x: scroll;
+  }
+  
+  .comparisonTable {
+    min-width: 800px;
+    
+    th {
+      padding: 16px 16px;
+      font-size: 11px;
+    }
+    
+    td {
+      padding: 20px 16px;
+    }
+    
+    .featureCell {
+      font-size: 13px;
+    }
+  }
+  
+  .checkIcon,
+  .crossIcon {
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+  }
+  
+  .textValue {
+    font-size: 13px;
+  }
+}

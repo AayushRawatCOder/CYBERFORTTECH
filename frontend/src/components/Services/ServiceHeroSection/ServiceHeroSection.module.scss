@@ -1,0 +1,94 @@
+.hero {
+  padding: 140px 40px 120px;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: radial-gradient(ellipse at center, rgba(0, 217, 217, 0.08) 0%, transparent 70%);
+  position: relative;
+
+  .heroContent {
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 56px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 32px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+
+      .technology {
+        background: linear-gradient(90deg, #C026D3 0%, #E879F9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .ampersand {
+        color: #9CA3AF;
+      }
+
+      .security {
+        background: linear-gradient(90deg, #14B8A6 0%, #22D3EE 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+
+    .subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.8;
+      max-width: 900px;
+      margin: 0 auto 48px;
+      font-weight: 300;
+    }
+
+    .exploreButton {
+      padding: 16px 38px;
+      background: #14B8A6;
+      border: none;
+      border-radius: 2px;
+      color: #000000;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+
+      &:hover {
+        background: #0D9488;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(20, 184, 166, 0.5);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 100px 24px 80px;
+
+    .heroContent {
+      h1 {
+        font-size: 36px;
+        letter-spacing: 1px;
+      }
+
+      .subtitle {
+        font-size: 15px;
+      }
+
+      .exploreButton {
+        font-size: 12px;
+        padding: 14px 32px;
+      }
+    }
+  }
+}
