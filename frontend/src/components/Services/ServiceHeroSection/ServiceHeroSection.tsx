@@ -7,9 +7,8 @@ const HeroSection: React.FC = () => {
       <div className={styles.heroContent}>
         <h1>
           POWERING THE FUTURE WITH<br />
-          <span className={styles.technology}>TECHNOLOGY</span>
-          <span className={styles.ampersand}> & </span>
-          <span className={styles.security}>SECURITY</span>
+          <span className={styles.technology}>TECHNOLOGY & SECURITY</span>
+         
         </h1>
         <p className={styles.subtitle}>
           From AI to Blockchain, Development to Cloud, and Cybersecurity to Infrastructure –<br />

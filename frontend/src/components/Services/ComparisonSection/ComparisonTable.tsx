@@ -62,10 +62,10 @@ const ComparisonTable: React.FC = () => {
     }
   ];
 
-  const renderCell = (value: string | boolean) => {
+  const renderCell = (value: string | boolean, isCyberfort: boolean = false) => {
     if (typeof value === 'boolean') {
       return value ? (
-        <span className={styles.checkIcon}>✓</span>
+        <span className={isCyberfort ? styles.checkIconCyberfort : styles.checkIcon}>✓</span>
       ) : (
         <span className={styles.crossIcon}>✕</span>
       );
@@ -76,10 +76,8 @@ const ComparisonTable: React.FC = () => {
   return (
     <section className={styles.comparisonSection}>
       <div className={styles.header}>
-        <h2 className={styles.mainTitle}>
-          WHY CHOOSE<br />
-          <span className={styles.highlight}>CYBERFORT TECH?</span>
-        </h2>
+        <h2 className={styles.mainTitle}>WHY CHOOSE</h2>
+        <h2 className={styles.titleHighlight}>CYBERFORT TECH?</h2>
         <p className={styles.subtitle}>
           Compare our comprehensive offerings<br />
           with competitors.
@@ -101,7 +99,7 @@ const ComparisonTable: React.FC = () => {
             {comparisonData.map((row, index) => (
               <tr key={index}>
                 <td className={styles.featureCell}>{row.feature}</td>
-                <td className={styles.cyberfortCell}>{renderCell(row.cyberfort)}</td>
+                <td className={styles.cyberfortCell}>{renderCell(row.cyberfort, true)}</td>
                 <td className={styles.competitorCell}>{renderCell(row.cloudsek)}</td>
                 <td className={styles.competitorCell}>{renderCell(row.paloAlto)}</td>
                 <td className={styles.competitorCell}>{renderCell(row.localFirms)}</td>
