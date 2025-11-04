@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/common/Navbar/Navbar';
 import ClientSection from './components/home/ClientSection/ClientSection';
 import HomeGallery from './components/Galary/HomeGalary/HomeGalary';
@@ -10,8 +10,24 @@ import FeaturesSection from './components/home/FeatureSection/FeatureSection';
 import HeroSection from './components/home/HeroSection/HeroSection';
 import ImpactStats from './components/home/ImpactStats/ImpactStats';
 import SecuritySolutions from './components/home/SecuritySolutions/SecuritySolution';
-// import ImpactNumbers from './components/home/ImpactStats/ImpactNumber';
+import Footer from './components/common/Footer/footer';
+import Servicespage from './(routes)/services/Servicespage';
 
+function HomePage() {
+  return (
+    <>
+      <HeroSection/>
+      <ClientSection/>
+      <FeaturesSection/>
+      <ImpactStats/>
+      <SecuritySolutions/>
+      <HomeGallery/>
+      <SuccessStories/>
+      <FAQ/>
+      <ContactForm/>
+    </>
+  );
+}
 
 function App() {
   return (
@@ -19,20 +35,14 @@ function App() {
       <div className="App">
         <ErrorBoundary>
           <Navbar />
-          <HeroSection/>
-          
-          <ClientSection/>
-          <FeaturesSection/>
-          <ImpactStats/>
-          {/* <ImpactNumbers/> */}
-          <SecuritySolutions/>
-          <HomeGallery/>
-          <SuccessStories/>
-          <FAQ/>
-          <ContactForm/>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/services" element={<Servicespage/>} />
+          </Routes>
+          <Footer/>
         </ErrorBoundary>
       </div>
-   </Router>
+    </Router>
   );
 }
 
@@ -62,4 +72,4 @@ class ErrorBoundary extends React.Component<
   }
 }
 
- export default App;
+export default App;
