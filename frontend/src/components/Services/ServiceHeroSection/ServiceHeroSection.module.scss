@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 .hero {
   padding: 140px 40px 120px;
   text-align: center;
@@ -8,7 +10,7 @@
 
   .heroContent {
     h1 {
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'Tomorrow', sans-serif;
       font-size: 56px;
       font-weight: 800;
       color: #ffffff;
@@ -18,7 +20,7 @@
       text-transform: uppercase;
 
       .technology {
-        background: linear-gradient(90deg, #C026D3 0%, #E879F9 100%);
+        background: linear-gradient(90deg, #FE8FEB 7.21%, #01E6DD 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -37,7 +39,7 @@
     }
 
     .subtitle {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Darker Grotesque', sans-serif;
       font-size: 17px;
       color: rgba(255, 255, 255, 0.65);
       line-height: 1.8;
@@ -48,11 +50,11 @@
 
     .exploreButton {
       padding: 16px 38px;
-      background: #14B8A6;
+      background: rgba(1, 230, 221, 1);
       border: none;
-      border-radius: 2px;
+      border-radius: 8px;
       color: #000000;
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'Darker Grotesque', sans-serif;
       font-size: 13px;
       font-weight: 700;
       cursor: pointer;

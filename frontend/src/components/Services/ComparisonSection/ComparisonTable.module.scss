@@ -1,130 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 .comparisonSection {
-  max-width: 1400px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 80px 40px;
   background: #000000;
+  position: relative;
+  overflow: hidden;
 }
 
 .header {
   text-align: center;
   margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
 }
 
 .mainTitle {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Orbitron', 'Tomorrow', sans-serif;
   font-size: 48px;
-  font-weight: 800;
+  font-weight: 700;
   color: #ffffff;
-  margin: 0 0 16px 0;
+  margin: 0;
   letter-spacing: 2px;
   line-height: 1.2;
   text-transform: uppercase;
 }
 
-.highlight {
- background: linear-gradient(180deg, #01E6DD 0%, #FE8FEB 100%);
+.titleHighlight {
+  font-family: 'Orbitron', 'Tomorrow', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00d9ff 0%, #00ffc8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  margin: 0 0 20px 0;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .subtitle {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
   margin: 0;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .tableWrapper {
   overflow-x: auto;
-  border-radius: 16px;
-  background: rgba(20, 20, 24, 0.5);
-  padding: 2px;
+  border-radius: 0;
+  background: transparent;
+  position: relative;
+  z-index: 1;
 }
 
 .comparisonTable {
-  width: 80%;
-  border-collapse: separate;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-collapse: collapse;
   border-spacing: 0;
-  align-self: center;
-  justify-self: center;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   
   thead tr {
-    background: rgba(30, 30, 35, 0.8);
+    background: transparent;
   }
   
   th {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    padding: 24px 32px;
+    padding: 24px;
     text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    background: #2d2d2d;
+    vertical-align: middle;
+    color: #ffffff;
+    
+    &:last-child {
+      border-right: none;
+    }
   }
   
   .featureHeader {
     text-align: left;
-    color: rgba(255, 255, 255, 0.7);
-    background: rgba(30, 30, 35, 0.8);
+    color: #ffffff;
+    background: #2d2d2d;
   }
   
   .cyberfortHeader {
-    background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
+    background: #17a398;
     color: #ffffff;
+    font-weight: 700;
   }
   
   .competitorHeader {
-    color: rgba(255, 255, 255, 0.7);
-    background: rgba(30, 30, 35, 0.8);
+    color: #ffffff;
+    background: #3d3d3d;
   }
   
   tbody tr {
-    &:nth-child(odd) {
-      background: rgba(25, 25, 30, 0.6);
-    }
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     
-    &:nth-child(even) {
-      background: rgba(20, 20, 25, 0.6);
-    }
-    
-    &:hover {
-      background: rgba(30, 30, 35, 0.8);
+    &:last-child {
+      border-bottom: none;
     }
   }
   
   td {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    padding: 28px 32px;
+    font-family: 'Inter', sans-serif;
+    padding: 24px;
     text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    vertical-align: middle;
+    
+    &:last-child {
+      border-right: none;
+    }
   }
   
   .featureCell {
     text-align: left;
     font-size: 15px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    color: #ffffff;
+    background: #1a1a1a;
   }
   
   .cyberfortCell {
-    background: linear-gradient(135deg, rgba(13, 148, 136, 0.15) 0%, rgba(15, 118, 110, 0.15) 100%);
-    border-left: 2px solid rgba(20, 184, 166, 0.3);
-    border-right: 2px solid rgba(20, 184, 166, 0.3);
+    background: rgba(13, 95, 88, 0.8);
   }
   
   .competitorCell {
-    background: transparent;
-  }
-  
-  tbody tr:last-child {
-    .cyberfortCell,
-    td {
-      border-bottom: none;
-    }
+    background: #1a1a1a;
   }
 }
 
@@ -132,9 +150,22 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  background: #14B8A6;
+  width: 32px;
+  height: 32px;
+  background: #14b8a6;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.checkIconCyberfort {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #14b8a6;
   color: #ffffff;
   border-radius: 6px;
   font-size: 18px;
@@ -145,9 +176,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  background: #DC2626;
+  width: 32px;
+  height: 32px;
+  background: #dc2626;
   color: #ffffff;
   border-radius: 6px;
   font-size: 18px;
@@ -155,24 +186,29 @@
 }
 
 .textValue {
-  font-size: 15px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
 }
 
-@media (max-width: 1024px) {
-  .mainTitle {
-    font-size: 36px;
+@media (max-width: 1200px) {
+  .comparisonSection {
+    padding: 70px 30px;
+  }
+
+  .mainTitle,
+  .titleHighlight {
+    font-size: 42px;
   }
   
   .comparisonTable {
     th {
-      padding: 20px 24px;
-      font-size: 12px;
+      padding: 20px;
+      font-size: 13px;
     }
     
     td {
-      padding: 24px 20px;
+      padding: 20px;
     }
     
     .featureCell {
@@ -181,26 +217,26 @@
   }
   
   .textValue {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 
 @media (max-width: 768px) {
   .comparisonSection {
-    padding: 60px 20px;
+    padding: 50px 20px;
   }
   
   .header {
     margin-bottom: 40px;
   }
   
-  .mainTitle {
-    font-size: 28px;
-    letter-spacing: 1px;
+  .mainTitle,
+  .titleHighlight {
+    font-size: 32px;
   }
   
   .subtitle {
-    font-size: 14px;
+    font-size: 13px;
   }
   
   .tableWrapper {
@@ -208,15 +244,15 @@
   }
   
   .comparisonTable {
-    min-width: 800px;
+    min-width: 900px;
     
     th {
-      padding: 16px 16px;
-      font-size: 11px;
+      padding: 16px;
+      font-size: 12px;
     }
     
     td {
-      padding: 20px 16px;
+      padding: 16px;
     }
     
     .featureCell {
@@ -225,13 +261,14 @@
   }
   
   .checkIcon,
+  .checkIconCyberfort,
   .crossIcon {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     font-size: 16px;
   }
   
   .textValue {
-    font-size: 13px;
+    font-size: 14px;
   }
 }

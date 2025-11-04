@@ -13,6 +13,7 @@ interface Technology {
   description: string;
   features: string[];
   iconBg: string;
+  borderColor: string;
 }
 
 const CoreTechnologies: React.FC = () => {
@@ -29,7 +30,8 @@ const CoreTechnologies: React.FC = () => {
         'Enterprise Shield',
         'Elite Cyber Command'
       ],
-      iconBg: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
+      iconBg: '#10b981',
+      borderColor: '#10b981',
     },
     {
       id: 2,
@@ -43,7 +45,8 @@ const CoreTechnologies: React.FC = () => {
         'Client-Centric AI Strategy',
         'Enterprise-Grade Security'
       ],
-      iconBg: 'linear-gradient(135deg, #A855F7 0%, #7E22CE 100%)',
+      iconBg: '#a855f7',
+      borderColor: '#a855f7',
     },
     {
       id: 3,
@@ -57,7 +60,8 @@ const CoreTechnologies: React.FC = () => {
         'Reliable Blockchain Delivery',
         'Smart Contract Development'
       ],
-      iconBg: 'linear-gradient(135deg, #D97706 0%, #92400E 100%)',
+      iconBg: '#f59e0b',
+      borderColor: '#f59e0b',
     },
     {
       id: 4,
@@ -71,7 +75,8 @@ const CoreTechnologies: React.FC = () => {
         'Proven Server Results',
         'Cost-Effective Servers'
       ],
-      iconBg: 'linear-gradient(135deg, #8B5CF6 0%, #6B21A8 100%)',
+      iconBg: '#8b5cf6',
+      borderColor: '#8b5cf6',
     },
     {
       id: 5,
@@ -85,7 +90,8 @@ const CoreTechnologies: React.FC = () => {
         'Proven Results',
         'Ongoing Support & Maintenance'
       ],
-      iconBg: 'linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)',
+      iconBg: '#06b6d4',
+      borderColor: '#06b6d4',
     },
   ];
 
@@ -93,7 +99,11 @@ const CoreTechnologies: React.FC = () => {
     <section className={styles.coreTechnologies}>
       <div className={styles.technologiesGrid}>
         {technologies.map((tech) => (
-          <div key={tech.id} className={styles.glassCard}>
+          <div 
+            key={tech.id} 
+            className={styles.glassCard}
+            style={{ '--border-color': tech.borderColor } as React.CSSProperties}
+          >
             <div className={styles.cardInner}>
               <div
                 className={styles.iconWrapper}

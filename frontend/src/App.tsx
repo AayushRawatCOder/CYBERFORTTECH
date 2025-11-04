@@ -4,7 +4,7 @@ import Navbar from './components/common/Navbar/Navbar';
 import ClientSection from './components/home/ClientSection/ClientSection';
 import HomeGallery from './components/Galary/HomeGalary/HomeGalary';
 import SuccessStories from './components/Home/Testimonial/SuccessStories';
-import FAQ from './components/Home/FAQ/FAQ';
+import FAQ from './components/common/FAQ/FAQ';
 import ContactForm from './components/common/ContactForm/ContactForm';
 import FeaturesSection from './components/home/FeatureSection/FeatureSection';
 import HeroSection from './components/home/HeroSection/HeroSection';
