@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 .faqContainer {
   min-height: 100vh;
   display: flex;
@@ -13,7 +15,8 @@
 .faqTitle {
   font-size: 72px;
   font-weight: 700;
-  background: linear-gradient(90deg, #FE8FEB 0%, #01E6DD 100%);
+  font-family: 'Tomorrow', sans-serif;
+  background: linear-gradient(180deg, #01E6DD 0%, #FE8FEB 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
