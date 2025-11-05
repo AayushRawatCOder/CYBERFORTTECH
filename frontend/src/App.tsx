@@ -12,6 +12,7 @@ import ImpactStats from './components/home/ImpactStats/ImpactStats';
 import SecuritySolutions from './components/home/SecuritySolutions/SecuritySolution';
 import Footer from './components/common/Footer/footer';
 import Servicespage from './(routes)/services/Servicespage';
+import ServicesDetail from './(routes)/services/[slug]/page';
 
 function HomePage() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<Servicespage/>} />
+            <Route path="/services/:slug" element={<ServicesDetail/>} />
           </Routes>
           <Footer/>
         </ErrorBoundary>
