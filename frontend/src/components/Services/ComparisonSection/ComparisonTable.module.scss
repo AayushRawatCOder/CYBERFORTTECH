@@ -4,7 +4,6 @@
   max-width: 100%;
   margin: 0 auto;
   padding: 80px 40px;
-  background: #000000;
   position: relative;
   overflow: hidden;
 }
@@ -17,7 +16,7 @@
 }
 
 .mainTitle {
-  font-family: 'Orbitron', 'Tomorrow', sans-serif;
+  font-family: 'Tomorrow', sans-serif;
   font-size: 48px;
   font-weight: 700;
   color: #ffffff;
@@ -28,10 +27,10 @@
 }
 
 .titleHighlight {
-  font-family: 'Orbitron', 'Tomorrow', sans-serif;
+  font-family: 'Tomorrow', sans-serif;
   font-size: 48px;
   font-weight: 700;
-  background: linear-gradient(90deg, #00d9ff 0%, #00ffc8 100%);
+  background: linear-gradient(180deg, #01E6DD 0%, #FE8FEB 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -44,7 +43,7 @@
 .subtitle {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.6;
   margin: 0;
   font-weight: 300;
@@ -62,57 +61,62 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  border-collapse: collapse;
+  border-collapse: separate;
   border-spacing: 0;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
   
   thead tr {
     background: transparent;
   }
   
   th {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Tomorrow', sans-serif;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     padding: 24px;
     text-align: center;
-    border-right: 1px solid rgba(255, 255, 255, 0.15);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    background: #2d2d2d;
+    background: #2a2a2a;
     vertical-align: middle;
     color: #ffffff;
+    border: none;
     
-    &:last-child {
-      border-right: none;
+    &:first-child {
+      border-radius: 0;
     }
   }
   
   .featureHeader {
     text-align: left;
     color: #ffffff;
-    background: #2d2d2d;
+    background: #1f1f1f;
   }
   
   .cyberfortHeader {
-    background: #17a398;
+    background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
     color: #ffffff;
     font-weight: 700;
   }
   
   .competitorHeader {
     color: #ffffff;
-    background: #3d3d3d;
+    background: #2a2a2a;
   }
   
   tbody tr {
     background: transparent;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     
-    &:last-child {
-      border-bottom: none;
+    &:hover {
+      .featureCell {
+        background: #222222;
+      }
+      .cyberfortCell {
+        background: rgba(13, 95, 88, 0.9);
+      }
+      .competitorCell {
+        background: #1f1f1f;
+      }
     }
   }
   
@@ -120,13 +124,10 @@
     font-family: 'Inter', sans-serif;
     padding: 24px;
     text-align: center;
-    border-right: 1px solid rgba(255, 255, 255, 0.15);
     background: transparent;
     vertical-align: middle;
-    
-    &:last-child {
-      border-right: none;
-    }
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
   
   .featureCell {
@@ -135,14 +136,17 @@
     font-weight: 400;
     color: #ffffff;
     background: #1a1a1a;
+    transition: background 0.3s ease;
   }
   
   .cyberfortCell {
-    background: rgba(13, 95, 88, 0.8);
+    background: rgba(13, 95, 88, 0.7);
+    transition: background 0.3s ease;
   }
   
   .competitorCell {
     background: #1a1a1a;
+    transition: background 0.3s ease;
   }
 }
 
