@@ -4,7 +4,7 @@ import Navbar from './components/common/Navbar/Navbar';
 import ClientSection from './components/home/ClientSection/ClientSection';
 import HomeGallery from './components/Galary/HomeGalary/HomeGalary';
 import SuccessStories from './components/Home/Testimonial/SuccessStories';
-import FAQ from './components/Home/FAQ/FAQ';
+import FAQ from './components/common/FAQ/FAQ';
 import ContactForm from './components/common/ContactForm/ContactForm';
 import FeaturesSection from './components/home/FeatureSection/FeatureSection';
 import HeroSection from './components/home/HeroSection/HeroSection';
@@ -12,6 +12,7 @@ import ImpactStats from './components/home/ImpactStats/ImpactStats';
 import SecuritySolutions from './components/home/SecuritySolutions/SecuritySolution';
 import Footer from './components/common/Footer/footer';
 import Servicespage from './(routes)/services/Servicespage';
+import ServicesDetail from './(routes)/services/[slug]/page';
 
 function HomePage() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<Servicespage/>} />
+            <Route path="/services/:slug" element={<ServicesDetail/>} />
           </Routes>
           <Footer/>
         </ErrorBoundary>

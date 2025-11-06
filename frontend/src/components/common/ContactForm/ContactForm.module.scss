@@ -7,6 +7,8 @@ a {
   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="%234dd4d4" stroke-width="2.5" fill="rgba(77, 212, 212, 0.2)"/></svg>') 12 12, pointer !important;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 .contactContainer {
   min-height: 100vh;
   background: #000000;
@@ -29,6 +31,7 @@ a {
 .formHeader {
   text-align: center;
   margin-bottom: 40px;
+  font-family: 'Tomorrow', sans-serif;
 }
 
 .formTitle {
@@ -40,7 +43,7 @@ a {
 }
 
 .titleHighlight {
-  background: linear-gradient(90deg, #FE8FEB 0%, #01E6DD 100%);
+  background: linear-gradient(180deg, #01E6DD 0%, #FE8FEB 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
