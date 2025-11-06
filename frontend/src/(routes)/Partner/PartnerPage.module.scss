@@ -1,0 +1,48 @@
+.partnerPage {
+  min-height: 100vh;
+  width: 100%;
+  background: #000000;
+  position: relative;
+  overflow-x: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(ellipse 800px 600px at 50% 20%, rgba(1, 230, 221, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse 600px 500px at 20% 60%, rgba(254, 143, 235, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 700px 550px at 80% 70%, rgba(1, 230, 221, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .partnerPage {
+    &::before {
+      background:
+        radial-gradient(ellipse 600px 500px at 50% 20%, rgba(1, 230, 221, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 500px 400px at 20% 60%, rgba(254, 143, 235, 0.1) 0%, transparent 50%);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .partnerPage {
+    &::before {
+      background:
+        radial-gradient(ellipse 400px 350px at 50% 20%, rgba(1, 230, 221, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 350px 300px at 50% 70%, rgba(254, 143, 235, 0.08) 0%, transparent 50%);
+    }
+  }
+}

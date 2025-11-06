@@ -13,6 +13,7 @@ import SecuritySolutions from './components/home/SecuritySolutions/SecuritySolut
 import Footer from './components/common/Footer/footer';
 import Servicespage from './(routes)/services/Servicespage';
 import ServicesDetail from './(routes)/services/[slug]/page';
+import PartenerPage from './(routes)/Partner/PartenerPage';
 
 function HomePage() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<Servicespage/>} />
             <Route path="/services/:slug" element={<ServicesDetail/>} />
+            <Route path="/partners" element={<PartenerPage/>} />
           </Routes>
           <Footer/>
         </ErrorBoundary>
