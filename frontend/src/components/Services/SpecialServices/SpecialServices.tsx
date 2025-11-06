@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Check } from 'lucide-react';
+import { featuresData, type ServiceKey, type FeaturePlan } from '../../../Data/Data-service/Feature';
 import './PricingCards.scss';
 
 interface FeatureSection {
@@ -17,13 +18,16 @@ interface PricingTier {
   gradient: string;
   borderColor: string;
   features: FeatureSection[];
+  cta?: string;
+  icon?: React.ReactNode;
 }
 
 interface PricingCardsProps {
+  serviceKey: ServiceKey | null; // 🔹 Receive from parent
   pricingData?: PricingTier[];
 }
 
-// Default fallback data
+// Default fallback data (cybersecurity-themed)
 const defaultPricingTiers: PricingTier[] = [
   {
     id: 'discovery',
@@ -43,105 +47,110 @@ const defaultPricingTiers: PricingTier[] = [
           'Basic Security Monitoring'
         ]
       }
-    ]
-  },
-  {
-    id: 'essential',
-    name: 'ESSENTIAL + ENDPOINT',
-    price: '₹18,999',
-    period: '/m',
-    description: 'Comprehensive security coverage with advanced monitoring',
-    gradient: 'linear-gradient(135deg, #0f766e 0%, #065f46 100%)',
-    borderColor: 'rgba(45, 212, 191, 0.3)',
-    features: [
-      {
-        category: 'Core Security',
-        items: [
-          'Basic Vulnerability Scanning',
-          'Web L7/L1 Pentesting (Basic)',
-          'SIEM/SOC (Email & WhatsApp)',
-          'Basic Security Monitoring'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'pro',
-    name: 'PRO DEFENSE SUITE',
-    price: '₹45,000',
-    period: '/m',
-    description: 'Comprehensive security coverage with advanced monitoring',
-    gradient: 'linear-gradient(135deg, #064e3b 0%, #022c22 100%)',
-    borderColor: 'rgba(45, 212, 191, 0.3)',
-    features: [
-      {
-        category: 'Core Security',
-        items: [
-          'Basic Vulnerability Scanning',
-          'Web L7/L1 Pentesting (Basic)',
-          'SIEM/SOC (Email & WhatsApp)',
-          'Basic Security Monitoring'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'enterprise',
-    name: 'ENTERPRISE SHIELD',
-    price: '₹2L',
-    period: '/m',
-    description: 'Comprehensive security coverage with advanced monitoring',
-    popular: true,
-    gradient: 'linear-gradient(135deg, #7e22ce 0%, #be185d 50%, #9f1239 100%)',
-    borderColor: 'rgba(236, 72, 153, 0.5)',
-    features: [
-      {
-        category: 'Core Security',
-        items: [
-          'Basic Vulnerability Scanning',
-          'Web L7/L1 Pentesting (Basic)',
-          'SIEM/SOC (Email & WhatsApp)',
-          'Basic Security Monitoring'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'elite',
-    name: 'ELITE CYBER COMMAND',
-    price: '₹3L+',
-    period: '/m',
-    description: 'Comprehensive security coverage with advanced monitoring',
-    gradient: 'linear-gradient(135deg, #0d9488 0%, #064e3b 100%)',
-    borderColor: 'rgba(45, 212, 191, 0.3)',
-    features: [
-      {
-        category: 'Core Security',
-        items: [
-          'Basic Vulnerability Scanning',
-          'Web L7/L1 Pentesting (Basic)',
-          'SIEM/SOC (Email & WhatsApp)',
-          'Basic Security Monitoring'
-        ]
-      }
-    ]
+    ],
+    cta: 'Get Started'
   }
 ];
 
-const PricingCards: React.FC<PricingCardsProps> = ({ pricingData }) => {
+const getGradient = (color: string): string => {
+  const gradients: Record<string, string> = {
+    Emerald: 'linear-gradient(135deg, #10b981 0%, #047857 100%)',
+    Orange: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
+    Blue: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+    Purple: 'linear-gradient(135deg, #a855f7 0%, #9333ea 100%)',
+    Red: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+  };
+  return gradients[color] || 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)';
+};
+
+const getBorderColor = (color: string): string => {
+  const borders: Record<string, string> = {
+    Emerald: 'rgba(16, 185, 129, 0.3)',
+    Orange: 'rgba(249, 115, 22, 0.3)',
+    Blue: 'rgba(59, 130, 246, 0.3)',
+    Purple: 'rgba(168, 85, 247, 0.3)',
+    Red: 'rgba(239, 68, 68, 0.3)',
+  };
+  return borders[color] || 'rgba(107, 114, 128, 0.3)';
+};
+
+const transformToTier = (plan: FeaturePlan): PricingTier => {
+  const priceBadge = plan.badges.find(badge => badge.includes('₹'));
+  let price = '₹0';
+  let period = '/m';
+
+  if (priceBadge) {
+    if (priceBadge.includes('/')) {
+      const parts = priceBadge.split('/');
+      price = parts[0].trim();
+      period = `/${parts[1].replace('Month', 'm').replace('Monthly', 'm').toLowerCase()}`;
+    } else {
+      price = priceBadge;
+    }
+  }
+
+  const popular = plan.badges.some(badge =>
+    badge.toLowerCase().includes('popular') || badge.toLowerCase().includes('most')
+  );
+
+  return {
+    id: plan.id,
+    name: plan.name.toUpperCase(),
+    price,
+    period,
+    description: plan.description,
+    popular,
+    gradient: getGradient(plan.color),
+    borderColor: getBorderColor(plan.color),
+    features: plan.features,
+    cta: plan.cta,
+    icon: plan.icon,
+  };
+};
+
+const PricingCards: React.FC<PricingCardsProps> = ({ serviceKey, pricingData: propData }) => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [tiers, setTiers] = useState<PricingTier[]>(defaultPricingTiers);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  // Use provided data or fallback to defaults
-  const tiers = pricingData || defaultPricingTiers;
+  // 🔹 Recompute tiers whenever serviceKey changes
+  useEffect(() => {
+    setLoading(true);
+
+    const timer = setTimeout(() => {
+      let newTiers: PricingTier[] = [];
+
+      if (propData) {
+        newTiers = propData;
+      } else if (serviceKey && featuresData[serviceKey]) {
+        newTiers = featuresData[serviceKey].map(transformToTier);
+      } else {
+        newTiers = featuresData.cybersecurity.map(transformToTier);
+      }
+
+      setTiers(newTiers);
+      setLoading(false);
+      console.log('PricingCards updated:', { serviceKey, newTiers });
+    }, 200); // Small delay to smooth transition
+
+    return () => clearTimeout(timer);
+  }, [serviceKey, propData]);
+
+  if (loading) {
+    return (
+      <div className="pricing-container loading">
+        <div className="loading-shimmer">Loading pricing...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="pricing-container">
-      {/* Cybersecurity themed background effects */}
       {isClient && (
         <>
           <div className="cyber-grid"></div>
@@ -172,17 +181,14 @@ const PricingCards: React.FC<PricingCardsProps> = ({ pricingData }) => {
             onMouseLeave={() => setHoveredCard(null)}
             style={{
               background: tier.gradient,
-              border: `1px solid ${tier.borderColor}`
+              border: `1px solid ${tier.borderColor}`,
             }}
           >
-            {tier.popular && (
-              <div className="popular-badge">
-                MOST POPULAR
-              </div>
-            )}
-            
+            {tier.popular && <div className="popular-badge">MOST POPULAR</div>}
+
             <div className="card-content">
               <div className="card-header">
+                {tier.icon && <div className="plan-icon">{tier.icon}</div>}
                 <h3 className="tier-name">{tier.name}</h3>
                 <div className="price-wrapper">
                   <span className="price">{tier.price}</span>
@@ -208,11 +214,10 @@ const PricingCards: React.FC<PricingCardsProps> = ({ pricingData }) => {
               </div>
 
               <button className="cta-button">
-                GET STARTED
+                {tier.cta ? tier.cta.toUpperCase() : 'GET STARTED'}
               </button>
             </div>
 
-            {/* Cyber glow effect on hover */}
             <div className={`card-glow ${hoveredCard === tier.id ? 'active' : ''}`}></div>
           </div>
         ))}

@@ -1,17 +1,47 @@
-// src/pages/ServicesDetail.tsx (or wherever your page components are)
-import React from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import { technologies, type Technology } from '../../../Data/technologies';
-import styles from './ServicesDetail.module.scss';
-import HeroSection from '../../../components/Services/ServiceHeroSection/ServiceHeroSection';
-import PricingCards from '../../../components/Services/SpecialServices/SpecialServices';
+// src/pages/ServicesDetail.tsx
+import React from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { technologies, type Technology } from "../../../Data/technologies";
+import {
+  featuresData,
+  type ServiceKey,
+} from "../../../Data/Data-service/Feature"; // Import featuresData
+import styles from "./ServicesDetail.module.scss";
+import HeroSection from "../../../components/Services/ServiceHeroSection/ServiceHeroSection";
+import PricingCards from "../../../components/Services/SpecialServices/SpecialServices";
+import SpecializedSolutions from "../../../components/Services/SpecializedSolutions/SpecializedSolutions";
+import AdvancedSolutions from "../../../components/Services/AdvancedSolutions/AdvancedSolutions";
+import SuccessStories from "../../../components/common/Testimonial/SuccessStories";
+import FAQ from "../../../components/common/FAQ/FAQ";
+import ContactForm from "../../../components/common/ContactForm/ContactForm";
 
 const ServicesDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
 
   // Find the technology by slug
-  const tech: Technology | undefined = technologies.find(t => t.slug === slug);
+  const tech: Technology | undefined = technologies.find(
+    (t) => t.slug === slug
+  );
+
+  // Map technology slugs to featuresData service keys
+  const getServiceKeyFromSlug = (slug: string): ServiceKey | null => {
+    const slugToServiceKey: Record<string, ServiceKey> = {
+      cybersecurity: "cybersecurity",
+      "ai-": "ai", // Map 'ai-ml' slug to 'ai' service key
+      blockchain: "blockchain",
+      computing: "cloud", // Map 'cloud-computing' slug to 'cloud' service key
+      development: "development", // Map 'software-development' slug to 'development' service key
+    };
+
+    return slugToServiceKey[slug] || null;
+  };
+
+  // Get the service key for featuresData
+  const serviceKey = slug ? getServiceKeyFromSlug(slug) : null;
+
+  // Check if pricing data exists for this service
+  const hasPricingData = serviceKey && featuresData[serviceKey];
 
   // Handle 404 - service not found
   if (!tech) {
@@ -45,7 +75,7 @@ const ServicesDetail: React.FC = () => {
                   key={technology.slug}
                   to={`/services/${technology.slug}`}
                   className={`${styles.routeBadge} ${
-                    technology.slug === slug ? styles.activeRoute : ''
+                    technology.slug === slug ? styles.activeRoute : ""
                   }`}
                 >
                   {technology.slug}
@@ -56,29 +86,39 @@ const ServicesDetail: React.FC = () => {
         </div>
 
         {/* Back Button */}
-        <button 
-          onClick={() => navigate(-1)}
-          className={styles.backButton}
-        >
+        <button onClick={() => navigate(-1)} className={styles.backButton}>
           ← Back to Services
         </button>
 
         {/* Service Content */}
         <div className={styles.detailContent}>
           <div className={styles.serviceHeader}>
-            <div 
+            <div
               className={styles.iconWrapper}
               style={{ backgroundColor: tech.iconBg }}
             >
-              <img 
-                src={tech.icon} 
+              <img
+                src={tech.icon}
                 alt={tech.title}
                 className={styles.detailIcon}
               />
             </div>
-            
+
             <h1 className={styles.detailTitle}>{tech.title}</h1>
             <p className={styles.detailDescription}>{tech.description}</p>
+
+            {/* Pricing Data Status */}
+            <div className={styles.pricingStatus}>
+              {hasPricingData ? (
+                <span className={styles.pricingAvailable}>
+                  ✓ Pricing plans available
+                </span>
+              ) : (
+                <span className={styles.pricingUnavailable}>
+                  ⚠ No specific pricing data
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Route Details Card */}
@@ -95,11 +135,25 @@ const ServicesDetail: React.FC = () => {
               </div>
               <div className={styles.detailItem}>
                 <span className={styles.detailLabel}>Features Count:</span>
-                <span className={styles.detailValue}>{tech.features.length}</span>
+                <span className={styles.detailValue}>
+                  {tech.features.length}
+                </span>
+              </div>
+              <div className={styles.detailItem}>
+                <span className={styles.detailLabel}>Service Key:</span>
+                <code className={styles.detailValue}>
+                  {serviceKey || "N/A"}
+                </code>
+              </div>
+              <div className={styles.detailItem}>
+                <span className={styles.detailLabel}>Pricing Plans:</span>
+                <span className={styles.detailValue}>
+                  {hasPricingData ? featuresData[serviceKey!].length : 0}
+                </span>
               </div>
               <div className={styles.detailItem}>
                 <span className={styles.detailLabel}>Border Color:</span>
-                <span 
+                <span
                   className={styles.colorDot}
                   style={{ backgroundColor: tech.borderColor }}
                 ></span>
@@ -114,7 +168,7 @@ const ServicesDetail: React.FC = () => {
             <ul className={styles.featuresList}>
               {tech.features.map((feature, index) => (
                 <li key={index} className={styles.featureItem}>
-                  <div 
+                  <div
                     className={styles.featureBullet}
                     style={{ backgroundColor: tech.borderColor }}
                   ></div>
@@ -128,8 +182,8 @@ const ServicesDetail: React.FC = () => {
           <section className={styles.moreInfo}>
             <h2>Why Choose Our {tech.title}?</h2>
             <p>
-              This is the detailed view for {tech.title}. You can add more content, 
-              pricing information, case studies, or contact forms here.
+              This is the detailed view for {tech.title}. You can add more
+              content, pricing information, case studies, or contact forms here.
             </p>
           </section>
 
@@ -142,15 +196,40 @@ const ServicesDetail: React.FC = () => {
         {/* Debug Information - Remove in production */}
         <div className={styles.debugInfo}>
           <h3>Debug Information</h3>
-          <pre className={styles.debugCode}>
-            {JSON.stringify(tech, null, 2)}
-          </pre>
+          <div className={styles.debugSection}>
+            <h4>Service Mapping:</h4>
+            <pre className={styles.debugCode}>
+              {JSON.stringify(
+                {
+                  slug,
+                  serviceKey,
+                  hasPricingData,
+                  availablePlans: hasPricingData
+                    ? featuresData[serviceKey!].map((p) => p.name)
+                    : [],
+                },
+                null,
+                2
+              )}
+            </pre>
+          </div>
         </div>
       </div>
-      <HeroSection/>
-      <PricingCards/>
+
+      {/* Hero Section - Pass service data if needed */}
+      <HeroSection />
+
+      {/* Pricing Cards - This will automatically fetch data based on serviceKey */}
+      {/* Pricing Cards */}
+      <PricingCards key={slug} serviceKey={serviceKey} />
+
+      <SpecializedSolutions/>
+      <AdvancedSolutions/>
+
+      <SuccessStories/>
+      <FAQ/>
+      <ContactForm/>
     </div>
-    
   );
 };
 
