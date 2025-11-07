@@ -1,48 +1,109 @@
 .partnerPage {
-  min-height: 100vh;
-  width: 100%;
-  background: #000000;
-  position: relative;
+  background: #0a0a0a;
   overflow-x: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-      radial-gradient(ellipse 800px 600px at 50% 20%, rgba(1, 230, 221, 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse 600px 500px at 20% 60%, rgba(254, 143, 235, 0.12) 0%, transparent 50%),
-      radial-gradient(ellipse 700px 550px at 80% 70%, rgba(1, 230, 221, 0.1) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.6;
-  }
-
-  > * {
-    position: relative;
-    z-index: 1;
-  }
+  position: relative;
 }
 
-@media (max-width: 1024px) {
-  .partnerPage {
-    &::before {
-      background:
-        radial-gradient(ellipse 600px 500px at 50% 20%, rgba(1, 230, 221, 0.12) 0%, transparent 50%),
-        radial-gradient(ellipse 500px 400px at 20% 60%, rgba(254, 143, 235, 0.1) 0%, transparent 50%);
-    }
-  }
+.heroGlow {
+  position: relative;
 }
 
-@media (max-width: 768px) {
-  .partnerPage {
-    &::before {
-      background:
-        radial-gradient(ellipse 400px 350px at 50% 20%, rgba(1, 230, 221, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse 350px 300px at 50% 70%, rgba(254, 143, 235, 0.08) 0%, transparent 50%);
-    }
-  }
+.heroGlow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1200px;
+  height: 900px;
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(ellipse 600px 480px at 50% 50%, rgba(254, 143, 235, 0.5) 0%, rgba(254, 143, 235, 0.2) 40%, transparent 75%),
+    radial-gradient(ellipse 1100px 900px at 50% 50%, rgba(1, 230, 221, 0.3) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(45px);
+  opacity: 0.85;
+}
+
+.heroGlow > * {
+  position: relative;
+  z-index: 2;
+}
+
+.leftGlow {
+  position: relative;
+}
+
+.leftGlow::before {
+  content: '';
+  position: absolute;
+  top: 55%;
+  left: 12%;
+  width: 1000px;
+  height: 900px;
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(ellipse 600px 480px at 50% 50%, rgba(254, 143, 235, 0.5) 0%, rgba(254, 143, 235, 0.2) 40%, transparent 75%),
+    radial-gradient(ellipse 1100px 900px at 50% 50%, rgba(1, 230, 221, 0.3) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(48px);
+  opacity: 0.88;
+}
+
+.leftGlow > * {
+  position: relative;
+  z-index: 2;
+}
+
+.centerGlow {
+  position: relative;
+}
+
+.centerGlow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1100px;
+  height: 850px;
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(ellipse 400px 480px at 50% 50%, rgba(254, 143, 235, 0.5) 0%, rgba(254, 143, 235, 0.2) 40%, transparent 75%),
+    radial-gradient(ellipse 1100px 900px at 50% 50%, rgba(1, 230, 221, 0.3) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(42px);
+  opacity: 0.9;
+}
+
+.centerGlow > * {
+  position: relative;
+  z-index: 2;
+}
+
+.rightGlow {
+  position: relative;
+}
+
+.rightGlow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 12%;
+  width: 1000px;
+  height: 900px;
+  transform: translate(50%, -50%);
+  background:
+    radial-gradient(ellipse 600px 480px at 50% 50%, rgba(1, 230, 221, 0.45) 0%, rgba(1, 230, 221, 0.18) 45%, transparent 80%),
+    radial-gradient(ellipse 1000px 800px at 50% 50%, rgba(254, 143, 235, 0.45) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(50px);
+  opacity: 0.9;
+}
+
+.rightGlow > * {
+  position: relative;
+  z-index: 2;
 }

@@ -9,12 +9,20 @@ import styles from './Servicespage.module.scss'
 
 const Servicespage = () => {
   return (
-    <div className={styles.servicesPage}>
+    <div className={styles.partnerPage}>
+      <div className={styles.heroGlow}>
       <HeroSection/>
       <CoreTechnologies/>
+      </div>
+      <div className={styles.leftGlow}>
       <ComparisonTable/>
+      </div>
+      <div className={styles.centerGlow}>
       <SecuritySolutions/>
+      </div>
+      <div className={styles.rightGlow}>
       <SuccessStories/>
+      </div>
       <FAQ/>
       <ContactForm/>
     </div>

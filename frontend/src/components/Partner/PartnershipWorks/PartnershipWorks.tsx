@@ -52,9 +52,11 @@ const PartnershipWorks: React.FC = () => {
           <div key={index} className={styles.row}>
             <div className={styles.leftCard}>
               {step.position === 'left' && (
-                <div className={styles.card}>
-                  <h3 className={styles.cardTitle}>{step.title}</h3>
-                  <p className={styles.cardText}>{step.description}</p>
+                <div className={styles.cardOuter}>
+                  <div className={styles.cardInner}>
+                    <h3 className={styles.cardTitle}>{step.title}</h3>
+                    <p className={styles.cardText}>{step.description}</p>
+                  </div>
                 </div>
               )}
             </div>
@@ -68,9 +70,11 @@ const PartnershipWorks: React.FC = () => {
 
             <div className={styles.rightCard}>
               {step.position === 'right' && (
-                <div className={styles.card}>
-                  <h3 className={styles.cardTitle}>{step.title}</h3>
-                  <p className={styles.cardText}>{step.description}</p>
+                <div className={styles.cardOuter}>
+                  <div className={styles.cardInner}>
+                    <h3 className={styles.cardTitle}>{step.title}</h3>
+                    <p className={styles.cardText}>{step.description}</p>
+                  </div>
                 </div>
               )}
             </div>
