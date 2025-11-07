@@ -28,9 +28,9 @@ const ServicesDetail: React.FC = () => {
   const getServiceKeyFromSlug = (slug: string): ServiceKey | null => {
     const slugToServiceKey: Record<string, ServiceKey> = {
       cybersecurity: "cybersecurity",
-      "ai-": "ai", // Map 'ai-ml' slug to 'ai' service key
+      ai: "ai", // Map 'ai-ml' slug to 'ai' service key
       blockchain: "blockchain",
-      computing: "cloud", // Map 'cloud-computing' slug to 'cloud' service key
+      cloud: "cloud", // Map 'cloud-computing' slug to 'cloud' service key
       development: "development", // Map 'software-development' slug to 'development' service key
     };
 
