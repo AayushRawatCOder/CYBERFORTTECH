@@ -49,36 +49,38 @@ const PartnershipWorks: React.FC = () => {
 
       <div className={styles.timeline}>
         {steps.map((step, index) => (
-          <div key={index} className={styles.row}>
-            <div className={styles.leftCard}>
-              {step.position === 'left' && (
-                <div className={styles.cardOuter}>
-                  <div className={styles.cardInner}>
-                    <h3 className={styles.cardTitle}>{step.title}</h3>
-                    <p className={styles.cardText}>{step.description}</p>
+          <React.Fragment key={index}>
+            <div className={styles.row}>
+              <div className={styles.leftCard}>
+                {step.position === 'left' && (
+                  <div className={styles.cardOuter}>
+                    <div className={styles.cardInner}>
+                      <h3 className={styles.cardTitle}>{step.title}</h3>
+                      <p className={styles.cardText}>{step.description}</p>
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-            
-            <div className={styles.centerLine}>
-              <div className={styles.iconBox}>
-                <img src={step.icon} alt={step.title} className={styles.icon} />
+                )}
               </div>
-              {index < steps.length - 1 && <div className={styles.dashedLine}></div>}
-            </div>
-
-            <div className={styles.rightCard}>
-              {step.position === 'right' && (
-                <div className={styles.cardOuter}>
-                  <div className={styles.cardInner}>
-                    <h3 className={styles.cardTitle}>{step.title}</h3>
-                    <p className={styles.cardText}>{step.description}</p>
-                  </div>
+              
+              <div className={styles.centerLine}>
+                <div className={styles.iconBox}>
+                  <img src={step.icon} alt={step.title} className={styles.icon} />
                 </div>
-              )}
+                {index < steps.length - 1 && <div className={styles.dashedLine}></div>}
+              </div>
+
+              <div className={styles.rightCard}>
+                {step.position === 'right' && (
+                  <div className={styles.cardOuter}>
+                    <div className={styles.cardInner}>
+                      <h3 className={styles.cardTitle}>{step.title}</h3>
+                      <p className={styles.cardText}>{step.description}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          </React.Fragment>
         ))}
       </div>
     </div>
