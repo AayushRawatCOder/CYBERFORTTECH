@@ -60,9 +60,9 @@ const ServicesDetail: React.FC = () => {
 
   return (
     <div className={styles.servicesDetail}>
-      <div className={styles.container}>
+      {/* <div className={styles.container}>
         {/* Route Information Banner */}
-        <div className={styles.routeInfo}>
+      {/* <div className={styles.routeInfo}>
           <div className={styles.routePath}>
             <span className={styles.routeLabel}>Current Route:</span>
             <code className={styles.routeCode}>/services/{slug}</code>
@@ -83,16 +83,16 @@ const ServicesDetail: React.FC = () => {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
 
-        {/* Back Button */}
-        <button onClick={() => navigate(-1)} className={styles.backButton}>
+      {/* Back Button */}
+      {/* <button onClick={() => navigate(-1)} className={styles.backButton}>
           ← Back to Services
-        </button>
+        </button> */}
 
-        {/* Service Content */}
-        <div className={styles.detailContent}>
-          <div className={styles.serviceHeader}>
+      {/* Service Content */}
+      {/* <div className={styles.detailContent}>
+          {/* <div className={styles.serviceHeader}>
             <div
               className={styles.iconWrapper}
               style={{ backgroundColor: tech.iconBg }}
@@ -108,7 +108,7 @@ const ServicesDetail: React.FC = () => {
             <p className={styles.detailDescription}>{tech.description}</p>
 
             {/* Pricing Data Status */}
-            <div className={styles.pricingStatus}>
+      {/* <div className={styles.pricingStatus}>
               {hasPricingData ? (
                 <span className={styles.pricingAvailable}>
                   ✓ Pricing plans available
@@ -118,11 +118,11 @@ const ServicesDetail: React.FC = () => {
                   ⚠ No specific pricing data
                 </span>
               )}
-            </div>
-          </div>
+            </div> */}
+      {/* </div>  */}
 
-          {/* Route Details Card */}
-          <div className={styles.routeDetails}>
+      {/* Route Details Card */}
+      {/* <div className={styles.routeDetails}>
             <h2>Route Information</h2>
             <div className={styles.detailsGrid}>
               <div className={styles.detailItem}>
@@ -160,10 +160,10 @@ const ServicesDetail: React.FC = () => {
                 <code className={styles.detailValue}>{tech.borderColor}</code>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          {/* Features List */}
-          <div className={styles.featuresSection}>
+      {/* Features List */}
+      {/* <div className={styles.featuresSection}>
             <h2>Key Features</h2>
             <ul className={styles.featuresList}>
               {tech.features.map((feature, index) => (
@@ -176,25 +176,24 @@ const ServicesDetail: React.FC = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
-          {/* Additional Content */}
-          <section className={styles.moreInfo}>
+      {/* Additional Content */}
+      {/* <section className={styles.moreInfo}>
             <h2>Why Choose Our {tech.title}?</h2>
             <p>
               This is the detailed view for {tech.title}. You can add more
               content, pricing information, case studies, or contact forms here.
             </p>
-          </section>
+          </section> */}
 
-          {/* CTA Button */}
-          <button className={styles.ctaButton}>
+      {/* CTA Button */}
+      {/* <button className={styles.ctaButton}>
             Get a Quote for {tech.title}
-          </button>
-        </div>
-
-        {/* Debug Information - Remove in production */}
-        <div className={styles.debugInfo}>
+          </button> */}
+      {/* </div> */}
+      {/* Debug Information - Remove in production */}
+      {/* <div className={styles.debugInfo}>
           <h3>Debug Information</h3>
           <div className={styles.debugSection}>
             <h4>Service Mapping:</h4>
@@ -213,22 +212,30 @@ const ServicesDetail: React.FC = () => {
               )}
             </pre>
           </div>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
 
       {/* Hero Section - Pass service data if needed */}
-      <HeroSection />
+      <div className={styles.heroGlow}>
+        <HeroSection />
+      </div>
 
       {/* Pricing Cards - This will automatically fetch data based on serviceKey */}
       {/* Pricing Cards */}
-      <PricingCards key={slug} serviceKey={serviceKey} />
+      <div className={styles.heroGlow}>
+        <PricingCards key={slug} serviceKey={serviceKey} />
+      </div>
 
-      <SpecializedSolutions/>
-      <AdvancedSolutions/>
+      <SpecializedSolutions />
+      <div className={styles.leftGlow}>
+      <AdvancedSolutions />
+      </div>
 
-      <SuccessStories/>
-      <FAQ/>
-      <ContactForm/>
+      <div className={styles.rightGlow}>
+        <SuccessStories />
+      </div>
+      <FAQ />
+      <ContactForm />
     </div>
   );
 };

@@ -50,7 +50,7 @@ const Navbar = () => {
   const educationItems = [
     { href: "/courses", label: "COURSES", icon: "📚" },
     { href: "/internships", label: "INDUSTRY IMMERSION", icon: "🏢" },
-    { href: "/certificate", label: "CERTIFICATE VERIFICATION", icon: "🏆" }
+    { href: "/certificate", label: "CERTIFICATE VERIFICATION", icon: "🎓" }
   ];
 
   return (
@@ -58,12 +58,7 @@ const Navbar = () => {
       <div className="nav-container">
         {/* Logo */}
         <Link to="/" className="logo-container">
-          <div className="logo-shield">
-            <svg width="24" height="28" viewBox="0 0 24 28" fill="none">
-              <path d="M12 0L0 7V21L12 28L24 21V7L12 0Z" fill="currentColor"/>
-              <path d="M12 4L4 9V19L12 24L20 19V9L12 4Z" fill="#0A0A0A"/>
-            </svg>
-          </div>
+          <img src="/logo/cyberfort_logo.svg" alt="CyberfortTECH" className="logo-image" />
           <span className="logo-text">
             Cyberfort<span className="logo-text-tech">TECH</span>
           </span>
@@ -97,8 +92,8 @@ const Navbar = () => {
                     className={`dropdown-item ${isActivePath(item.href) ? 'active' : ''}`}
                     onClick={() => setActiveDropdown(null)}
                   >
-                    <span className="icon">{item.icon}</span>
-                    {item.label}
+                    <span className="item-icon">{item.icon}</span>
+                    <span className="item-label">{item.label}</span>
                   </Link>
                 ))}
               </div>
@@ -123,6 +118,7 @@ const Navbar = () => {
           <button
             className="mobile-menu-button"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
           >
             {isOpen ? '✕' : '☰'}
           </button>
@@ -159,8 +155,8 @@ const Navbar = () => {
                       setIsOpen(false);
                     }}
                   >
-                    <span className="icon">{item.icon}</span>
-                    {item.label}
+                    <span className="item-icon">{item.icon}</span>
+                    <span className="item-label">{item.label}</span>
                   </Link>
                 ))}
               </div>
@@ -173,6 +169,11 @@ const Navbar = () => {
           <Link to="/partners" className="mobile-nav-link" onClick={() => setIsOpen(false)}>
             PARTNERS
           </Link>
+          
+          <div className="mobile-auth-buttons">
+            <button className="auth-button signup">SIGN UP</button>
+            <button className="auth-button login">LOG IN</button>
+          </div>
         </div>
       )}
     </nav>
