@@ -6,6 +6,7 @@ import Servicespage from './(routes)/services/Servicespage';
 import ServicesDetail from './(routes)/services/[slug]/page';
 import PartenerPage from './(routes)/Partner/PartenerPage';
 import HomePage from './(routes)/Home/HomePage';
+import Aboutus from './(routes)/About/Aboutus';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/services" element={<Servicespage/>} />
             <Route path="/services/:slug" element={<ServicesDetail/>} />
             <Route path="/partners" element={<PartenerPage/>} />
+            <Route path="/about" element={<Aboutus/>} />
           </Routes>
           <Footer/>
         </ErrorBoundary>
