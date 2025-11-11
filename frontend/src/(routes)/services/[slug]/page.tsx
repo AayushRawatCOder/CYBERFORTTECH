@@ -71,4 +71,3 @@ const ServicesDetail: React.FC = () => {
 };
 
 export default ServicesDetail;
-
