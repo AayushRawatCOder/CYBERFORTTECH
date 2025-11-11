@@ -23,11 +23,10 @@ interface PricingTier {
 }
 
 interface PricingCardsProps {
-  serviceKey: ServiceKey | null; // 🔹 Receive from parent
+  serviceKey: ServiceKey | null;
   pricingData?: PricingTier[];
 }
 
-// Default fallback data (cybersecurity-themed)
 const defaultPricingTiers: PricingTier[] = [
   {
     id: 'discovery',
@@ -118,7 +117,6 @@ const PricingCards: React.FC<PricingCardsProps> = ({ serviceKey, pricingData: pr
     setIsClient(true);
   }, []);
 
-  // 🔹 Recompute tiers whenever serviceKey changes
   useEffect(() => {
     setLoading(true);
 
@@ -135,8 +133,7 @@ const PricingCards: React.FC<PricingCardsProps> = ({ serviceKey, pricingData: pr
 
       setTiers(newTiers);
       setLoading(false);
-      console.log('PricingCards updated:', { serviceKey, newTiers });
-    }, 200); // Small delay to smooth transition
+    }, 200);
 
     return () => clearTimeout(timer);
   }, [serviceKey, propData]);
@@ -179,16 +176,11 @@ const PricingCards: React.FC<PricingCardsProps> = ({ serviceKey, pricingData: pr
             className={`pricing-card ${tier.popular ? 'popular' : ''}`}
             onMouseEnter={() => setHoveredCard(tier.id)}
             onMouseLeave={() => setHoveredCard(null)}
-            style={{
-              background: tier.gradient,
-              border: `1px solid ${tier.borderColor}`,
-            }}
           >
             {tier.popular && <div className="popular-badge">MOST POPULAR</div>}
 
             <div className="card-content">
               <div className="card-header">
-                {tier.icon && <div className="plan-icon">{tier.icon}</div>}
                 <h3 className="tier-name">{tier.name}</h3>
                 <div className="price-wrapper">
                   <span className="price">{tier.price}</span>
