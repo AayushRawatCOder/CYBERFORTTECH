@@ -14,7 +14,7 @@ interface Solution {
 }
 
 interface SpecializedSolutionsProps {
-  slug?: string; // Optional prop for manual override
+  slug?: string;
 }
 
 const SpecializedSolutions: React.FC<SpecializedSolutionsProps> = ({ slug: propSlug }) => {
@@ -29,7 +29,6 @@ const SpecializedSolutions: React.FC<SpecializedSolutionsProps> = ({ slug: propS
       setError(null);
 
       try {
-        // Priority: URL slug > prop slug > default
         const currentSlug = urlSlug || propSlug || 'default';
         const data = await getSolutionsBySlug(currentSlug);
 
@@ -53,42 +52,49 @@ const SpecializedSolutions: React.FC<SpecializedSolutionsProps> = ({ slug: propS
   return (
     <div className="specialized-solutions">
       <div className="container">
-        <h2 className="section-title">
-          <span className="title-highlight">SPECIALIZED</span> SOLUTIONS
-        </h2>
+        <div className="header">
+          <h2 className="title">
+            <span className="gradient">SPECIALIZED</span> SOLUTIONS
+          </h2>
+          <p className="subtitle">Tailored solutions designed for your business needs</p>
+        </div>
 
         {loading ? (
           <div className="loading">Loading solutions...</div>
         ) : error ? (
           <div className="error-message">{error}</div>
         ) : (
-          <div className="solutions-grid">
+          <div className="cardsGrid">
             {solutions.map((solution) => (
-              <div key={solution.id} className="solution-card">
-                <div className="card-header">
-                  <h3 className="solution-title">{solution.title}</h3>
-                  <div className="solution-price">
-                    {solution.price}
-                    <span className="price-unit">/{solution.priceUnit}</span>
+              <div key={solution.id} className="cardOuter">
+                <div className="cardInner">
+                  <h3 className="cardTitle">{solution.title}</h3>
+                  
+                  <div className="priceBox">
+                    <span className="price">{solution.price}</span>
+                    <span className="priceUnit">/{solution.priceUnit}</span>
                   </div>
-                  <div className="solution-category">{solution.category}</div>
-                </div>
-
-                <div className="card-body">
-                  <p className="solution-description">{solution.description}</p>
-                  <ul className="features-list">
-                    {solution.features.map((feature, index) => (
-                      <li key={index} className="feature-item">
-                        <span className="feature-icon">✓</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="card-footer">
-                  <button className="btn btn-outline">LEARN MORE</button>
-                  <button className="btn btn-primary">GET STARTED</button>
+                  
+                  <div className="categoryBadge">{solution.category}</div>
+                  
+                  <p className="cardDescription">{solution.description}</p>
+                  
+                  <div className="benefits">
+                    <h4 className="benefitsTitle">Key Benefits</h4>
+                    <ul className="benefitsList">
+                      {solution.features.map((feature, index) => (
+                        <li key={index} className="benefitItem">
+                          <span className="checkmark">✓</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="cardFooter">
+                    <button className="btnOutline">LEARN MORE</button>
+                    <button className="btnPrimary">GET STARTED</button>
+                  </div>
                 </div>
               </div>
             ))}
