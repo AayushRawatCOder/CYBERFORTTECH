@@ -35,7 +35,6 @@ const AdvancedSolutions: React.FC<AdvancedSolutionsProps> = ({ serviceType }) =>
         setLoading(false);
       }
     };
-
     fetchSolutions();
   }, [location.pathname, serviceType]);
 
@@ -48,9 +47,7 @@ const AdvancedSolutions: React.FC<AdvancedSolutionsProps> = ({ serviceType }) =>
               <span className="title-highlight">ADVANCED</span> SOLUTIONS
             </h2>
             <p className="section-subtitle">
-              Advanced threat protection with AI-powered monitoring
-              <br />
-              and expert-led security services.
+              Advanced threat protection with AI-powered monitoring and expert-led security services.
             </p>
           </div>
           <div className="loading">Loading solutions...</div>
@@ -67,29 +64,20 @@ const AdvancedSolutions: React.FC<AdvancedSolutionsProps> = ({ serviceType }) =>
             <span className="title-highlight">ADVANCED</span> SOLUTIONS
           </h2>
           <p className="section-subtitle">
-            Advanced threat protection with AI-powered monitoring
-            <br />
-            and expert-led security services.
+            Advanced threat protection with AI-powered monitoring and expert-led security services.
           </p>
         </div>
-
         <div className="solutions-grid">
-          {solutions.map((solution) => (
-            <div key={solution.id} className="solution-card">
-              {solution.isFree && (
-                <div className="free-badge">FREE</div>
-              )}
-              
-              <div className="card-content">
+          {solutions.length > 3 && solutions.slice(0, solutions.length - 3).map((solution) => (
+            <div key={solution.id} className="cardOuter">
+              {solution.isFree && <div className="free-badge">FREE</div>}
+              <div className="cardInner">
                 <h3 className="solution-title">{solution.title}</h3>
-                
                 <div className="solution-price">
                   {solution.price}
                   <span className="price-unit">/{solution.priceUnit}</span>
                 </div>
-
                 <p className="solution-description">{solution.description}</p>
-
                 <ul className="features-list">
                   {solution.features.map((feature, index) => (
                     <li key={index} className="feature-item">
@@ -98,11 +86,34 @@ const AdvancedSolutions: React.FC<AdvancedSolutionsProps> = ({ serviceType }) =>
                     </li>
                   ))}
                 </ul>
-
                 <button className="btn-get-started">GET STARTED</button>
               </div>
             </div>
           ))}
+          <div className="bottom-cards-row">
+            {solutions.slice(-3).map((solution) => (
+              <div key={solution.id} className="cardOuter">
+                {solution.isFree && <div className="free-badge">FREE</div>}
+                <div className="cardInner">
+                  <h3 className="solution-title">{solution.title}</h3>
+                  <div className="solution-price">
+                    {solution.price}
+                    <span className="price-unit">/{solution.priceUnit}</span>
+                  </div>
+                  <p className="solution-description">{solution.description}</p>
+                  <ul className="features-list">
+                    {solution.features.map((feature, index) => (
+                      <li key={index} className="feature-item">
+                        <span className="feature-icon">✓</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <button className="btn-get-started">GET STARTED</button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
