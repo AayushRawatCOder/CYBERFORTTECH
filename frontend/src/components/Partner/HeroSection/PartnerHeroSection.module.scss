@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
+.partnerHero {
+  padding: 120px 20px;
+  text-align: center;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-family: 'Tomorrow', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 24px;
+  letter-spacing: 2px;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
+}
+
+.highlight {
+  background: linear-gradient(180deg, #01E6DD 0%, #FE8FEB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #b0c4de;
+  margin-bottom: 40px;
+  line-height: 1.8;
+  font-weight: 300;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    br {
+      display: none;
+    }
+  }
+}
+
+.contactBtn {
+  background: rgba(1, 230, 221, 1);
+  color: #0a0a0a;
+  padding: 16px 48px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(64, 224, 208, 0.3);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 30px rgba(64, 224, 208, 0.5);
+    background: linear-gradient(135deg, #4fc3f7 0%, #40e0d0 100%);
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 768px) {
+    padding: 14px 36px;
+    font-size: 0.9rem;
+  }
+}

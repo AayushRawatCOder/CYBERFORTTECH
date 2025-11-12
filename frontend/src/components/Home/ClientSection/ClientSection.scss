@@ -1,0 +1,246 @@
+.client-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
+}
+
+.client-container {
+  position: relative;
+  max-width: 1400px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 100px;
+  align-items: center;
+  z-index: 1;
+  left: 10%;
+
+  @media (max-width: 1024px) {
+    gap: 60px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+}
+
+.logos-wrapper {
+  display: flex;
+  gap: 40px;
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+
+  @media (max-width: 1024px) {
+    height: 500px;
+    gap: 30px;
+  }
+
+  @media (max-width: 768px) {
+    height: 400px;
+    gap: 20px;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after {
+    bottom: 0;
+  }
+}
+
+.logo-column {
+  flex: 0 0 auto;
+  width: 180px;
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: 1024px) {
+    width: 150px;
+  }
+
+  @media (max-width: 768px) {
+    width: 130px;
+  }
+}
+
+.logo-track {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  animation-duration: 30s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  @media (max-width: 768px) {
+    gap: 25px;
+  }
+}
+
+.left-column .logo-track {
+  animation-name: scrollDown;
+}
+
+.right-column .logo-track {
+  animation-name: scrollUp;
+}
+
+@keyframes scrollDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(-100% / 3));
+  }
+}
+
+@keyframes scrollUp {
+  0% {
+    transform: translateY(calc(-100% / 3));
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.logo-column:hover .logo-track {
+  animation-play-state: paused;
+}
+
+.logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 20px;
+  background: rgba(17, 24, 39, 0.4);
+  border-radius: 8px;
+  border: 1px solid rgba(55, 65, 81, 0.25);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  min-height: 100px;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    background: rgba(30, 41, 59, 0.6);
+    border-color: rgba(99, 102, 241, 0.4);
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+
+    img {
+      filter: none;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    max-height: 50px;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+    object-fit: contain;
+  }
+}
+
+.client-content {
+  text-align: left;
+  padding: 40px;
+  position: relative;
+
+  @media (max-width: 768px) {
+    text-align: center;
+    padding: 20px;
+  }
+}
+
+.stats-container {
+  position: relative;
+  min-height: 280px;
+
+  @media (max-width: 768px) {
+    min-height: 240px;
+  }
+}
+
+.stat-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+.client-count {
+  font-size: clamp(72px, 9vw, 110px);
+  font-weight: 300;
+  color: #a78bfa;
+  margin: 0 0 8px 0;
+  line-height: 1;
+  letter-spacing: -3px;
+  background: linear-gradient(180deg, #01E6DD 0%, #FE8FEB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.client-title {
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 300;
+  color: #f3f4f6;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.5px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.client-description {
+  font-size: clamp(16px, 2vw, 18px);
+  color: #9ca3af;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 300;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+
+  br {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}

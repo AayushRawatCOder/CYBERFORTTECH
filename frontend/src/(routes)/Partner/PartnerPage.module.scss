@@ -1,0 +1,109 @@
+.partnerPage {
+  background: #0a0a0a;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.heroGlow {
+  position: relative;
+}
+
+.heroGlow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1200px;
+  height: 900px;
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(ellipse 300px 480px at 50% 50%, rgba(254, 143, 235, 0.5) 0%, rgba(254, 143, 235, 0.2) 40%, transparent 75%),
+    radial-gradient(ellipse 1100px 900px at 50% 50%, rgba(1, 230, 221, 0.3) 10%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(45px);
+  opacity: 0.85;
+}
+
+.heroGlow > * {
+  position: relative;
+  z-index: 2;
+}
+
+.leftGlow {
+  position: relative;
+}
+
+.leftGlow::before {
+  content: '';
+  position: absolute;
+  top: 55%;
+  left: 12%;
+  width: 1000px;
+  height: 900px;
+  transform: translate(-70%, -50%);
+  background:
+    radial-gradient(ellipse 300px 480px at 50% 50%, rgba(254, 143, 235, 0.5) 0%, rgba(254, 143, 235, 0.2) 40%, transparent 75%),
+    radial-gradient(ellipse 1400px 900px at 50% 50%, rgba(1, 230, 221, 0.3) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(48px);
+  opacity: 0.88;
+}
+
+.leftGlow > * {
+  position: relative;
+  z-index: 2;
+}
+
+.centerGlow {
+  position: relative;
+}
+
+.centerGlow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1100px;
+  height: 850px;
+  transform: translate(-50%, -60%);
+  background:
+    radial-gradient(ellipse 400px 480px at 50% 50%, rgba(254, 143, 235, 0.5) 0%, rgba(254, 143, 235, 0.2) 40%, transparent 75%),
+    radial-gradient(ellipse 1100px 900px at 50% 50%, rgba(1, 230, 221, 0.3) 10%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(42px);
+  opacity: 0.9;
+}
+
+.centerGlow > * {
+  position: relative;
+  z-index: 2;
+}
+
+.rightGlow {
+  position: relative;
+}
+
+.rightGlow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 12%;
+  width: 1000px;
+  height: 900px;
+  transform: translate(65%, -50%);
+  background:
+    radial-gradient(ellipse 300px 380px at 50% 50%, rgba(254, 143, 235, 0.5) 0%, rgba(254, 143, 235, 0.2) 40%, transparent 75%),
+    radial-gradient(ellipse 1400px 900px at 50% 50%, rgba(1, 230, 221, 0.3) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(50px);
+  opacity: 0.9;
+}
+
+.rightGlow > * {
+  position: relative;
+  z-index: 2;
+}

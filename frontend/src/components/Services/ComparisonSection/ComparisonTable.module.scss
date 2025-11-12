@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+.comparisonSection {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 80px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.mainTitle {
+  font-family: 'Tomorrow', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.titleHighlight {
+  font-family: 'Tomorrow', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(180deg, #01E6DD 0%, #FE8FEB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 20px 0;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 300;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: 0;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.comparisonTable {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: transparent;
+  
+  thead tr {
+    background: transparent;
+  }
+  
+  th {
+    font-family: 'Tomorrow', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 24px;
+    text-align: center;
+    background: #2a2a2a;
+    vertical-align: middle;
+    color: #ffffff;
+    border: none;
+    
+    &:first-child {
+      border-radius: 0;
+    }
+  }
+  
+  .featureHeader {
+    text-align: left;
+    color: #ffffff;
+    background: #1f1f1f;
+  }
+  
+  .cyberfortHeader {
+    background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+    color: #ffffff;
+    font-weight: 700;
+  }
+  
+  .competitorHeader {
+    color: #ffffff;
+    background: #2a2a2a;
+  }
+  
+  tbody tr {
+    background: transparent;
+    
+    &:hover {
+      .featureCell {
+        background: #222222;
+      }
+      .cyberfortCell {
+        background: rgba(13, 95, 88, 0.9);
+      }
+      .competitorCell {
+        background: #1f1f1f;
+      }
+    }
+  }
+  
+  td {
+    font-family: 'Inter', sans-serif;
+    padding: 24px;
+    text-align: center;
+    background: transparent;
+    vertical-align: middle;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  .featureCell {
+    text-align: left;
+    font-size: 15px;
+    font-weight: 400;
+    color: #ffffff;
+    background: #1a1a1a;
+    transition: background 0.3s ease;
+  }
+  
+  .cyberfortCell {
+    background: rgba(13, 95, 88, 0.7);
+    transition: background 0.3s ease;
+  }
+  
+  .competitorCell {
+    background: #1a1a1a;
+    transition: background 0.3s ease;
+  }
+}
+
+.checkIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #14b8a6;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.checkIconCyberfort {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #14b8a6;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.crossIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #dc2626;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.textValue {
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+@media (max-width: 1200px) {
+  .comparisonSection {
+    padding: 70px 30px;
+  }
+
+  .mainTitle,
+  .titleHighlight {
+    font-size: 42px;
+  }
+  
+  .comparisonTable {
+    th {
+      padding: 20px;
+      font-size: 13px;
+    }
+    
+    td {
+      padding: 20px;
+    }
+    
+    .featureCell {
+      font-size: 14px;
+    }
+  }
+  
+  .textValue {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .comparisonSection {
+    padding: 50px 20px;
+  }
+  
+  .header {
+    margin-bottom: 40px;
+  }
+  
+  .mainTitle,
+  .titleHighlight {
+    font-size: 32px;
+  }
+  
+  .subtitle {
+    font-size: 13px;
+  }
+  
+  .tableWrapper {
+    overflow-x: scroll;
+  }
+  
+  .comparisonTable {
+    min-width: 900px;
+    
+    th {
+      padding: 16px;
+      font-size: 12px;
+    }
+    
+    td {
+      padding: 16px;
+    }
+    
+    .featureCell {
+      font-size: 13px;
+    }
+  }
+  
+  .checkIcon,
+  .checkIconCyberfort,
+  .crossIcon {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+  
+  .textValue {
+    font-size: 14px;
+  }
+}

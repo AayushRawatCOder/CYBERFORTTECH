@@ -1,0 +1,140 @@
+// Variables
+$bg-dark: #0a0a0a; // Deep black/charcoal background
+$subtitle-gray: #b0b0b0; // Lighter medium-gray
+$label-gray: #e0e0e0; // Light gray/white for labels
+$border-black: #000000; // Thin black border
+
+// Gradient colors: teal/cyan to soft purple/magenta
+$gradient-start: #00ffff; // Cyan/teal
+$gradient-end: #ff00ff; // Magenta/purple
+$gradient: linear-gradient(to right, $gradient-start, $gradient-end);
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+// Mixin for gradient text
+@mixin gradient-text {
+  background: $gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Mixin for gradient glow (layered box-shadow for approximation)
+@mixin gradient-glow($size) {
+  box-shadow:
+    0 0 ($size / 2) $gradient-start,
+    0 0 $size $gradient-start,
+    0 0 ($size * 1.5) $gradient-end,
+    0 0 ($size * 2) $gradient-end,
+    inset 0 0 ($size / 2) rgba($gradient-start, 0.1),
+    inset 0 0 $size rgba($gradient-end, 0.1);
+}
+
+.impact-numbers {
+  // background-color: $bg-dark;
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  min-height: 100vh; // Optional: to match full viewport if needed
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.impact-title {
+  @include gradient-text;
+  font-size: 3.5rem; // Large and bold
+  font-weight: bold;
+  font-family: 'Tomorrow', sans-serif;
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.impact-subtitle {
+  color: $subtitle-gray;
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  line-height: 1.6;
+  font-family: sans-serif;
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  gap: 2rem; // Space between blocks and separators
+  position: relative;
+
+  // Ensure separators are vertically centered
+  & > * {
+    flex: 1;
+    max-width: 150px; // Equal spacing control
+  }
+}
+
+.stat-block {
+  position: relative;
+  padding: 2rem 1rem;
+  border: 1px solid $border-black;
+  @include gradient-glow(20px); // Strong outer glow
+  border-radius: 8px; // Subtle rounding if desired, adjust to match image
+  transition: transform 0.3s ease; // Optional hover effect
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .stat-number {
+    @include gradient-text;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-family: 'Arial Black', sans-serif;
+  }
+
+  .stat-label {
+    color: $label-gray;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: sans-serif;
+    font-weight: 500;
+  }
+}
+
+.stat-separator {
+  width: 1px;
+  height: 100px; // Matches block height approx
+  background: $gradient; // Subtle gradient for separator
+  opacity: 0.3; // Faint effect
+  margin: 0 1rem; // Space around separator
+
+  // Add faint glow to separator
+  @include gradient-glow(5px);
+  border-radius: 1px;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .impact-title {
+    font-size: 2.5rem;
+  }
+
+  .stats-container {
+    flex-direction: column;
+    gap: 1rem;
+
+    .stat-separator {
+      display: none; // Hide separators on mobile
+    }
+  }
+
+  .stat-block {
+    max-width: 200px;
+  }
+}
