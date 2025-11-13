@@ -11,29 +11,31 @@ import Gallery from "../../components/About/Gallery/Gallery";
 
 const Aboutus = () => {
   return (
-    <>
+    <div className={styles.partnerPage}>
       <div className={styles.centerGlow}>
         <AboutHero />
       </div>
-      <div>
+      <div className={styles.heroGlow}>
         <OfferSection />
       </div>
-      <div>
+      <div className={styles.leftGlow}>
         <JourneySection />
       </div>
-      <div>
+      <div className={styles.centerGlow}>
         <OurImpact />
       </div>
-      <div>
+      <div className={styles.leftGlow}>
         <WhyChooseUs />
       </div>
+      <div className={styles.rightGlow}>
+        <HomeGallery />
       <div>
         <Gallery />
       </div>
-      <div>
+      <div className={styles.centerGlow}>
         <ContactForm />
       </div>
-    </>
+    </div>
   );
 };
 
