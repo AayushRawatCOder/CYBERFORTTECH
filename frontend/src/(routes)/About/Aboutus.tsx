@@ -7,6 +7,7 @@ import OurImpact from "../../components/About/Impact/OurImpact";
 import WhyChooseUs from "../../components/About/WhyChooseUs/WhyChooseUs";
 import ContactForm from "../../components/common/ContactForm/ContactForm";
 import HomeGallery from "../../components/Galary/HomeGalary/HomeGalary";
+import Gallery from "../../components/About/Gallery/Gallery";
 
 const Aboutus = () => {
   return (
@@ -27,7 +28,7 @@ const Aboutus = () => {
         <WhyChooseUs />
       </div>
       <div>
-        <HomeGallery />
+        <Gallery />
       </div>
       <div>
         <ContactForm />
