@@ -78,7 +78,6 @@
   }
 }
 
-
 .desc {
   font-size: clamp(13px, 1.5vw, 14px);
   color: #a8a8a8;
@@ -126,7 +125,10 @@
 }
 
 .ctaCard {
-  margin-top: 80px;
+  position: fixed;
+  left: 30px;
+  top: 85%;
+  transform: translateY(-50%);
   background: linear-gradient(145deg, #1f1f1f, #0f0f0f);
   border-radius: 20px;
   box-shadow: 0 0 50px rgba(34, 211, 238, .2), 0 0 60px rgba(217, 70, 239, .15), 0 10px 35px rgba(0,0,0,.5);
@@ -134,15 +136,33 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
-  align-items: flex-start;
+  align-items: center;
   border: 2px solid rgba(34, 211, 238, .15);
   backdrop-filter: blur(10px);
   width: fit-content;
+  z-index: 100;
+  transition: all 0.25s ease;
 
-  @media (max-width: 950px) {
+  &:hover {
+    box-shadow: 0 0 60px rgba(34, 211, 238, .3), 0 0 70px rgba(217, 70, 239, .2), 0 12px 40px rgba(0,0,0,.6);
+    transform: translateY(-50%) translateX(3px);
+  }
+
+  @media (max-width: 1200px) {
+    left: 20px;
     padding: 16px;
     gap: 14px;
+  }
+
+  @media (max-width: 950px) {
+    position: static;
+    transform: none;
     align-self: center;
+    margin-top: 30px;
+
+    &:hover {
+      transform: none;
+    }
   }
 
   @media (max-width: 650px) {
@@ -167,6 +187,13 @@
     object-fit: contain;
     padding: 9px;
     border: 1.5px solid rgba(34, 211, 238, .2);
+    transition: all 0.25s ease;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 0 25px rgba(34, 211, 238, .35);
+      transform: scale(1.05);
+    }
   }
 }
 

@@ -145,15 +145,17 @@
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   min-height: 100px;
+  cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:active {
     background: rgba(30, 41, 59, 0.6);
     border-color: rgba(99, 102, 241, 0.4);
     transform: scale(1.05);
     box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
 
     img {
-      filter: brightness(1.2) contrast(1.1);
+      filter: none;
     }
   }
 
@@ -162,8 +164,8 @@
     width: 100%;
     height: auto;
     max-height: 50px;
-    filter: brightness(0.85) contrast(1.05) grayscale(0.2);
-    transition: all 0.3s ease;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
     object-fit: contain;
   }
 }
@@ -179,6 +181,32 @@
   }
 }
 
+.stats-container {
+  position: relative;
+  min-height: 280px;
+
+  @media (max-width: 768px) {
+    min-height: 240px;
+  }
+}
+
+.stat-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
 .client-count {
   font-size: clamp(72px, 9vw, 110px);
   font-weight: 300;
@@ -187,9 +215,6 @@
   line-height: 1;
   letter-spacing: -3px;
   background: linear-gradient(180deg, #01E6DD 0%, #FE8FEB 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

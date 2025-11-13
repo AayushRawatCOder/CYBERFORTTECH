@@ -57,12 +57,14 @@ const SecuritySolutions: React.FC = () => {
 
         <div className="security-solutions__grid">
           {services.map((service, index) => (
-            <div key={index} className="security-solutions__card">
-              <div className={`security-solutions__icon security-solutions__icon--${service.iconColor}`}>
-                <img src={service.iconSrc} alt={service.title} />
+            <div key={index} className="security-solutions__card-outer">
+              <div className="security-solutions__card-inner">
+                <div className={`security-solutions__icon security-solutions__icon--${service.iconColor}`}>
+                  <img src={service.iconSrc} alt={service.title} />
+                </div>
+                <h3 className="security-solutions__card-title">{service.title}</h3>
+                <p className="security-solutions__card-description">{service.description}</p>
               </div>
-              <h3 className="security-solutions__card-title">{service.title}</h3>
-              <p className="security-solutions__card-description">{service.description}</p>
             </div>
           ))}
         </div>

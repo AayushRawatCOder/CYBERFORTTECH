@@ -8,6 +8,7 @@ $border-black: #000000; // Thin black border
 $gradient-start: #00ffff; // Cyan/teal
 $gradient-end: #ff00ff; // Magenta/purple
 $gradient: linear-gradient(to right, $gradient-start, $gradient-end);
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 // Mixin for gradient text
 @mixin gradient-text {
@@ -44,7 +45,7 @@ $gradient: linear-gradient(to right, $gradient-start, $gradient-end);
   @include gradient-text;
   font-size: 3.5rem; // Large and bold
   font-weight: bold;
-  font-family: 'Arial Black', sans-serif; // Or a bold sans-serif
+  font-family: 'Tomorrow', sans-serif;
   margin-bottom: 1rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;

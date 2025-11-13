@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./ClientSection.scss";
 
 const ClientSection: React.FC = () => {
@@ -18,6 +18,34 @@ const ClientSection: React.FC = () => {
     { name: "securden", path: "/company-logo/securden-logo.svg" },
   ];
 
+  const stats = [
+    {
+      count: "100+",
+      title: "Clients Served",
+      description: "Trusted by them, we deliver top-tier\nprotection around the clock."
+    },
+    {
+      count: "100+",
+      title: "Websites Built",
+      description: "Crafting exceptional digital experiences\nwith cutting-edge technology."
+    },
+    {
+      count: "50+",
+      title: "Countries Reached",
+      description: "Delivering global solutions with\nlocal expertise and dedication."
+    }
+  ];
+
+  const [currentStatIndex, setCurrentStatIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentStatIndex((prevIndex) => (prevIndex + 1) % stats.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [stats.length]);
+
   const midIndex = Math.ceil(logos.length / 2);
   const leftColumnLogos = logos.slice(0, midIndex);
   const rightColumnLogos = logos.slice(midIndex);
@@ -26,7 +54,6 @@ const ClientSection: React.FC = () => {
     <section className="client-section">
       <div className="client-container">
         <div className="logos-wrapper">
-          {/* Left Column - Scrolling Down */}
           <div className="logo-column left-column">
             <div className="logo-track">
               {[...leftColumnLogos, ...leftColumnLogos, ...leftColumnLogos].map(
@@ -39,7 +66,6 @@ const ClientSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column - Scrolling Up */}
           <div className="logo-column right-column">
             <div className="logo-track">
               {[
@@ -56,13 +82,25 @@ const ClientSection: React.FC = () => {
         </div>
 
         <div className="client-content">
-          <h1 className="client-count">100+</h1>
-          <h2 className="client-title">Clients Served</h2>
-          <p className="client-description">
-            Trusted by them, we deliver top-tier
-            <br />
-            protection around the clock.
-          </p>
+          <div className="stats-container">
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className={`stat-item ${index === currentStatIndex ? 'active' : ''}`}
+              >
+                <h1 className="client-count">{stat.count}</h1>
+                <h2 className="client-title">{stat.title}</h2>
+                <p className="client-description">
+                  {stat.description.split('\n').map((line, i) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      {i < stat.description.split('\n').length - 1 && <br />}
+                    </React.Fragment>
+                  ))}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

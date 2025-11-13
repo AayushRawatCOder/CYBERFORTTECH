@@ -17,8 +17,8 @@
   height: 900px;
   transform: translate(-50%, -50%);
   background:
-    radial-gradient(ellipse 600px 480px at 50% 50%, rgba(254, 143, 235, 0.5) 0%, rgba(254, 143, 235, 0.2) 40%, transparent 75%),
-    radial-gradient(ellipse 1100px 900px at 50% 50%, rgba(1, 230, 221, 0.3) 0%, transparent 65%);
+    radial-gradient(ellipse 300px 480px at 50% 50%, rgba(254, 143, 235, 0.5) 0%, rgba(254, 143, 235, 0.2) 40%, transparent 75%),
+    radial-gradient(ellipse 1100px 900px at 50% 50%, rgba(1, 230, 221, 0.3) 10%, transparent 80%);
   pointer-events: none;
   z-index: 0;
   filter: blur(45px);
@@ -41,10 +41,10 @@
   left: 12%;
   width: 1000px;
   height: 900px;
-  transform: translate(-50%, -50%);
+  transform: translate(-70%, -50%);
   background:
-    radial-gradient(ellipse 600px 480px at 50% 50%, rgba(254, 143, 235, 0.5) 0%, rgba(254, 143, 235, 0.2) 40%, transparent 75%),
-    radial-gradient(ellipse 1100px 900px at 50% 50%, rgba(1, 230, 221, 0.3) 0%, transparent 65%);
+    radial-gradient(ellipse 300px 480px at 50% 50%, rgba(254, 143, 235, 0.5) 0%, rgba(254, 143, 235, 0.2) 40%, transparent 75%),
+    radial-gradient(ellipse 1400px 900px at 50% 50%, rgba(1, 230, 221, 0.3) 0%, transparent 65%);
   pointer-events: none;
   z-index: 0;
   filter: blur(48px);
@@ -67,10 +67,10 @@
   left: 50%;
   width: 1100px;
   height: 850px;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -60%);
   background:
     radial-gradient(ellipse 400px 480px at 50% 50%, rgba(254, 143, 235, 0.5) 0%, rgba(254, 143, 235, 0.2) 40%, transparent 75%),
-    radial-gradient(ellipse 1100px 900px at 50% 50%, rgba(1, 230, 221, 0.3) 0%, transparent 65%);
+    radial-gradient(ellipse 1100px 900px at 50% 50%, rgba(1, 230, 221, 0.3) 10%, transparent 65%);
   pointer-events: none;
   z-index: 0;
   filter: blur(42px);
@@ -93,10 +93,10 @@
   right: 12%;
   width: 1000px;
   height: 900px;
-  transform: translate(50%, -50%);
+  transform: translate(65%, -50%);
   background:
-    radial-gradient(ellipse 600px 480px at 50% 50%, rgba(1, 230, 221, 0.45) 0%, rgba(1, 230, 221, 0.18) 45%, transparent 80%),
-    radial-gradient(ellipse 1000px 800px at 50% 50%, rgba(254, 143, 235, 0.45) 0%, transparent 70%);
+    radial-gradient(ellipse 300px 380px at 50% 50%, rgba(254, 143, 235, 0.5) 0%, rgba(254, 143, 235, 0.2) 40%, transparent 75%),
+    radial-gradient(ellipse 1400px 900px at 50% 50%, rgba(1, 230, 221, 0.3) 0%, transparent 65%);
   pointer-events: none;
   z-index: 0;
   filter: blur(50px);
