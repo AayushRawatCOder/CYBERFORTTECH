@@ -83,7 +83,11 @@ const FeaturesSection: React.FC = () => {
                 <span>{feature.highlight}</span>
               </div>
               <div className="icon-wrapper">
-                <div className="triangle-shadow"></div>
+                <div className="rhombus-stack">
+                  <div className="rhombus-layer"></div>
+                  <div className="rhombus-layer"></div>
+                  <div className="rhombus-layer"></div>
+                </div>
                 <img src={feature.Icon} alt={feature.title} className="icon" />
               </div>
               <h3 className="card-title">{feature.title}</h3>

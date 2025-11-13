@@ -10,29 +10,29 @@ import HomeGallery from "../../components/Galary/HomeGalary/HomeGalary";
 
 const Aboutus = () => {
   return (
-    <>
+    <div className={styles.partnerPage}>
       <div className={styles.centerGlow}>
         <AboutHero />
       </div>
-      <div>
+      <div className={styles.heroGlow}>
         <OfferSection />
       </div>
-      <div>
+      <div className={styles.leftGlow}>
         <JourneySection />
       </div>
-      <div>
+      <div className={styles.centerGlow}>
         <OurImpact />
       </div>
-      <div>
+      <div className={styles.leftGlow}>
         <WhyChooseUs />
       </div>
-      <div>
+      <div className={styles.rightGlow}>
         <HomeGallery />
       </div>
-      <div>
+      <div className={styles.centerGlow}>
         <ContactForm />
       </div>
-    </>
+    </div>
   );
 };
 
