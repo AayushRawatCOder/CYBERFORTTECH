@@ -7,6 +7,7 @@ import ServicesDetail from './(routes)/services/[slug]/page';
 import PartenerPage from './(routes)/Partner/PartenerPage';
 import HomePage from './(routes)/Home/HomePage';
 import Aboutus from './(routes)/About/Aboutus';
+// import './App.css'
 
 
 function App() {
