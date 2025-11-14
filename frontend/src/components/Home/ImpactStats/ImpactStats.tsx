@@ -15,6 +15,19 @@ const ImpactStats: React.FC = () => {
     { value: '10+', label: 'Industry Partners' },
   ];
 
+  const formatValue = (value: string) => {
+    const match = value.match(/^(\d+)([+%])$/);
+    if (match) {
+      return (
+        <>
+          {match[1]}
+          <span className="impact-stats__symbol">{match[2]}</span>
+        </>
+      );
+    }
+    return value;
+  };
+
   return (
     <section className="impact-stats">
       <div className="impact-stats__container">
@@ -30,7 +43,7 @@ const ImpactStats: React.FC = () => {
         <div className="impact-stats__grid">
           {stats.map((stat, index) => (
             <div key={index} className="impact-stats__item">
-              <div className="impact-stats__value">{stat.value}</div>
+              <div className="impact-stats__value">{formatValue(stat.value)}</div>
               <div className="impact-stats__label">{stat.label}</div>
             </div>
           ))}

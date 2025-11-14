@@ -50,13 +50,11 @@ const ServicesDetail: React.FC = () => {
     <div className={styles.partnerPage}>
       <div className={styles.heroGlow}>
         <HeroSection />
-      </div>
-
-      <div className={styles.leftGlow}>
         <PricingCards key={slug} serviceKey={serviceKey} />
       </div>
 
-      <div className={styles.centerGlow}>
+
+      <div className={styles.leftGlow}>
         <SpecializedSolutions />
         <AdvancedSolutions />
       </div>
@@ -71,3 +69,4 @@ const ServicesDetail: React.FC = () => {
 };
 
 export default ServicesDetail;
+

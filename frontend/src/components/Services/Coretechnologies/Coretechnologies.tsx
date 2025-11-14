@@ -173,7 +173,7 @@ const CoreTechnologies: React.FC<CoreTechnologiesProps> = ({
       aria-labelledby="core-technologies-heading"
     >
       <h2 id="core-technologies-heading" className="visually-hidden">
-        Our Core Technologies
+        
       </h2>
       
       <div className={styles.technologiesGrid}>
