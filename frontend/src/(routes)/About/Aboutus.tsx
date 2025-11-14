@@ -28,12 +28,13 @@ const Aboutus = () => {
         <WhyChooseUs />
       </div>
       <div className={styles.rightGlow}>
-        <HomeGallery />
-      <div>
-        <Gallery />
-      </div>
-      <div className={styles.centerGlow}>
-        <ContactForm />
+         <Gallery />
+        <div>
+         
+        </div>
+        <div className={styles.centerGlow}>
+          <ContactForm />
+        </div>
       </div>
     </div>
   );

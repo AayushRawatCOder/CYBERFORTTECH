@@ -17,25 +17,25 @@ const OurImpact: React.FC = () => {
       color: '#00CED1'
     },
     {
-      icon: '/logo/skill-emp.svg', // e.g., book icon SVG (white stroke/fill for contrast on colored bg)
+      icon: '/logo/skill-emp.svg',
       title: 'Skill Empowerment',
       description: 'Equipping thousands of learners and professionals with real-world expertise in Cybersecurity and AI.',
       color: '#9ACD32'
     },
     {
-      icon: '/logo/Institutional-Partners.svg', // e.g., group/handshake icon SVG
+      icon: '/logo/Institutional-Partners.svg',
       title: 'Institutional Partners',
       description: 'Collaborating with universities and government bodies to build future-ready infrastructures.',
       color: '#32CD32'
     },
     {
-      icon: '/logo/national-rec.svg', // e.g., medal/trophy icon SVG
+      icon: '/logo/national-rec.svg',
       title: 'National Recognition',
       description: "Startup India & DPIIT recognized for driving India's digital transformation through cutting-edge training, research, and product innovation.",
       color: '#DAA520'
     },
     {
-      icon: '/logo/global-footprint.svg', // e.g., globe icon SVG
+      icon: '/logo/global-footprint.svg',
       title: 'Global Footprint',
       description: 'Expanding our reach to influence global tech standards while staying rooted in local impact.',
       color: '#4169E1'
@@ -43,37 +43,48 @@ const OurImpact: React.FC = () => {
   ];
 
   return (
-    <section className="our-impact">
-      <div className="our-impact__container">
-        <div className="our-impact__header">
-          <h2 className="our-impact__title">
-            OUR <span className="our-impact__title--highlight">IMPACT</span>
+    <section className="impact-hero">
+      <div className="impact-hero__container">
+        <div className="impact-hero__header">
+          <h2 className="impact-hero__title">
+            OUR <span className="text-cyan">IMPACT</span>
           </h2>
-          <p className="our-impact__subtitle">
+          <p className="impact-hero__subtitle">
             Powering secure, digital futures with measurable results.<br />
             Discover what makes our approach to cybersecurity<br />
             education unique
           </p>
         </div>
 
-        <div className="our-impact__grid">
+        <div className="impact-hero__cards">
           {impactCards.map((card, index) => (
             <div 
               key={index} 
-              className={`our-impact__card our-impact__card--${index + 1}`}
+              className={`card-outer card-outer--impact-${index + 1}`}
             >
-              <div 
-                className="our-impact__icon"
-                style={{ backgroundColor: card.color }}
-              >
-                <img 
-                  src={card.icon} 
-                  alt={`${card.title} icon`} 
-                  className="our-impact__icon-img"
-                />
+              <div className="card card--impact">
+                <div className="card__icon-wrapper">
+                  <img 
+                    src={card.icon} 
+                    alt={`${card.title} icon`} 
+                    className="card__icon"
+                    style={{ filter: `drop-shadow(0 0 20px ${card.color}40)` }}
+                  />
+                  <div 
+                    className="card__icon-hover"
+                    style={{ 
+                      background: `radial-gradient(circle, ${card.color}20 0%, transparent 70%)` 
+                    }}
+                  ></div>
+                </div>
+                
+                <div className="card__content">
+                  <h3 className="card__title" style={{ color: card.color }}>
+                    {card.title}
+                  </h3>
+                  <p className="card__description">{card.description}</p>
+                </div>
               </div>
-              <h3 className="our-impact__card-title">{card.title}</h3>
-              <p className="our-impact__card-description">{card.description}</p>
             </div>
           ))}
         </div>
