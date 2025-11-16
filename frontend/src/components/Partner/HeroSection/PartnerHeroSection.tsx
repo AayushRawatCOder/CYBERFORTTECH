@@ -6,8 +6,7 @@ const PartnerHeroSection: React.FC = () => {
     <section className={styles.partnerHero}>
       <div className={styles.container}>
         <h1 className={styles.title}>
-          OUR TRUSTED 
-          <br/>
+          OUR TRUSTED<br />
           <span className={styles.highlight}>PARTNERS</span>
         </h1>
         <p className={styles.subtitle}>
