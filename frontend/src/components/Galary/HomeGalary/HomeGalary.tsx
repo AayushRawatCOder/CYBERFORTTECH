@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './HomeGalary.module.scss';
 
 interface GalleryItem {
@@ -73,20 +73,26 @@ const HomeGallery: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const maxIndex = Math.max(0, collaborationImages.length - itemsPerView);
+
+  const goToNext = useCallback(() => {
+    setCurrentIndex(prev => {
+      if (prev >= maxIndex) {
+        return 0;
+      }
+      return prev + 1;
+    });
+  }, [maxIndex]);
+
   useEffect(() => {
     if (isPaused) return;
 
     const interval = setInterval(() => {
-      setCurrentIndex(prev => {
-        const maxIndex = Math.max(0, collaborationImages.length - itemsPerView);
-        return prev >= maxIndex ? 0 : prev + 1;
-      });
+      goToNext();
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [isPaused, itemsPerView, collaborationImages.length]);
-
-  const maxIndex = Math.max(0, collaborationImages.length - itemsPerView);
+  }, [isPaused, goToNext]);
 
   const handlePrev = () => {
     setCurrentIndex(prev => Math.max(0, prev - 1));
@@ -94,6 +100,10 @@ const HomeGallery: React.FC = () => {
 
   const handleNext = () => {
     setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
+  };
+
+  const calculateCardWidth = () => {
+    return `calc((100% - ${(itemsPerView - 1) * 25}px) / ${itemsPerView})`;
   };
 
   return (
@@ -127,14 +137,17 @@ const HomeGallery: React.FC = () => {
             <div 
               className={styles.carouselTrack}
               style={{
-                transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`
+                transform: `translateX(calc(-${currentIndex} * (${calculateCardWidth()} + 25px)))`
               }}
             >
               {collaborationImages.map((item, index) => (
                 <div 
                   key={index} 
                   className={styles.galleryCard}
-                  style={{ flex: `0 0 ${100 / itemsPerView}%` }}
+                  style={{ 
+                    width: calculateCardWidth(),
+                    minWidth: calculateCardWidth()
+                  }}
                 >
                   <div className={styles.cardInner}>
                     <img

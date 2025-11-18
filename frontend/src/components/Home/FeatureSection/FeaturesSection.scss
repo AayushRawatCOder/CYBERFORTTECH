@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 .features-section {
-  padding: 120px 6%;
+  padding: 120px 6% 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -53,7 +53,6 @@
   margin-right: auto;
 }
 
-// DESKTOP GRID
 .features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -67,38 +66,34 @@
   }
 }
 
-// MOBILE STACKING
 .features-grid-mobile {
   position: relative;
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  align-items: center;
-  padding: 0;
+  
+  @media (min-width: 1025px) {
+    display: none;
+  }
 }
 
 .card-container {
-  width: 100%;
-  margin-bottom: -25px;
-  position: relative;
-  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
 }
 
-.card-container:nth-child(1) { z-index: 6; }
-.card-container:nth-child(2) { z-index: 5; }
-.card-container:nth-child(3) { z-index: 4; }
-.card-container:nth-child(4) { z-index: 3; }
-.card-container:nth-child(5) { z-index: 2; }
-.card-container:nth-child(6) { z-index: 1; }
-
-
+.card-container:nth-child(1) { z-index: 1; }
+.card-container:nth-child(2) { z-index: 2; }
+.card-container:nth-child(3) { z-index: 3; }
+.card-container:nth-child(4) { z-index: 4; }
+.card-container:nth-child(5) { z-index: 5; }
+.card-container:nth-child(6) { z-index: 6; }
 
 .feature-card {
   position: relative;
-  width: 70%;
-  max-width: 700px;
-  margin: 0 auto;
-  height: 450px;
+  width: 100%;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
   border-radius: 28px;
   padding: 18px;
@@ -113,11 +108,34 @@
   display: flex;
   flex-direction: column;
   will-change: transform;
-  transform-origin: top;
+  transform-origin: top center;
+
+  @media (min-width: 1025px) {
+    &:nth-child(1),
+    &:nth-child(3) {
+      min-height: 500px;
+    }
+
+    &:nth-child(2) {
+      min-height: 360px;
+      align-self: center;
+    }
+
+    &:nth-child(4),
+    &:nth-child(6) {
+      min-height: 360px;
+      align-self: center;
+    }
+
+    &:nth-child(5) {
+      min-height: 500px;
+    }
+  }
 
   @media (max-width: 1024px) {
-    width: 75%;
     height: 450px;
+    width: 70%;
+    max-width: 700px;
   }
 }
 
@@ -465,7 +483,7 @@
 
 @media (max-width: 1200px) {
   .features-section {
-    padding: 100px 5%;
+    padding: 100px 5% 0;
   }
   .section-title {
     margin-bottom: 70px;
@@ -477,51 +495,63 @@
 
 @media (max-width: 1024px) {
   .features-section {
-    padding: 80px 4%;
+    padding: 80px 4% 0;
   }
+  
   .section-title {
     margin-bottom: 50px;
   }
+  
   .feature-card {
     width: 75%;
   }
+  
   .card-inner {
     padding: 32px 24px 28px;
     gap: 18px;
   }
+  
   .icon-wrapper {
     width: 120px;
     height: 150px;
     margin-top: 12px;
     margin-bottom: 14px;
   }
+  
   .icon {
     width: 65px;
     height: 65px;
   }
+  
   .rhombus-layer {
     height: 240px;
   }
+  
   .rhombus-layer::before,
   .rhombus-layer::after {
     width: 35px;
     height: 35px;
   }
+  
   .rhombus-layer:nth-child(1) {
     width: 320px;
     top: 70px;
   }
+  
   .rhombus-layer:nth-child(2) {
     width: 320px;
     top: 90px;
   }
+  
   .rhombus-layer:nth-child(3) {
     width: 270px;
     top: 90px;
   }
+  
   .card-title {
     font-size: 1.3rem;
   }
+  
   .card-desc {
     font-size: 0.88rem;
     line-height: 1.65;
@@ -530,67 +560,83 @@
 
 @media (max-width: 768px) {
   .features-section {
-    padding: 70px 4%;
+    padding: 70px 4% 0;
   }
+  
   .section-title {
     margin-bottom: 40px;
   }
+  
   .section-title h1 {
     font-size: 2.2rem;
     margin-bottom: 14px;
   }
+  
   .section-title p {
     font-size: 0.92rem;
   }
+  
   .feature-card {
     padding: 14px;
     width: 80%;
     height: 420px;
   }
+  
   .card-inner {
     padding: 28px 20px 24px;
     gap: 16px;
   }
+  
   .card-highlight {
     padding: 6px 14px;
   }
+  
   .card-highlight span {
     font-size: 0.65rem;
   }
+  
   .icon-wrapper {
     width: 110px;
     height: 140px;
     margin-top: 10px;
     margin-bottom: 12px;
   }
+  
   .icon {
     width: 60px;
     height: 60px;
   }
+  
   .rhombus-layer {
     height: 220px;
   }
+  
   .rhombus-layer::before,
   .rhombus-layer::after {
     width: 32px;
     height: 32px;
   }
+  
   .rhombus-layer:nth-child(1) {
     width: 300px;
     top: 65px;
   }
+  
   .rhombus-layer:nth-child(2) {
     width: 300px;
     top: 85px;
   }
+  
   .rhombus-layer:nth-child(3) {
     width: 250px;
     top: 85px;
   }
+  
   .card-title {
     font-size: 1.2rem;
     margin-bottom: 10px;
   }
+  
   .card-desc {
     font-size: 0.85rem;
   }
@@ -598,69 +644,85 @@
 
 @media (max-width: 500px) {
   .features-section {
-    padding: 60px 4%;
+    padding: 60px 4% 0;
   }
+  
   .section-title {
     margin-bottom: 35px;
   }
+  
   .section-title h1 {
     font-size: 1.85rem;
     margin-bottom: 12px;
   }
+  
   .section-title p {
     font-size: 0.88rem;
   }
+  
   .feature-card {
     padding: 12px;
     border-radius: 22px;
     width: 85%;
     height: 400px;
   }
+  
   .card-inner {
     padding: 24px 18px 20px;
     gap: 14px;
     border-radius: 18px;
   }
+  
   .card-highlight {
     padding: 5px 12px;
   }
+  
   .card-highlight span {
     font-size: 0.62rem;
   }
+  
   .icon-wrapper {
     width: 100px;
     height: 130px;
     margin-top: 8px;
     margin-bottom: 10px;
   }
+  
   .icon {
     width: 55px;
     height: 55px;
   }
+  
   .rhombus-layer {
     height: 200px;
   }
+  
   .rhombus-layer::before,
   .rhombus-layer::after {
     width: 30px;
     height: 30px;
   }
+  
   .rhombus-layer:nth-child(1) {
     width: 280px;
     top: 60px;
   }
+  
   .rhombus-layer:nth-child(2) {
     width: 280px;
     top: 80px;
   }
+  
   .rhombus-layer:nth-child(3) {
     width: 230px;
     top: 80px;
   }
+  
   .card-title {
     font-size: 1.15rem;
     margin-bottom: 8px;
   }
+  
   .card-desc {
     font-size: 0.82rem;
     line-height: 1.6;
@@ -671,38 +733,46 @@
   .feature-card {
     width: 90%;
   }
+
   .card-inner {
     padding: 22px 16px 18px;
     gap: 12px;
   }
+  
   .icon-wrapper {
     width: 95px;
     height: 120px;
   }
+  
   .icon {
     width: 50px;
     height: 50px;
   }
+  
   .rhombus-layer {
     height: 190px;
   }
+  
   .rhombus-layer:nth-child(1) {
     width: 260px;
     top: 55px;
   }
+  
   .rhombus-layer:nth-child(2) {
     width: 260px;
     top: 75px;
   }
+  
   .rhombus-layer:nth-child(3) {
     width: 210px;
     top: 75px;
   }
+  
   .card-title {
     font-size: 1.1rem;
   }
+  
   .card-desc {
     font-size: 0.8rem;
   }
 }
-
