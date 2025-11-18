@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { ReactLenis } from 'lenis/react';
-import { motion, useScroll, useTransform, MotionValue } from 'motion/react';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import './FeaturesSection.scss';
 
 interface Feature {
@@ -62,7 +61,7 @@ const DesktopFeaturesView: React.FC = () => {
   return (
     <div className="features-grid">
       {features.map((feature, i) => (
-        <div key={`desktop_${i}`} className={`feature-card ${feature.cardClass}`}>
+        <div key={i} className={`feature-card ${feature.cardClass}`}>
           <div className="card-inner">
             <div className="card-highlight">
               <span>{feature.highlight}</span>
@@ -73,12 +72,7 @@ const DesktopFeaturesView: React.FC = () => {
                 <div className="rhombus-layer"></div>
                 <div className="rhombus-layer"></div>
               </div>
-              <img
-                src={feature.Icon}
-                alt={feature.title}
-                className="icon"
-                loading="lazy"
-              />
+              <img className="icon" src={feature.Icon} alt={feature.title} />
             </div>
             <h3 className="card-title">{feature.title}</h3>
             <p className="card-desc">{feature.description}</p>
@@ -98,16 +92,22 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ i, feature, progress, range, targetScale }) => {
+  const container = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ['start end', 'start start'],
+  });
+
   const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div className="card-container">
-      <motion.div
-        style={{
-          scale,
-          top: `calc(-5vh + ${i * 25}px)`,
-        }}
+    <div ref={container} className="card-container">
+      <motion.div 
         className={`feature-card ${feature.cardClass}`}
+        style={{ 
+          scale,
+          top: `calc(-5% + ${i * 25}px)`,
+        }}
       >
         <div className="card-inner">
           <div className="card-highlight">
@@ -119,12 +119,7 @@ const Card: React.FC<CardProps> = ({ i, feature, progress, range, targetScale })
               <div className="rhombus-layer"></div>
               <div className="rhombus-layer"></div>
             </div>
-            <img
-              src={feature.Icon}
-              alt={feature.title}
-              className="icon"
-              loading="lazy"
-            />
+            <img className="icon" src={feature.Icon} alt={feature.title} />
           </div>
           <h3 className="card-title">{feature.title}</h3>
           <p className="card-desc">{feature.description}</p>
@@ -142,12 +137,12 @@ const MobileFeaturesView: React.FC = () => {
   });
 
   return (
-    <section ref={container} className="features-grid-mobile">
+    <div ref={container} className="features-grid-mobile">
       {features.map((feature, i) => {
         const targetScale = 1 - (features.length - i) * 0.05;
         return (
           <Card
-            key={`p_${i}`}
+            key={i}
             i={i}
             feature={feature}
             progress={scrollYProgress}
@@ -156,7 +151,7 @@ const MobileFeaturesView: React.FC = () => {
           />
         );
       })}
-    </section>
+    </div>
   );
 };
 
@@ -169,36 +164,31 @@ const FeaturesSection: React.FC = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 1024);
     };
-
     checkMobile();
     window.addEventListener('resize', checkMobile);
-
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   return (
-    <ReactLenis root options={{ lerp: 0.05, smoothWheel: true }}>
-      <section className="features-section">
-        <div className="section-title">
-          <h1>
-            <span className="line-1">SECURITY</span>
-            <span className="line-2">THAT SCALES WITH YOU.</span>
-          </h1>
-          <p>
-            Every feature at CyberFort Tech is built with one goal: making
-            cybersecurity effortless, adaptive, and always reliable.
-          </p>
-        </div>
+    <section className="features-section">
+      <div className="section-title">
+        <h1>
+          <span className="line-1">SECURITY THAT SCALES</span>
+          <span className="line-2">WITH YOU.</span>
+        </h1>
+        <p>
+          Every feature at CyberFort Tech is built with one goal: making cybersecurity effortless, adaptive, and always reliable.
+        </p>
+      </div>
 
-        {!isClient ? (
-          <DesktopFeaturesView />
-        ) : isMobile ? (
-          <MobileFeaturesView />
-        ) : (
-          <DesktopFeaturesView />
-        )}
-      </section>
-    </ReactLenis>
+      {!isClient ? (
+        <DesktopFeaturesView />
+      ) : isMobile ? (
+        <MobileFeaturesView />
+      ) : (
+        <DesktopFeaturesView />
+      )}
+    </section>
   );
 };
 
