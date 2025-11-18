@@ -15,6 +15,7 @@ const Aboutus = () => {
       <div className={styles.centerGlow}>
         <AboutHero />
       </div>
+      <AboutHero />
       <div className={styles.heroGlow}>
         <OfferSection />
       </div>
