@@ -14,31 +14,31 @@ const OurImpact: React.FC = () => {
       icon: '/logo/operation-exe.svg',
       title: 'Operation Excellence',
       description: 'Setting benchmarks in project delivery, compliance, and team leadership that others aspire.',
-      color: '#00CED1'
+      color: 'cyan'
     },
     {
       icon: '/logo/skill-emp.svg',
       title: 'Skill Empowerment',
       description: 'Equipping thousands of learners and professionals with real-world expertise in Cybersecurity and AI.',
-      color: '#9ACD32'
+      color: 'purple'
     },
     {
       icon: '/logo/Institutional-Partners.svg',
       title: 'Institutional Partners',
       description: 'Collaborating with universities and government bodies to build future-ready infrastructures.',
-      color: '#32CD32'
+      color: 'green'
     },
     {
       icon: '/logo/national-rec.svg',
       title: 'National Recognition',
       description: "Startup India & DPIIT recognized for driving India's digital transformation through cutting-edge training, research, and product innovation.",
-      color: '#DAA520'
+      color: 'pink'
     },
     {
       icon: '/logo/global-footprint.svg',
       title: 'Global Footprint',
       description: 'Expanding our reach to influence global tech standards while staying rooted in local impact.',
-      color: '#4169E1'
+      color: 'yellow'
     }
   ];
 
@@ -47,43 +47,24 @@ const OurImpact: React.FC = () => {
       <div className="impact-hero__container">
         <div className="impact-hero__header">
           <h2 className="impact-hero__title">
-            OUR <span className="text-cyan">IMPACT</span>
+            OUR <span className="impact-hero__title--gradient">IMPACT</span>
           </h2>
           <p className="impact-hero__subtitle">
-            Powering secure, digital futures with measurable results.<br />
-            Discover what makes our approach to cybersecurity<br />
+            Powering secure digital futures with measurable results.
+            Discover what makes our approach to cybersecurity
             education unique
           </p>
         </div>
 
-        <div className="impact-hero__cards">
+        <div className="impact-hero__grid">
           {impactCards.map((card, index) => (
-            <div 
-              key={index} 
-              className={`card-outer card-outer--impact-${index + 1}`}
-            >
-              <div className="card card--impact">
-                <div className="card__icon-wrapper">
-                  <img 
-                    src={card.icon} 
-                    alt={`${card.title} icon`} 
-                    className="card__icon"
-                    style={{ filter: `drop-shadow(0 0 20px ${card.color}40)` }}
-                  />
-                  <div 
-                    className="card__icon-hover"
-                    style={{ 
-                      background: `radial-gradient(circle, ${card.color}20 0%, transparent 70%)` 
-                    }}
-                  ></div>
+            <div key={index} className="impact-hero__card-outer">
+              <div className="impact-hero__card-inner">
+                <div className={`impact-hero__icon impact-hero__icon--${card.color}`}>
+                  <img src={card.icon} alt={card.title} />
                 </div>
-                
-                <div className="card__content">
-                  <h3 className="card__title" style={{ color: card.color }}>
-                    {card.title}
-                  </h3>
-                  <p className="card__description">{card.description}</p>
-                </div>
+                <h3 className="impact-hero__card-title">{card.title}</h3>
+                <p className="impact-hero__card-description">{card.description}</p>
               </div>
             </div>
           ))}

@@ -195,6 +195,10 @@
   color: #ffffff;
 }
 
+.hideOnMobile {
+  display: table-cell;
+}
+
 @media (max-width: 1200px) {
   .comparisonSection {
     padding: 70px 30px;
@@ -244,23 +248,35 @@
   }
   
   .tableWrapper {
-    overflow-x: scroll;
+    overflow-x: visible;
+  }
+  
+  .hideOnMobile {
+    display: none;
   }
   
   .comparisonTable {
-    min-width: 900px;
+    min-width: auto;
+    width: 100%;
     
     th {
-      padding: 16px;
+      padding: 20px 16px;
       font-size: 12px;
+      width: 50%;
     }
     
     td {
-      padding: 16px;
+      padding: 20px 16px;
+      width: 50%;
     }
     
     .featureCell {
       font-size: 13px;
+      text-align: left;
+    }
+    
+    .cyberfortCell {
+      text-align: center;
     }
   }
   
@@ -274,5 +290,49 @@
   
   .textValue {
     font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .comparisonSection {
+    padding: 40px 16px;
+  }
+  
+  .mainTitle,
+  .titleHighlight {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+  
+  .subtitle {
+    font-size: 12px;
+  }
+  
+  .comparisonTable {
+    th {
+      padding: 18px 12px;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+    
+    td {
+      padding: 18px 12px;
+    }
+    
+    .featureCell {
+      font-size: 12px;
+    }
+  }
+  
+  .checkIcon,
+  .checkIconCyberfort,
+  .crossIcon {
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
+  }
+  
+  .textValue {
+    font-size: 13px;
   }
 }
