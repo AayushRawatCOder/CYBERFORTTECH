@@ -9,22 +9,21 @@ import SecuritySolutions from "../../components/home/SecuritySolutions/SecurityS
 import SuccessStories from "../../components/Home/Testimonial/SuccessStories"
 import styles from "./HomePage.module.scss"
 
-
 const HomePage = () => {
   return (
      <div className={styles.partnerPage}>
       <HeroSection/>
       <div className={styles.leftGlow}>
-      <ClientSection/>
+        <ClientSection/>
       </div>
       <FeaturesSection/>
       <div className={styles.centerGlow}>
-      <ImpactStats/>
+        <ImpactStats/>
       </div>
       <SecuritySolutions/>
       <HomeGallery/>
       <div className={styles.rightGlow}>
-      <SuccessStories/>
+        <SuccessStories/>
       </div>
       <FAQ/>
       <ContactForm/>

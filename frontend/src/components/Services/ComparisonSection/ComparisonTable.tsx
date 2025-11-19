@@ -77,7 +77,7 @@ const ComparisonTable: React.FC = () => {
     <section className={styles.comparisonSection}>
       <div className={styles.header}>
         <h2 className={styles.mainTitle}>WHY CHOOSE</h2>
-        <h2 className={styles.titleHighlight}>CYBERFORT TECH?</h2>
+        <h2 className={styles.titleHighlight}>CYBERFORT?</h2>
         <p className={styles.subtitle}>
           Compare our comprehensive offerings<br />
           with competitors.
@@ -90,9 +90,9 @@ const ComparisonTable: React.FC = () => {
             <tr>
               <th className={styles.featureHeader}>FEATURE</th>
               <th className={styles.cyberfortHeader}>CYBERFORT</th>
-              <th className={styles.competitorHeader}>CLOUDSEK</th>
-              <th className={styles.competitorHeader}>PALO ALTO</th>
-              <th className={styles.competitorHeader}>LOCAL FIRMS</th>
+              <th className={`${styles.competitorHeader} ${styles.hideOnMobile}`}>CLOUDSEK</th>
+              <th className={`${styles.competitorHeader} ${styles.hideOnMobile}`}>PALO ALTO</th>
+              <th className={`${styles.competitorHeader} ${styles.hideOnMobile}`}>LOCAL FIRMS</th>
             </tr>
           </thead>
           <tbody>
@@ -100,9 +100,9 @@ const ComparisonTable: React.FC = () => {
               <tr key={index}>
                 <td className={styles.featureCell}>{row.feature}</td>
                 <td className={styles.cyberfortCell}>{renderCell(row.cyberfort, true)}</td>
-                <td className={styles.competitorCell}>{renderCell(row.cloudsek)}</td>
-                <td className={styles.competitorCell}>{renderCell(row.paloAlto)}</td>
-                <td className={styles.competitorCell}>{renderCell(row.localFirms)}</td>
+                <td className={`${styles.competitorCell} ${styles.hideOnMobile}`}>{renderCell(row.cloudsek)}</td>
+                <td className={`${styles.competitorCell} ${styles.hideOnMobile}`}>{renderCell(row.paloAlto)}</td>
+                <td className={`${styles.competitorCell} ${styles.hideOnMobile}`}>{renderCell(row.localFirms)}</td>
               </tr>
             ))}
           </tbody>

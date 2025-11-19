@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 $color-bg: #0f0f0f;
 $color-card-bg: #0f0f0f;
 $color-card-border: rgba(255, 255, 255, 0.08);
@@ -191,6 +193,161 @@ $breakpoint-xs: 400px;
       padding: 0 8px;
     }
   }
+
+  &__card-outer {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.05)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    padding: 16px;
+    backdrop-filter: blur(20px);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    animation: fadeInUp 0.6s ease-out backwards;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+    }
+
+    &:hover {
+      border-color: rgba(34, 211, 238, 0.4);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(34, 211, 238, 0.15);
+
+      .offer-section__card-inner {
+        background: rgba(25, 25, 25, 0.7);
+        border-color: rgba(34, 211, 238, 0.2);
+      }
+
+      .offer-section__icon {
+        transform: scale(1.1) rotateY(360deg);
+      }
+    }
+
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.1}s;
+      }
+    }
+  }
+
+  &__card-inner {
+    background: rgba(15, 15, 15, 1);
+    border: 1px solid $color-card-border;
+    border-radius: 16px;
+    padding: 24px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    transition: all 0.3s ease;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(
+        circle at top left,
+        rgba(34, 211, 238, 0.05),
+        transparent 50%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      border-radius: 16px;
+    }
+  }
+
+  &__card-outer:hover &__card-inner::before {
+    opacity: 1;
+  }
+
+  &__icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    transition: transform 0.5s ease;
+    position: relative;
+    padding: 0.75rem;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+      filter: brightness(1.2);
+    }
+
+    &--cyan {
+      background: rgba(34, 211, 238, 0.15);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+    }
+
+    &--brown {
+      background: rgba(160, 130, 109, 0.15);
+      border: 1px solid rgba(160, 130, 109, 0.3);
+      box-shadow: 0 0 20px rgba(160, 130, 109, 0.2);
+    }
+
+    &--blue {
+      background: rgba(107, 155, 209, 0.15);
+      border: 1px solid rgba(107, 155, 209, 0.3);
+      box-shadow: 0 0 20px rgba(107, 155, 209, 0.2);
+    }
+
+    &--green {
+      background: rgba(74, 222, 128, 0.15);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+      box-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
+    }
+  }
+
+  &__card-title {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    font-weight: 600;
+    color: $color-text-primary;
+    margin: 0;
+    flex-shrink: 0;
+    font-family: 'Tomorrow', sans-serif;
+    line-height: 1.3;
+  }
+
+  &__card-description {
+    font-size: clamp(0.875rem, 1.5vw, 0.9375rem);
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
+    margin: 0;
+    flex-grow: 1;
+    font-family: 'Inter', sans-serif;
+  }
 }
 
 .text-cyan {
@@ -198,178 +355,6 @@ $breakpoint-xs: 400px;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-.offer-card-outer {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 28px;
-  padding: 16px;
-  width: 304px;
-  height: 324px;
-  animation: fadeInUp 0.8s ease-out backwards;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
-  @media (max-width: $breakpoint-md) {
-    width: 100%;
-    height: 300px;
-    padding: 16px;
-  }
-
-  @media (max-width: $breakpoint-sm) {
-    height: 280px;
-    padding: 16px;
-  }
-
-  @media (min-width: $breakpoint-lg) {
-    &:nth-child(1) { animation-delay: 0.1s; }
-    &:nth-child(2) { animation-delay: 0.2s; }
-    &:nth-child(3) { animation-delay: 0.3s; }
-    &:nth-child(4) { animation-delay: 0.4s; }
-  }
-
-  @media (max-width: $breakpoint-lg) and (min-width: $breakpoint-sm) {
-    &:nth-child(odd) { animation-delay: 0.1s; }
-    &:nth-child(even) { animation-delay: 0.2s; }
-  }
-
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(1, 230, 221, 0.3);
-
-    .offer-card__icon-wrapper {
-      transform: scale(1.1);
-    }
-  }
-}
-
-.offer-card {
-  background: $color-card-bg;
-  border-radius: 26px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 90%;
-  height: 90%;
-
-  @media (max-width: $breakpoint-md) {
-    padding: 16px;
-  }
-
-  @media (max-width: $breakpoint-sm) {
-    padding: 16px;
-  }
-
-  &__icon-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  &__icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-
-    @media (max-width: $breakpoint-md) {
-      width: 52px;
-      height: 52px;
-    }
-
-    @media (max-width: $breakpoint-sm) {
-      width: 48px;
-      height: 48px;
-    }
-
-    img {
-      width: 32px;
-      height: 32px;
-
-      @media (max-width: $breakpoint-md) {
-        width: 28px;
-        height: 28px;
-      }
-
-      @media (max-width: $breakpoint-sm) {
-        width: 26px;
-        height: 26px;
-      }
-    }
-
-    &--cyan {
-      background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(34, 211, 238, 0.1));
-      color: $color-cyan;
-      box-shadow: 0 4px 20px rgba(34, 211, 238, 0.2);
-    }
-
-    &--brown {
-      background: linear-gradient(135deg, rgba(160, 130, 109, 0.2), rgba(160, 130, 109, 0.1));
-      color: $color-brown;
-      box-shadow: 0 4px 20px rgba(160, 130, 109, 0.2);
-    }
-
-    &--blue {
-      background: linear-gradient(135deg, rgba(107, 155, 209, 0.2), rgba(107, 155, 209, 0.1));
-      color: $color-blue;
-      box-shadow: 0 4px 20px rgba(107, 155, 209, 0.2);
-    }
-
-    &--green {
-      background: linear-gradient(135deg, rgba(74, 222, 128, 0.2), rgba(74, 222, 128, 0.1));
-      color: $color-green;
-      box-shadow: 0 4px 20px rgba(74, 222, 128, 0.2);
-    }
-  }
-
-  &__content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 1;
-  }
-
-  &__title {
-    font-family: 'Tomorrow', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: $color-text-primary;
-    margin: 0;
-    line-height: 1.3;
-
-    @media (max-width: $breakpoint-md) {
-      font-size: 1.125rem;
-    }
-
-    @media (max-width: $breakpoint-sm) {
-      font-size: 1.0625rem;
-    }
-  }
-
-  &__description {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: $color-text-secondary;
-    margin: 0;
-    font-weight: 400;
-
-    @media (max-width: $breakpoint-md) {
-      font-size: 0.875rem;
-      line-height: 1.55;
-    }
-
-    @media (max-width: $breakpoint-sm) {
-      font-size: 0.8125rem;
-      line-height: 1.5;
-    }
-  }
 }
 
 @keyframes fadeInDown {
@@ -395,25 +380,20 @@ $breakpoint-xs: 400px;
 }
 
 @media (hover: none) and (pointer: coarse) {
-  .offer-card-outer {
+  .offer-section__card-outer {
     &:hover {
-      transform: none;
-      box-shadow: none;
-
-      .offer-card__icon-wrapper {
-        transform: none;
-      }
+      transform: translateY(-4px);
     }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .offer-section__header,
-  .offer-card-outer {
+  .offer-section__card-outer {
     animation: none;
   }
   
-  .offer-card-outer {
+  .offer-section__card-outer {
     transition: none;
     
     &:hover {
@@ -421,7 +401,7 @@ $breakpoint-xs: 400px;
     }
   }
   
-  .offer-card__icon-wrapper {
+  .offer-section__icon {
     transition: none;
   }
 }

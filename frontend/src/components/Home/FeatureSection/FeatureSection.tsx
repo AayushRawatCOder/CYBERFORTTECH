@@ -61,7 +61,7 @@ const DesktopFeaturesView: React.FC = () => {
   return (
     <div className="features-grid">
       {features.map((feature, i) => (
-        <div key={i} className={`feature-card ${feature.cardClass}`}>
+        <div key={`desktop-${i}`} className={`feature-card ${feature.cardClass}`}>
           <div className="card-inner">
             <div className="card-highlight">
               <span>{feature.highlight}</span>
@@ -106,7 +106,7 @@ const Card: React.FC<CardProps> = ({ i, feature, progress, range, targetScale })
         className={`feature-card ${feature.cardClass}`}
         style={{ 
           scale,
-          top: `calc(-5% + ${i * 25}px)`,
+          top: `calc(-5vh + ${i * 25}px)`,
         }}
       >
         <div className="card-inner">
@@ -142,7 +142,7 @@ const MobileFeaturesView: React.FC = () => {
         const targetScale = 1 - (features.length - i) * 0.05;
         return (
           <Card
-            key={i}
+            key={`mobile-${i}`}
             i={i}
             feature={feature}
             progress={scrollYProgress}
@@ -169,25 +169,23 @@ const FeaturesSection: React.FC = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  if (!isClient) {
+    return null;
+  }
+
   return (
     <section className="features-section">
       <div className="section-title">
         <h1>
-          <span className="line-1">SECURITY THAT SCALES</span>
-          <span className="line-2">WITH YOU.</span>
+          <span className="line-1">SECURITY</span>
+          <span className="line-2">THAT SCALES WITH YOU.</span>
         </h1>
         <p>
           Every feature at CyberFort Tech is built with one goal: making cybersecurity effortless, adaptive, and always reliable.
         </p>
       </div>
 
-      {!isClient ? (
-        <DesktopFeaturesView />
-      ) : isMobile ? (
-        <MobileFeaturesView />
-      ) : (
-        <DesktopFeaturesView />
-      )}
+      {isMobile ? <MobileFeaturesView /> : <DesktopFeaturesView />}
     </section>
   );
 };
