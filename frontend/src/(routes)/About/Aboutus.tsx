@@ -15,27 +15,29 @@ const Aboutus = () => {
       <div className={styles.centerGlow}>
         <AboutHero />
       </div>
-      <AboutHero />
+
       <div className={styles.heroGlow}>
         <OfferSection />
       </div>
+
       <div className={styles.leftGlow}>
         <JourneySection />
       </div>
+
       <div className={styles.centerGlow}>
         <OurImpact />
       </div>
+
       <div className={styles.leftGlow}>
         <WhyChooseUs />
       </div>
+
       <div className={styles.rightGlow}>
-         <Gallery />
-        <div>
-         
-        </div>
-        <div className={styles.centerGlow}>
-          <ContactForm />
-        </div>
+        <Gallery />
+      </div>
+
+      <div className={styles.centerGlow}>
+        <ContactForm />
       </div>
     </div>
   );
