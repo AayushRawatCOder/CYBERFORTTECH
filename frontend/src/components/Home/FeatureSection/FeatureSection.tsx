@@ -106,7 +106,7 @@ const Card: React.FC<CardProps> = ({ i, feature, progress, range, targetScale })
         className={`feature-card ${feature.cardClass}`}
         style={{ 
           scale,
-          top: `calc(-5vh + ${i * 25}px)`,
+          top: `calc(20vh + ${i * 20}px)`,
         }}
       >
         <div className="card-inner">
@@ -146,7 +146,7 @@ const MobileFeaturesView: React.FC = () => {
             i={i}
             feature={feature}
             progress={scrollYProgress}
-            range={[i * 0.25, 1]}
+            range={[i * (1 / features.length), 1]}
             targetScale={targetScale}
           />
         );
