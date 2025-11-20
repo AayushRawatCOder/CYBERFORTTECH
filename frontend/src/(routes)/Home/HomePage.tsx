@@ -11,7 +11,7 @@ import styles from "./HomePage.module.scss"
 
 const HomePage = () => {
   return (
-     <div className={styles.partnerPage}>
+    <div className={styles.partnerPage}>
       <HeroSection/>
       <div className={styles.leftGlow}>
         <ClientSection/>
