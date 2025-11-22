@@ -1,11 +1,13 @@
 .heroSection {
   width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding-top: 10px;
+  padding-bottom: 40px;
   box-sizing: border-box;
   overflow-x: hidden;
   position: relative;
@@ -13,15 +15,21 @@
 }
 
 .contentWrap {
+  flex: 1;
   width: 100%;
-  max-width: 1920px;
+  max-width: 100vw;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 65vw 35vw;
   align-items: center;
   gap: clamp(30px, 4vw, 60px);
   padding: clamp(30px, 4vw, 60px);
   position: relative;
+
+  @media (min-width: 1778px) {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
 
   @media (max-width: 1400px) {
     gap: 40px;
@@ -30,10 +38,9 @@
 
   @media (max-width: 950px) {
     grid-template-columns: 1fr;
-    padding: 90px 20px 100px;
+    padding: 40px 20px 50px;
     gap: 0;
     align-items: center;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -46,8 +53,9 @@
   align-items: flex-start;
   justify-content: center;
   z-index: 5;
-  width: 800px;
-  max-width: 800px;
+  width: 65vw;
+  max-width: none;
+  margin-bottom: 160px;
 
   @media (max-width: 950px) {
     width: 100%;
@@ -55,6 +63,7 @@
     align-items: flex-start;
     text-align: left;
     padding-top: 0;
+    margin-bottom: 10px;
   }
 }
 
@@ -63,27 +72,30 @@
   font-weight: 600;
   font-size: clamp(8px, 5vw, 54px);
   line-height: 1.1;
-  margin: 0 0 20px;
+  margin: 10px 0 20px;
   text-transform: uppercase;
   letter-spacing: 1px;
 
-  .fortify { 
+  .fortify {
     background: linear-gradient(90deg, #01E6DD, #FE8FEB);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  .future { 
+  .future {
     background: linear-gradient(90deg, #01E6DD, #FE8FEB);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  .digital { color: #fff; }
+  .digital {
+    color: #fff;
+  }
 
   @media (max-width: 950px) {
     font-size: clamp(26px, 7vw, 36px);
     line-height: 1.15;
+    margin-top: 10px;
     margin-bottom: 18px;
     letter-spacing: 0.5px;
   }
@@ -91,6 +103,7 @@
   @media (max-width: 650px) {
     font-size: 26px;
     letter-spacing: 0.3px;
+    margin-top: 10px;
   }
 }
 
@@ -156,7 +169,7 @@
 
 .ctaCard {
   position: fixed;
-  left: 30px;
+  left: 60px;
   top: 85%;
   transform: translateY(-50%);
   background: linear-gradient(145deg, #1f1f1f, #0f0f0f);
@@ -209,7 +222,7 @@
 .ctaRow {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 0;
 
   @media (max-width: 950px) {
     gap: 0;
@@ -218,32 +231,17 @@
   }
 
   .ctaIconImg {
-    width: clamp(80px, 10vw, 104px);
+    width: 150px;
     height: auto;
-    aspect-ratio: 104 / 44;
-    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-    border-radius: 12px;
-    box-shadow: 0 0 18px rgba(34, 211, 238, .2);
     object-fit: contain;
-    padding: 9px;
-    border: 1.5px solid rgba(34, 211, 238, .2);
     transition: all 0.25s ease;
     cursor: pointer;
 
-    &:hover {
-      box-shadow: 0 0 25px rgba(34, 211, 238, .35);
-      transform: scale(1.05);
-    }
-
     @media (max-width: 950px) {
-      width: 60px;
+      width: 80px;
       height: 60px;
-      aspect-ratio: 1/1;
       padding: 14px;
       border-radius: 12px;
-      background: linear-gradient(145deg, #252525, #1a1a1a);
-      border: 1.5px solid rgba(34, 211, 238, .25);
-      box-shadow: 0 0 15px rgba(34, 211, 238, .15);
     }
 
     @media (max-width: 650px) {
@@ -260,7 +258,8 @@
   align-items: center;
   justify-content: center;
   z-index: 3;
-  left: -60%;
+  left: -90%;
+
 
   @media (max-width: 950px) {
     left: 0;
@@ -268,7 +267,8 @@
     order: 2;
     flex-direction: column;
     align-items: center;
-    margin-top: 0;
+    margin-bottom: 350px;
+    left: 10%;
   }
 }
 
@@ -282,21 +282,6 @@
   align-items: center;
   justify-content: center;
   overflow: visible;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 28px;
-    padding: 2px;
-    background: linear-gradient(45deg, #22d3ee, #d946ef, #22d3ee);
-    background-size: 200% 200%;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: .6;
-    animation: glowShift 6s linear infinite;
-  }
 
   @keyframes glowShift {
     0%, 100% { background-position: 0% 50%; }
@@ -325,17 +310,17 @@
 }
 
 .shieldLogo {
-  width: clamp(140px, 35vw, 340px);
+  width: clamp(80px, 35vw, 250px);
   height: auto;
   object-fit: contain;
   z-index: 2;
 
   @media (max-width: 950px) {
-    width: clamp(160px, 55vw, 300px);
+    width: clamp(50px, 5vw, 20px);
   }
 
   @media (max-width: 650px) {
-    width: clamp(150px, 50vw, 260px);
+    width: clamp(100px, 40vw, 200px);
   }
 }
 
@@ -348,7 +333,7 @@
   height: 100%;
 
   @media (max-width: 950px) {
-    width: 120vw;
+    width: 100vw;
     height: 150%;
     left: 50%;
     top: 50%;
@@ -365,13 +350,13 @@
 
   .dangerLines {
     right: 55%;
-    top: 80%;
+    top: 85%;
     transform: translateY(-50%);
     margin-right: clamp(-50px, -8vw, -100px);
 
     @media (max-width: 950px) {
-      right: 50%;
-      top: 70%;
+      right: 60%;
+      top: 100%;
       width: 65vw;
       height: auto;
       opacity: .75;
@@ -387,13 +372,13 @@
 
   .rightLines {
     left: 45%;
-    top: 0;
+    top: 5%;
     transform: translateY(-50%);
     margin-left: clamp(-50px, -8vw, -100px);
 
     @media (max-width: 950px) {
       left: 50%;
-      top: 10%;
+      top: 0%;
       width: 65vw;
       height: auto;
       opacity: .75;
@@ -410,21 +395,22 @@
 
 .rightContent {
   position: absolute;
-  bottom: -10px;
+  top: 75%;
   left: 52%;
   right: 0;
   z-index: 5;
-  width: 600px;
+  width: 35vw;
+  max-width: none;
 
   @media (max-width: 950px) {
     position: absolute;
-    width: 70%;
-    right: 0;
+    width: 60%;
+    right: 10%;
     left: auto;
     bottom: auto;
-    top: 65%;
+    top: 80%;
     transform: translateY(-50%);
-    margin-top: 170px;
+    margin-top: 200px;
     order: 3;
     z-index: 2;
   }
@@ -437,7 +423,7 @@
 
 .infoBlock {
   color: #b0b0b0;
-  font-size: clamp(12px, 1.3vw, 13px);
+  font-size: clamp(18px, 1.3vw, 13px);
   line-height: 1.7;
   max-width: 420px;
   font-weight: 400;
