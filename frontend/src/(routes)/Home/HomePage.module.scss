@@ -1,20 +1,45 @@
+body {
+  background: #0a0a0a;
+}
 
 .partnerPage {
-  background: #0a0a0a;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
   overflow-x: clip;
+  background: #0a0a0a;
+}
+
+.heroSection,
+.clientSection,
+.featureSection,
+.impactStats,
+.securitySolutions,
+.homeGallery,
+.successStories,
+.faqSection,
+.contactFormSection {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: transparent;
   position: relative;
 }
 
-/* FIXED GLOW CONTAINER */
-.heroGlow,
-.leftGlow,
-.centerGlow,
-.rightGlow {
-  position: relative;
-  overflow-x: clip !important;     // prevents horizontal layout expansion
-  overflow-y: visible !important;  // keep glow visible
-  contain: paint;                  // isolates glow from layout flow
+@media (max-width: 900px) {
+  .heroSection,
+  .clientSection,
+  .featureSection,
+  .impactStats,
+  .securitySolutions,
+  .homeGallery,
+  .successStories,
+  .faqSection,
+  .contactFormSection {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
 }
+
 
 
 .heroGlow {
