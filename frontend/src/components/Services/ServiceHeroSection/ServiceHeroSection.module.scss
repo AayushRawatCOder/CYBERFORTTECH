@@ -10,28 +10,20 @@
 
   .heroContent {
     h1 {
+      /* Updated Styles */
       font-family: 'Tomorrow', sans-serif;
-      font-size: 56px;
-      font-weight: 800;
-      color: #ffffff;
-      line-height: 1.2;
-      margin-bottom: 32px;
-      letter-spacing: 2px;
+      font-weight: 600;
+      font-size: 72px;
+      line-height: 100px;
+      letter-spacing: 0;
+      text-align: center;
       text-transform: uppercase;
+      
+      color: #ffffff;
+      margin-bottom: 32px;
 
       .technology {
         background: linear-gradient(90deg, #FE8FEB 7.21%, #01E6DD 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .ampersand {
-        color: #9CA3AF;
-      }
-
-      .security {
-        background: linear-gradient(90deg, #14B8A6 0%, #22D3EE 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -74,12 +66,21 @@
     }
   }
 
+  /* Responsive Adjustments */
+  @media (max-width: 1024px) {
+    .heroContent h1 {
+        font-size: 56px;
+        line-height: 70px;
+    }
+  }
+
   @media (max-width: 768px) {
     padding: 100px 24px 80px;
 
     .heroContent {
       h1 {
         font-size: 36px;
+        line-height: 1.3;
         letter-spacing: 1px;
       }
 

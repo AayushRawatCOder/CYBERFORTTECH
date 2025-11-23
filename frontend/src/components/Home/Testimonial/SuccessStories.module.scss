@@ -1,138 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&display=swap');
+
+// .successStories {
+//   min-height: 100vh;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   background-color: #050505; /* Deep dark background matching the image */
+//   padding: 80px 10%;
+//   position: relative;
+//   overflow: hidden;
+//   font-family: 'Darker Grotesque', sans-serif;
+// }
 .successStories {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 100px 80px 100px 190px;
+  justify-content: center;
+  
+  /* CHANGE THIS LINE */
+  background-color: transparent; /* Was #050505 */
+  
+  padding: 80px 10%;
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 40%;
-    height: 60%;
-    background: radial-gradient(ellipse at bottom right, rgba(138, 43, 226, 0.12) 0%, transparent 60%);
-    pointer-events: none;
-  }
+  font-family: 'Darker Grotesque', sans-serif;
+  z-index: 2; /* Ensures text stays above the glow */
 }
+
+/* ... rest of your css */
 
 .container {
-  max-width: 1600px;
+  max-width: 1200px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align text to left */
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
-.content {
-  max-width: 900px;
-}
-
+/* --- Quote Icon --- */
 .quoteIcon {
-  font-size: 150px;
-  line-height: 0.65;
-  // color: rgba(255, 255, 255, 0.07);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-weight: 700;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  opacity: 1;
+  
+  svg {
+    width: 60px;
+    height: 60px;
+    path {
+      fill: #ffffff;
+    }
+  }
+}
+
+/* --- Subtitle with Gradient --- */
+.subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  background: linear-gradient(90deg, #6a85b6 0%, #bac8e0 100%); /* Subtle blue-ish gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
   animation: fadeIn 0.8s ease-in-out;
 }
 
-.subtitle {
-  font-size: 14px;
-  color: rgba(100, 200, 200, 0.7);
-  margin-bottom: 30px;
-  font-weight: 300;
-  letter-spacing: 0.2px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  animation: fadeIn 0.8s ease-in-out 0.1s backwards;
-}
-
-.quote {
-  margin-bottom: 65px;
+/* --- Main Quote Text --- */
+.quoteWrapper {
+  margin-bottom: 50px;
+  max-width: 95%;
 }
 
 .quoteText {
-  font-size: 30px;
-  line-height: 30px;
-  color: #8b8b8b;
-  font-weight: 700;
-  font-style: normal;
+  font-size: 42px; /* Large font size like the design */
+  line-height: 1.2;
+  color: #8b8b8b; /* Greyed out text */
+  font-weight: 600;
   margin: 0;
-  font-family: 'Darker Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  vertical-align: middle;
-  animation: slideUp 0.7s ease-out;
+  animation: slideUp 0.6s ease-out;
 
+  /* The highlighted words become White and slightly bolder */
   .highlight {
     color: #ffffff;
-    font-weight: 600;
+    font-weight: 700;
   }
 }
 
-.author {
+/* --- Footer: Author + Pagination --- */
+.footerSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  animation: fadeIn 1s ease-out;
+}
+
+.authorBlock {
   display: flex;
   align-items: center;
   gap: 20px;
-  margin-bottom: 50px;
-  animation: slideUp 0.7s ease-out 0.2s backwards;
 }
 
-.authorImage {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Circle shape */
   object-fit: cover;
   border: 2px solid rgba(255, 255, 255, 0.1);
-  flex-shrink: 0;
-  background: #2a2a2a;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.1);
-  }
 }
 
-.authorInfo {
+.authorDetails {
   display: flex;
   flex-direction: column;
-  gap: 3px;
 }
 
 .authorName {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 700;
   color: #ffffff;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  letter-spacing: -0.3px;
+  line-height: 1.2;
 }
 
-.authorTitle {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.45);
-  margin: 0;
-  font-weight: 400;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  line-height: 1.4;
+.authorRole {
+  font-size: 14px;
+  color: #666;
+  margin: 4px 0 0 0;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
+/* --- Pagination Dots --- */
 .pagination {
   display: flex;
   gap: 12px;
-  align-items: center;
-  animation: slideUp 0.7s ease-out 0.3s backwards;
+  margin-top: 10px;
 }
 
 .dot {
@@ -142,203 +146,77 @@
   background: rgba(255, 255, 255, 0.2);
   border: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0;
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-    opacity: 0;
-  }
+  transition: all 0.3s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.4);
-    transform: scale(1.2);
-
-    &::after {
-      width: 200%;
-      height: 200%;
-      opacity: 1;
-    }
+    background: rgba(255, 255, 255, 0.5);
   }
 
   &.active {
     background: #ffffff;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
   }
 }
 
+/* --- Animations --- */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 1440px) {
-  .successStories {
-    padding: 100px 60px 100px 120px;
-  }
-
-  .content {
-    max-width: 850px;
-  }
-
-  .quoteText {
-    font-size: 36px;
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
   }
 }
 
-@media (max-width: 1200px) {
+/* --- Responsive Design --- */
+
+@media (max-width: 1024px) {
   .successStories {
-    padding: 80px 50px 80px 80px;
+    padding: 60px 40px;
   }
-
-  .content {
-    max-width: 750px;
-  }
-
-  .quoteIcon {
-    font-size: 130px;
-  }
-
+  
   .quoteText {
     font-size: 32px;
   }
 }
 
-@media (max-width: 1024px) {
-  .successStories {
-    padding: 70px 40px;
-  }
-
-  .content {
-    max-width: 100%;
-  }
-
-  .quoteIcon {
-    font-size: 110px;
-  }
-
-  .quoteText {
-    font-size: 28px;
-  }
-
-  .quote {
-    margin-bottom: 55px;
-  }
-}
-
 @media (max-width: 768px) {
   .successStories {
-    padding: 60px 30px;
-    justify-content: center;
-  }
-
-  .quoteIcon {
-    font-size: 90px;
-  }
-
-  .subtitle {
-    font-size: 13px;
-    margin-bottom: 25px;
+    padding: 50px 20px;
   }
 
   .quoteText {
     font-size: 24px;
-    line-height: 1.5;
+    line-height: 1.4;
   }
 
-  .quote {
-    margin-bottom: 45px;
+  .quoteIcon svg {
+    width: 40px;
+    height: 40px;
   }
 
-  .author {
-    gap: 16px;
-    margin-bottom: 40px;
+  .authorBlock {
+    gap: 15px;
   }
 
-  .authorImage {
-    width: 52px;
-    height: 52px;
+  .avatar {
+    width: 50px;
+    height: 50px;
   }
 
   .authorName {
     font-size: 18px;
   }
-
-  .authorTitle {
+  
+  .authorRole {
     font-size: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .successStories {
-    padding: 50px 20px;
-  }
-
-  .quoteIcon {
-    font-size: 70px;
-  }
-
-  .subtitle {
-    font-size: 12px;
-    margin-bottom: 20px;
-  }
-
-  .quoteText {
-    font-size: 20px;
-  }
-
-  .quote {
-    margin-bottom: 35px;
-  }
-
-  .author {
-    margin-bottom: 35px;
-  }
-
-  .authorImage {
-    width: 48px;
-    height: 48px;
-  }
-
-  .authorName {
-    font-size: 16px;
-  }
-
-  .authorTitle {
-    font-size: 11px;
-  }
-
-  .dot {
-    width: 8px;
-    height: 8px;
-  }
-
-  .pagination {
-    gap: 10px;
   }
 }

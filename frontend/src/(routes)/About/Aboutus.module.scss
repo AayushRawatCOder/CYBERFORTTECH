@@ -1,19 +1,20 @@
 .partnerPage {
   background: #0a0a0a;
   position: relative;
-  overflow-x: hidden;
+  /* ✅ FIX: Use clip instead of hidden. 
+     This prevents horizontal scroll but allows vertical sticky to work. */
+  overflow-x: clip; 
+  overflow-y: visible; /* Explicitly ensure vertical is visible */
   width: 100vw;
 }
 
 /* shared base for glow wrappers */
 .glowWrap {
   position: relative;
-  overflow: visible !important; /* ADDED */
+  overflow: visible !important; /* This is good, keep this! */
   z-index: 0;
-  /* contain: paint; -- REMOVED */
 }
 
-/* only the pseudo-element contains the expensive blur (z-index: -1 so children are above it) */
 .glowWrap::before {
   content: "";
   position: absolute;
@@ -25,21 +26,17 @@
   pointer-events: none;
   z-index: -1;
   opacity: 0.9;
-  /* background kept same as your previous gradients */
   background:
     radial-gradient(ellipse 600px 480px at 50% 50%, rgba(254,143,235,0.5) 0%, rgba(254,143,235,0.2) 40%, transparent 75%),
     radial-gradient(ellipse 1100px 900px at 50% 50%, rgba(1,230,221,0.3) 0%, transparent 65%);
-  /* still blurred, but now parent is correct */
   filter: blur(48px);
 }
 
-/* specific variants only change positioning of the same base pseudo-element */
 .centerGlow { @extend .glowWrap; }
 .heroGlow   { @extend .glowWrap; }
 .leftGlow   { @extend .glowWrap; }
 .rightGlow  { @extend .glowWrap; }
 
-/* nudge left/right without affecting layout width */
 .leftGlow::before   { left: 20%  !important; }
 .centerGlow::before { left: 50%  !important; }
 .rightGlow::before  { left: 80%  !important; }
