@@ -7,7 +7,6 @@
   align-items: center;
   min-height: 100vh;
   position: relative;
-  background: #0a0a0a;
 }
 
 .section-title {
@@ -143,15 +142,15 @@
       }
 
       .rhombus-layer:nth-child(1) {
-        transform: translateZ(8px);
+        transform: translateZ(12px);
       }
 
       .rhombus-layer:nth-child(2) {
-        transform: translateZ(-18px);
+        transform: translateZ(-15px);
       }
 
       .rhombus-layer:nth-child(3) {
-        transform: translateZ(-48px);
+        transform: translateZ(-45px);
       }
 
       .light-beam {
@@ -267,7 +266,7 @@
 
 .rhombus-stack {
   position: absolute;
-  top: 160%;
+  top: 150%;
   left: 50%;
   width: 400px;
   height: 400px;
@@ -302,8 +301,8 @@
 
 .rhombus-layer:nth-child(1) {
   transform: translateZ(0px);
-  // opacity: 0.95;
-  background: linear-gradient(135deg, rgba(110, 110, 110, 0.25) -0.24%, rgba(27, 26, 26, 0.12) 55.21%, rgba(0, 0, 0, 0.6) 99.76%);
+  z-index: 3;
+  background: linear-gradient(135deg, rgba(31, 30, 30, 0.932) -0.24%, rgba(27, 26, 26, 0.12) 55.21%, rgba(0, 0, 0, 0.6) 99.76%);
   border: 0.5px solid;
   border-image-source: linear-gradient(65.13deg, rgba(110, 110, 110, 0.4) 50.73%, #000000 99.04%);
   border-image-slice: 1;
@@ -311,21 +310,22 @@
 
 .rhombus-layer:nth-child(2) {
   transform: translateZ(-25px);
-  // opacity: 0.8;
-  background: linear-gradient(135deg, rgba(110, 110, 110, 0.25) -0.24%, rgba(0, 0, 0, 0.12) 55.21%, rgba(2, 2, 2, 0.6) 99.76%);
+  z-index: 2;
+  background: linear-gradient(135deg, rgba(72, 71, 71, 0.237) -0.24%, rgba(0, 0, 0, 0.12) 55.21%, rgba(2, 2, 2, 0.6) 99.76%);
   border: none;
 }
 
 .rhombus-layer:nth-child(3) {
   transform: translateZ(-50px);
+  z-index: 1;
   opacity: 0.9;
-  background: linear-gradient(135deg, rgba(110, 110, 110, 0.25) -0.24%, rgba(0, 0, 0, 0.12) 55.21%, rgba(8, 8, 8, 0.6) 99.76%);
+  background: linear-gradient(135deg, rgba(46, 46, 46, 0.25) -0.24%, rgba(0, 0, 0, 0.12) 55.21%, rgba(8, 8, 8, 0.6) 99.76%);
   border: none;
 }
 
 .icon {
-  width: 100px;
-  height: 88px;
+  width: 150px;
+  height: 108px;
   z-index: 10;
   position: relative;
   transform: translateY(-16px);
