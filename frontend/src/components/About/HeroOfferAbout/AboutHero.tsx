@@ -8,12 +8,9 @@ interface CardData {
   icon: string;
   title: string;
   titleHighlight: string;
-  titleColor: string;
   subtitle: string;
-  subtitleColor: string;
   description: string;
   cardClass: string;
-  outerClass: string;
 }
 
 const cardsData: CardData[] = [
@@ -21,61 +18,63 @@ const cardsData: CardData[] = [
     icon: '/logo/vision.svg',
     title: 'OUR',
     titleHighlight: 'VISION',
-    titleColor: 'about-text-purple',
     subtitle: 'SECURE. ACCESS. EMPOWER',
-    subtitleColor: 'about-text-cyan',
     description:
       'To build a future where technology feels secure, accessible, and empowering for everyone — from startups to enterprises.',
-    cardClass: 'about-card--vision',
-    outerClass: 'about-card-outer--vision',
+    cardClass: 'card-vision',
   },
   {
     icon: '/logo/mission.svg',
     title: 'OUR',
     titleHighlight: 'MISSION',
-    titleColor: 'about-text-cyan',
     subtitle: 'SIMPLIFY. SECURE. SCALE',
-    subtitleColor: 'about-text-purple',
     description:
-      "At CyberFort Tech, we're on a mission to make cutting-edge technology simple, safe, and scalable. We exist to protect digital assets, bridge skill gaps, and fuel innovation across cybersecurity, AI, blockchain, and data science — empowering businesses to grow with confidence and clarity.",
-    cardClass: 'about-card--mission',
-    outerClass: 'about-card-outer--mission',
+      "At CyberFort Tech, we're on a mission to make cutting-edge technology simple, safe, and scalable. We exist to protect digital assets, bridge skill gaps, and fuel innovation across cybersecurity, AI, and blockchain.",
+    cardClass: 'card-mission',
   },
   {
     icon: '/logo/value.svg',
     title: 'OUR',
     titleHighlight: 'VALUE',
-    titleColor: 'about-text-purple',
     subtitle: 'PRECISION. TRUST. PROGRESS',
-    subtitleColor: 'about-text-cyan',
     description:
       'We safeguard what matters, innovate fearlessly, and keep technology human — reliable, affordable, and built for tomorrow.',
-    cardClass: 'about-card--value',
-    outerClass: 'about-card-outer--value',
+    cardClass: 'card-value',
   },
 ];
 
+// --- Icon Stack Component ---
+const IconStack = ({ icon, title, customClass }: { icon: string, title: string, customClass: string }) => (
+  <div className={`icon-wrapper ${customClass}`}>
+    <div className="light-beam"></div>
+    <div className="rhombus-stack">
+      <div className="rhombus-layer"></div>
+      <div className="rhombus-layer"></div>
+      <div className="rhombus-layer"></div>
+    </div>
+    <img className="icon" src={icon} alt={title} />
+  </div>
+);
+
+// --- Desktop View (Grid with Stagger) ---
 const DesktopCardsView: React.FC = () => {
   return (
-    <div className="about-hero__cards">
-      {cardsData.map((card, index) => (
-        <div key={index} className={`about-card-outer ${card.outerClass}`}>
-          <div className={`about-card ${card.cardClass}`}>
-            <div className="about-card__icon-wrapper">
-              <div className="about-rhombus-stack">
-                <div className="about-rhombus-layer"></div>
-                <div className="about-rhombus-layer"></div>
-                <div className="about-rhombus-layer"></div>
-              </div>
-              <img src={card.icon} alt={`${card.titleHighlight} Icon`} className="about-card__icon" />
-            </div>
-
-            <div className="about-card__content">
-              <h3 className="about-card__title">
-                {card.title} <span className={card.titleColor}>{card.titleHighlight}</span>
+    <div className="about-grid">
+      {cardsData.map((card, i) => (
+        <div key={`desktop-${i}`} className={`about-card ${card.cardClass}`}>
+          <div className="card-inner">
+            {/* Icon stays centered */}
+            <IconStack icon={card.icon} title={card.titleHighlight} customClass={card.cardClass} />
+            
+            {/* Text content aligns left */}
+            <div className="text-content">
+              <h3 className="card-title">
+                {card.title} <span className="highlight-text">{card.titleHighlight}</span>
               </h3>
-              <p className={`about-card__subtitle ${card.subtitleColor}`}>{card.subtitle}</p>
-              <p className="about-card__description">{card.description}</p>
+              <div className="subtitle-wrapper">
+                <span className="card-subtitle">{card.subtitle}</span>
+              </div>
+              <p className="card-desc">{card.description}</p>
             </div>
           </div>
         </div>
@@ -84,6 +83,7 @@ const DesktopCardsView: React.FC = () => {
   );
 };
 
+// --- Mobile View (Stacked Scroll) ---
 interface CardProps {
   i: number;
   card: CardData;
@@ -102,35 +102,24 @@ const Card: React.FC<CardProps> = ({ i, card, progress, range, targetScale }) =>
   const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div ref={container} className="about-card-container">
+    <div ref={container} className="card-container">
       <motion.div 
-        className={`about-card-outer ${card.outerClass}`}
+        className={`about-card ${card.cardClass}`}
         style={{ 
           scale,
-          top: `calc(5vh + ${i * 60}px)`,
+          top: `calc(10vh + ${i * 60}px)`, 
         }}
       >
-        <div className={`about-card ${card.cardClass}`}>
-          <div className="about-card__icon-wrapper">
-            <div className="about-rhombus-stack">
-              <div className="about-rhombus-layer"></div>
-              <div className="about-rhombus-layer"></div>
-              <div className="about-rhombus-layer"></div>
-            </div>
-            <img
-              src={card.icon}
-              alt={`${card.titleHighlight} Icon`}
-              className="about-card__icon"
-            />
-          </div>
-
-          <div className="about-card__content">
-            <h3 className="about-card__title">
-              {card.title}{' '}
-              <span className={card.titleColor}>{card.titleHighlight}</span>
+        <div className="card-inner">
+          <IconStack icon={card.icon} title={card.titleHighlight} customClass={card.cardClass} />
+          <div className="text-content">
+            <h3 className="card-title">
+                {card.title} <span className="highlight-text">{card.titleHighlight}</span>
             </h3>
-            <p className={`about-card__subtitle ${card.subtitleColor}`}>{card.subtitle}</p>
-            <p className="about-card__description">{card.description}</p>
+            <div className="subtitle-wrapper">
+               <span className="card-subtitle">{card.subtitle}</span>
+            </div>
+            <p className="card-desc">{card.description}</p>
           </div>
         </div>
       </motion.div>
@@ -146,9 +135,9 @@ const MobileCardsView: React.FC = () => {
   });
 
   return (
-    <div ref={container} className="about-hero__cards-mobile">
+    <div ref={container} className="about-grid-mobile">
       {cardsData.map((card, i) => {
-        const targetScale = 1 - (cardsData.length - i) * 0.02;
+        const targetScale = 1 - (cardsData.length - i) * 0.05;
         return (
           <Card
             key={`mobile-${i}`}
@@ -165,40 +154,35 @@ const MobileCardsView: React.FC = () => {
 };
 
 const AboutHero: React.FC = () => {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [isClient, setIsClient] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
-
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 1024);
     };
-
     checkMobile();
     window.addEventListener('resize', checkMobile);
-
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  return (
-    <section className="about-hero">
-      <div className="about-hero__container">
-        <div className="about-hero__header">
-          <h1 className="about-hero__title">WE ARE MAKING TECHNOLOGY</h1>
-          <h2 className="about-hero__subtitle">
-            SIMPLE, SECURE, AND <br /> SCALABLE
-          </h2>
-        </div>
+  if (!isClient) return null;
 
-        {!isClient ? (
-          <DesktopCardsView />
-        ) : isMobile ? (
-          <MobileCardsView />
-        ) : (
-          <DesktopCardsView />
-        )}
+  return (
+    <section className="about-hero-section">
+      {/* --- NEW HERO HEADER CONTENT --- */}
+      <div className="hero-header">
+        <div className="ambient-glow"></div>
+        <h1 className="hero-title">WE ARE MAKING TECHNOLOGY</h1>
+        <h1 className="hero-title">
+          <span className="gradient-text">SIMPLE, SECURE, AND</span>
+          <br />
+          <span className="gradient-text">SCALABLE</span>
+        </h1>
       </div>
+
+      {isMobile ? <MobileCardsView /> : <DesktopCardsView />}
     </section>
   );
 };
