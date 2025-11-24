@@ -357,6 +357,17 @@ const AboutHero: React.FC = () => {
 
   return (
     <section className="about-hero-section">
+      {/* --- NEW HERO HEADER CONTENT --- */}
+      <div className="hero-header">
+        <div className="ambient-glow"></div>
+        <h1 className="hero-title">WE ARE MAKING TECHNOLOGY</h1>
+        <h1 className="hero-title">
+          <span className="gradient-text">SIMPLE, SECURE, AND</span>
+          <br />
+          <span className="gradient-text">SCALABLE</span>
+        </h1>
+      </div>
+
       {isMobile ? <MobileCardsView /> : <DesktopCardsView />}
     </section>
   );
