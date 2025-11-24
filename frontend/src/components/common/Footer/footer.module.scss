@@ -1,10 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+$bg-dark: rgba(15, 15, 15, 0.98);
+$glass-bg: rgba(255, 255, 255, 0.03);
+$border-gradient: linear-gradient(90deg, rgba(245, 245, 245, 0.03) 0%, rgba(245, 245, 245, 0.35) 50%, rgba(245, 245, 245, 0.03) 100%);
+$accent-cyan: #69f3ff;
+$text-primary: #ffffff;
+$text-secondary: #c5c9d3;
+$text-muted: #9ca3af;
+$text-dim: #6b7280;
 
 .footer {
-  background: #0d0e11;
-  color: #c5c9d3;
+  background: $bg-dark;
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  color: $text-secondary;
   font-family: 'Montserrat', sans-serif;
-  padding-bottom: 20px;
+  padding-bottom: 32px;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: $border-gradient;
+  }
+  
+  @media (max-width: 900px) {
+    padding-bottom: 24px;
+  }
 }
 
 .topRow {
@@ -12,61 +38,138 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 60px;
-  padding: 60px 8vw 40px 8vw;
-  border-bottom: 1px solid #1f2128;
+  gap: 80px;
+  padding: 80px 8vw 60px 8vw;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 8vw;
+    right: 8vw;
+    height: 1px;
+    background: $border-gradient;
+  }
+  
+  @media (max-width: 1350px) {
+    gap: 60px;
+    padding: 70px 8vw 50px 8vw;
+  }
+  
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 50px;
+    padding: 60px 6vw 40px 6vw;
+    
+    &::after {
+      left: 6vw;
+      right: 6vw;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    padding: 50px 5vw 35px 5vw;
+    gap: 40px;
+    
+    &::after {
+      left: 5vw;
+      right: 5vw;
+    }
+  }
 }
 
 .brandBlock {
-  min-width: 280px;
-  max-width: 280px;
+  min-width: 300px;
+  max-width: 320px;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 32px;
+  
+  @media (max-width: 900px) {
+    max-width: 100%;
+    min-width: 100%;
+  }
 }
 
 .logoRow {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
+  margin-bottom: 4px;
 }
 
 .logoImg {
-  filter: brightness(1.1);
+  filter: brightness(1.15) contrast(1.1);
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .brandTxt {
-  font-size: 1.5rem;
-  letter-spacing: 0px;
-  color: #ffffff;
+  font-size: 1.625rem;
+  letter-spacing: -0.01em;
+  color: $text-primary;
   font-weight: 400;
+  line-height: 1.2;
+  
   b {
-    color: #69f3ff;
     font-weight: 700;
-    margin-left: 4px;
-    letter-spacing: 0;
+    margin-left: 5px;
+    letter-spacing: -0.02em;
+  }
+  
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
   }
 }
 
 .contactInfo {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  font-size: 0.98rem;
-  color: #9ca3af;
+  gap: 18px;
+  font-size: 1rem;
+  color: $text-muted;
+  
   span {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
+    transition: color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    
+    &:hover {
+      color: $text-secondary;
+      transform: translateX(4px);
+      
+      .icon {
+        opacity: 0.9;
+        filter: brightness(1.5);
+      }
+    }
+  }
+  
+  @media (max-width: 600px) {
+    font-size: 0.9375rem;
+    gap: 16px;
   }
 }
 
 .icon {
-  width: 18px;
-  height: 18px;
-  opacity: 0.65;
-  filter: brightness(1.2);
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  filter: brightness(1.3);
   vertical-align: middle;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  
+  @media (max-width: 600px) {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 .rightSection {
@@ -75,215 +178,315 @@
   min-width: 0;
   justify-content: flex-end;
   align-items: flex-start;
+  
+  @media (max-width: 900px) {
+    width: 100%;
+    justify-content: flex-start;
+  }
 }
 
 .columns {
   display: flex;
   flex-direction: row;
-  gap: 60px;
+  gap: 40px;
   justify-content: flex-end;
   align-items: flex-start;
   flex: 1;
   width: 100%;
+  
+  @media (max-width: 1350px) {
+    gap: 50px;
+  }
+  
+  @media (max-width: 1100px) {
+    gap: 35px;
+  }
+  
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+  }
+  
+  @media (max-width: 600px) {
+    gap: 35px;
+  }
 }
 
 .col {
-  min-width: 120px;
+  min-width: 140px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  font-size: 0.95rem;
-  color: #c5c9d3;
+  gap: 16px;
+  font-size: 0.9875rem;
+  color: $text-secondary;
+  
   span {
     cursor: pointer;
-    transition: color 0.2s;
-    line-height: 1.6;
+    transition: all 0.3s ease;
+    line-height: 1.65;
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: $accent-cyan;
+      transition: width 0.3s ease;
+    }
+    
+    &:hover {
+      color: $accent-cyan;
+      transform: translateX(4px);
+      
+      &::after {
+        width: 100%;
+      }
+    }
   }
-  span:hover {
-    color: #69f3ff;
+  
+  @media (max-width: 600px) {
+    font-size: 0.9375rem;
+    gap: 14px;
   }
 }
 
 .title {
-  color: #fff;
+  color: $text-primary;
   font-weight: 600;
-  font-size: 1.09rem;
-  margin-bottom: 8px;
-  letter-spacing: 0;
+  font-size: 1.125rem;
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  
+  @media (max-width: 600px) {
+    font-size: 1.0625rem;
+    margin-bottom: 8px;
+  }
 }
 
 .subscribeCol {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  min-width: 220px;
-  max-width: 260px;
+  gap: 18px;
+  min-width: 260px;
+  max-width: 280px;
   justify-content: flex-start;
-
+  
   .inputRow {
-    border-radius: 6px;
-    background: #1a1c23;
-    padding: 0 4px 0 4px;
+    border-radius: 8px;
+    background: rgba(26, 28, 35, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 4px 6px;
     display: flex;
     align-items: center;
     width: 100%;
-    border: 1px solid #2a2c35;
+    border: 1px solid rgba(42, 44, 53, 0.8);
     overflow: hidden;
-    min-height: 40px;
-    max-height: 44px;
-
+    min-height: 48px;
+    max-height: 52px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    
+    &:focus-within {
+      border-color: rgba(105, 243, 255, 0.4);
+      background: rgba(26, 28, 35, 0.8);
+      box-shadow: 0 0 0 3px rgba(105, 243, 255, 0.1), 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+    
     input {
       background: transparent;
       border: none;
-      color: #9ca3af;
+      color: $text-secondary;
       flex: 1 1 0%;
       font-family: inherit;
-      font-size: 0.96rem;
+      font-size: 1rem;
       outline: none;
-
+      padding: 8px 12px;
+      
       &::placeholder {
-        color: #6b7280;
+        color: $text-dim;
       }
     }
-
+    
     button {
-      background: transparent;
+      background: rgba(105, 243, 255, 0.08);
       border: none;
-      border-radius: 4px;
-      padding: 6px 10px;
+      border-radius: 6px;
+      padding: 8px 12px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 30px;
-      min-height: 34px;
-      transition: background 0.2s;
-
+      min-width: 36px;
+      min-height: 38px;
+      transition: all 0.3s ease;
+      
       img {
-        opacity: 0.72;
-        filter: brightness(1.7);
-        width: 18px;
-        height: 18px;
+        opacity: 0.8;
+        filter: brightness(1.8);
+        width: 20px;
+        height: 20px;
         margin: 0;
         display: block;
-        max-width: 18px;
-        max-height: 18px;
         object-fit: contain;
+        transition: all 0.3s ease;
+      }
+      
+      &:hover {
+        background: rgba(105, 243, 255, 0.15);
+        transform: scale(1.05);
+        
+        img {
+          opacity: 1;
+          filter: brightness(2);
+        }
+      }
+      
+      &:active {
+        transform: scale(0.98);
       }
     }
-
-    button:hover {
-      background: rgba(255,255,255,0.07);
-      img {
-        opacity: 1;
-      }
-    }
+  }
+  
+  @media (max-width: 1100px) {
+    min-width: 220px;
+    max-width: 240px;
+  }
+  
+  @media (max-width: 900px) {
+    max-width: 100%;
+    min-width: 100%;
   }
 }
 
 .bottomRow {
-  padding: 24px 8vw 0 8vw;
+  padding: 32px 8vw 0 8vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 28px;
+  
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 24px;
+    padding: 28px 6vw 0 6vw;
+  }
+  
+  @media (max-width: 600px) {
+    padding: 24px 5vw 0 5vw;
+    gap: 20px;
+  }
 }
 
 .socials {
   display: flex;
-  gap: 12px;
+  gap: 14px;
+  
   a {
-    background: transparent;
-    border-radius: 6px;
-    padding: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s, transform 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(105, 243, 255, 0.2), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
     img {
-      opacity: 0.51;
-      filter: brightness(1.25);
-      width: 21px;
-      height: 21px;
-      transition: opacity 0.2s, filter 0.2s;
+      opacity: 0.6;
+      filter: brightness(1.3);
+      width: 22px;
+      height: 22px;
+      transition: all 0.3s ease;
       object-fit: contain;
       display: block;
-      max-width: 21px;
-      max-height: 21px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    &:hover {
+      background: rgba(105, 243, 255, 0.12);
+      border-color: rgba(105, 243, 255, 0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(105, 243, 255, 0.2);
+      
+      &::before {
+        opacity: 1;
+      }
+      
+      img {
+        opacity: 1;
+        filter: brightness(1.9);
+        transform: scale(1.1);
+      }
+    }
+    
+    &:active {
+      transform: translateY(-1px);
     }
   }
-  a:hover {
-    background: #22242d;
-    transform: translateY(-2px);
-    img {
-      opacity: 1;
-      filter: brightness(1.7);
-    }
+  
+  @media (max-width: 600px) {
+    gap: 12px;
   }
 }
 
 .legal {
-  font-size: 0.92rem;
-  color: #6b7280;
+  font-size: 0.9375rem;
+  color: $text-dim;
   display: flex;
-  gap: 20px;
+  gap: 24px;
   align-items: center;
+  
   span {
     white-space: nowrap;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    
+    &:hover {
+      color: $text-muted;
+    }
   }
-}
-
-@media (max-width: 1350px) {
-  .columns {
-    gap: 34px;
-  }
-}
-
-@media (max-width: 1100px) {
-  .columns {
-    gap: 20px;
-  }
-  .subscribeCol {
-    min-width: 200px;
-    max-width: 220px;
-  }
-}
-
-@media (max-width: 900px) {
-  .topRow {
+  
+  @media (max-width: 900px) {
     flex-direction: column;
-    gap: 40px;
-    padding-left: 5vw;
-    padding-right: 5vw;
-  }
-  .brandBlock {
-    max-width: 100%;
-  }
-  .rightSection {
-    width: 100%;
-    justify-content: flex-start;
-  }
-  .columns {
-    flex-direction: column;
-    gap: 30px;
-    width: 100%;
-  }
-  .subscribeCol {
-    max-width: 100%;
-    min-width: 100%;
-    margin-top: 18px;
-  }
-  .bottomRow {
-    flex-direction: column;
-    gap: 20px;
-    padding-left: 5vw;
-    padding-right: 5vw;
-  }
-  .legal {
-    flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     text-align: center;
+  }
+  
+  @media (max-width: 600px) {
+    font-size: 0.875rem;
+    gap: 8px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .contactInfo span:hover,
+  .col span:hover {
+    transform: none;
+  }
+  
+  .socials a:hover {
+    transform: none;
   }
 }
