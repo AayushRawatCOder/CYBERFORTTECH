@@ -1,19 +1,202 @@
+// 'use client';
+
+// import React, { useRef, useState, useEffect } from 'react';
+// import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+// import './AboutHero.scss';
+
+// interface CardData {
+//   icon: string;
+//   title: string;
+//   titleHighlight: string;
+//   subtitle: string;
+//   description: string;
+//   cardClass: string; // Used for color themes (vision, mission, value)
+// }
+
+// const cardsData: CardData[] = [
+//   {
+//     icon: '/logo/vision.svg',
+//     title: 'OUR',
+//     titleHighlight: 'VISION',
+//     subtitle: 'SECURE. ACCESS. EMPOWER',
+//     description:
+//       'To build a future where technology feels secure, accessible, and empowering for everyone — from startups to enterprises.',
+//     cardClass: 'card-vision',
+//   },
+//   {
+//     icon: '/logo/mission.svg',
+//     title: 'OUR',
+//     titleHighlight: 'MISSION',
+//     subtitle: 'SIMPLIFY. SECURE. SCALE',
+//     description:
+//       "At CyberFort Tech, we're on a mission to make cutting-edge technology simple, safe, and scalable. We protect digital assets, bridge skill gaps, and fuel innovation.",
+//     cardClass: 'card-mission',
+//   },
+//   {
+//     icon: '/logo/value.svg',
+//     title: 'OUR',
+//     titleHighlight: 'VALUE',
+//     subtitle: 'PRECISION. TRUST. PROGRESS',
+//     description:
+//       'We safeguard what matters, innovate fearlessly, and keep technology human — reliable, affordable, and built for tomorrow.',
+//     cardClass: 'card-value',
+//   },
+// ];
+
+// // --- 1. The Icon Stack Visual (Same as Features) ---
+// const IconStack = ({ icon, title, customClass }: { icon: string, title: string, customClass: string }) => (
+//   <div className={`icon-wrapper ${customClass}`}>
+//     {/* The fading floor light */}
+//     <div className="light-beam"></div>
+    
+//     {/* The Glass Stack */}
+//     <div className="rhombus-stack">
+//       <div className="rhombus-layer"></div>
+//       <div className="rhombus-layer"></div>
+//       <div className="rhombus-layer"></div>
+//     </div>
+    
+//     <img className="icon" src={icon} alt={title} />
+//   </div>
+// );
+
+// // --- 2. Desktop Grid View ---
+// const DesktopCardsView: React.FC = () => {
+//   return (
+//     <div className="about-grid">
+//       {cardsData.map((card, i) => (
+//         <div key={`desktop-${i}`} className={`about-card ${card.cardClass}`}>
+//           <div className="card-inner">
+//             <div className="card-highlight">
+//               <span>{card.subtitle}</span>
+//             </div>
+//             <IconStack icon={card.icon} title={card.titleHighlight} customClass={card.cardClass} />
+//             <div className="text-content">
+//               <h3 className="card-title">
+//                 {card.title} <span className="highlight-text">{card.titleHighlight}</span>
+//               </h3>
+//               <p className="card-desc">{card.description}</p>
+//             </div>
+//           </div>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
+
+// // --- 3. Mobile Stacking Logic (The "Stack Feature") ---
+// interface CardProps {
+//   i: number;
+//   card: CardData;
+//   progress: MotionValue<number>;
+//   range: [number, number];
+//   targetScale: number;
+// }
+
+// const Card: React.FC<CardProps> = ({ i, card, progress, range, targetScale }) => {
+//   const container = useRef<HTMLDivElement>(null);
+//   const { scrollYProgress } = useScroll({
+//     target: container,
+//     offset: ['start end', 'start start'],
+//   });
+
+//   const scale = useTransform(progress, range, [1, targetScale]);
+
+//   return (
+//     <div ref={container} className="card-container">
+//       <motion.div 
+//         className={`about-card ${card.cardClass}`}
+//         style={{ 
+//           scale,
+//           // STACKING LOGIC: Same calculation as FeaturesSection
+//           top: `calc(10vh + ${i * 80}px)`, 
+//         }}
+//       >
+//         <div className="card-inner">
+//           <div className="card-highlight">
+//             <span>{card.subtitle}</span>
+//           </div>
+//           <IconStack icon={card.icon} title={card.titleHighlight} customClass={card.cardClass} />
+//           <div className="text-content">
+//             <h3 className="card-title">
+//                 {card.title} <span className="highlight-text">{card.titleHighlight}</span>
+//             </h3>
+//             <p className="card-desc">{card.description}</p>
+//           </div>
+//         </div>
+//       </motion.div>
+//     </div>
+//   );
+// };
+
+// const MobileCardsView: React.FC = () => {
+//   const container = useRef<HTMLDivElement>(null);
+//   const { scrollYProgress } = useScroll({
+//     target: container,
+//     offset: ['start start', 'end end'],
+//   });
+
+//   return (
+//     <div ref={container} className="about-grid-mobile">
+//       {cardsData.map((card, i) => {
+//         // Gentle scaling for the stack effect
+//         const targetScale = 1 - (cardsData.length - i) * 0.05;
+//         return (
+//           <Card
+//             key={`mobile-${i}`}
+//             i={i}
+//             card={card}
+//             progress={scrollYProgress}
+//             range={[i * (1 / cardsData.length), 1]}
+//             targetScale={targetScale}
+//           />
+//         );
+//       })}
+//     </div>
+//   );
+// };
+
+// // --- 4. Main Component ---
+// const AboutHero: React.FC = () => {
+//   const [isMobile, setIsMobile] = useState(false);
+//   const [isClient, setIsClient] = useState(false);
+
+//   useEffect(() => {
+//     setIsClient(true);
+//     const checkMobile = () => {
+//       setIsMobile(window.innerWidth <= 1024);
+//     };
+//     checkMobile();
+//     window.addEventListener('resize', checkMobile);
+//     return () => window.removeEventListener('resize', checkMobile);
+//   }, []);
+
+//   if (!isClient) return null;
+
+//   return (
+//     <section className="about-hero-section">
+//       {/* Optional Title Area if you need it */}
+//       {/* <div className="section-header">...</div> */}
+
+//       {isMobile ? <MobileCardsView /> : <DesktopCardsView />}
+//     </section>
+//   );
+// };
+
+// export default AboutHero;
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import './AboutHero.scss';
 
 interface CardData {
   icon: string;
   title: string;
   titleHighlight: string;
-  titleColor: string;
   subtitle: string;
-  subtitleColor: string;
   description: string;
   cardClass: string;
-  outerClass: string;
 }
 
 const cardsData: CardData[] = [
@@ -21,56 +204,63 @@ const cardsData: CardData[] = [
     icon: '/logo/vision.svg',
     title: 'OUR',
     titleHighlight: 'VISION',
-    titleColor: 'text-purple',
     subtitle: 'SECURE. ACCESS. EMPOWER',
-    subtitleColor: 'text-cyan',
     description:
       'To build a future where technology feels secure, accessible, and empowering for everyone — from startups to enterprises.',
-    cardClass: 'card--vision',
-    outerClass: 'card-outer--vision',
+    cardClass: 'card-vision',
   },
   {
     icon: '/logo/mission.svg',
     title: 'OUR',
     titleHighlight: 'MISSION',
-    titleColor: 'text-cyan',
     subtitle: 'SIMPLIFY. SECURE. SCALE',
-    subtitleColor: 'text-purple',
     description:
-      "At CyberFort Tech, we're on a mission to make cutting-edge technology simple, safe, and scalable. We exist to protect digital assets, bridge skill gaps, and fuel innovation across cybersecurity, AI, blockchain, and data science — empowering businesses to grow with confidence and clarity.",
-    cardClass: 'card--mission',
-    outerClass: 'card-outer--mission',
+      "At CyberFort Tech, we're on a mission to make cutting-edge technology simple, safe, and scalable. We exist to protect digital assets, bridge skill gaps, and fuel innovation across cybersecurity, AI, and blockchain.",
+    cardClass: 'card-mission',
   },
   {
     icon: '/logo/value.svg',
     title: 'OUR',
     titleHighlight: 'VALUE',
-    titleColor: 'text-cyan',
     subtitle: 'PRECISION. TRUST. PROGRESS',
-    subtitleColor: 'text-cyan',
     description:
       'We safeguard what matters, innovate fearlessly, and keep technology human — reliable, affordable, and built for tomorrow.',
-    cardClass: 'card--value',
-    outerClass: 'card-outer--value',
+    cardClass: 'card-value',
   },
 ];
 
+// --- Icon Stack Component ---
+const IconStack = ({ icon, title, customClass }: { icon: string, title: string, customClass: string }) => (
+  <div className={`icon-wrapper ${customClass}`}>
+    <div className="light-beam"></div>
+    <div className="rhombus-stack">
+      <div className="rhombus-layer"></div>
+      <div className="rhombus-layer"></div>
+      <div className="rhombus-layer"></div>
+    </div>
+    <img className="icon" src={icon} alt={title} />
+  </div>
+);
+
+// --- Desktop View (Grid with Stagger) ---
 const DesktopCardsView: React.FC = () => {
   return (
-    <div className="about-hero__cards">
-      {cardsData.map((card, index) => (
-        <div key={index} className={`card-outer ${card.outerClass}`}>
-          <div className={`card ${card.cardClass}`}>
-            <div className="card__icon-wrapper">
-              <img src={card.icon} alt={`${card.titleHighlight} Icon`} className="card__icon" />
-            </div>
-
-            <div className="card__content">
-              <h3 className="card__title">
-                {card.title} <span className={card.titleColor}>{card.titleHighlight}</span>
+    <div className="about-grid">
+      {cardsData.map((card, i) => (
+        <div key={`desktop-${i}`} className={`about-card ${card.cardClass}`}>
+          <div className="card-inner">
+            {/* Icon stays centered */}
+            <IconStack icon={card.icon} title={card.titleHighlight} customClass={card.cardClass} />
+            
+            {/* Text content aligns left */}
+            <div className="text-content">
+              <h3 className="card-title">
+                {card.title} <span className="highlight-text">{card.titleHighlight}</span>
               </h3>
-              <p className={`card__subtitle ${card.subtitleColor}`}>{card.subtitle}</p>
-              <p className="card__description">{card.description}</p>
+              <div className="subtitle-wrapper">
+                <span className="card-subtitle">{card.subtitle}</span>
+              </div>
+              <p className="card-desc">{card.description}</p>
             </div>
           </div>
         </div>
@@ -79,114 +269,95 @@ const DesktopCardsView: React.FC = () => {
   );
 };
 
-const MobileCardsView: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const shouldReduceMotion = useReducedMotion();
+// --- Mobile View (Stacked Scroll) ---
+interface CardProps {
+  i: number;
+  card: CardData;
+  progress: MotionValue<number>;
+  range: [number, number];
+  targetScale: number;
+}
 
+const Card: React.FC<CardProps> = ({ i, card, progress, range, targetScale }) => {
+  const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
+    target: container,
+    offset: ['start end', 'start start'],
   });
 
-  const springConfig = { stiffness: 250, damping: 35 };
-  const smoothProgress = useSpring(scrollYProgress, springConfig);
+  const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div ref={containerRef} className="about-hero__cards-mobile">
-      {cardsData.map((card, index) => {
-        const length = cardsData.length;
-        const start = index * 0.22;
-        const end = 1;
-        const targetScale = shouldReduceMotion ? 1 : 1 - (length - 1 - index) * 0.055;
+    <div ref={container} className="card-container">
+      <motion.div 
+        className={`about-card ${card.cardClass}`}
+        style={{ 
+          scale,
+          top: `calc(10vh + ${i * 60}px)`, 
+        }}
+      >
+        <div className="card-inner">
+          <IconStack icon={card.icon} title={card.titleHighlight} customClass={card.cardClass} />
+          <div className="text-content">
+            <h3 className="card-title">
+                {card.title} <span className="highlight-text">{card.titleHighlight}</span>
+            </h3>
+            <div className="subtitle-wrapper">
+               <span className="card-subtitle">{card.subtitle}</span>
+            </div>
+            <p className="card-desc">{card.description}</p>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
-        const scale = useTransform(smoothProgress, [start, end], [1, targetScale]);
-        const y = useTransform(smoothProgress, [start, end], [0, -100]);
+const MobileCardsView: React.FC = () => {
+  const container = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ['start start', 'end end'],
+  });
 
-        const smoothScale = useSpring(scale, springConfig);
-        const smoothY = useSpring(y, springConfig);
-
+  return (
+    <div ref={container} className="about-grid-mobile">
+      {cardsData.map((card, i) => {
+        const targetScale = 1 - (cardsData.length - i) * 0.05;
         return (
-          <motion.div
-            key={index}
-            className="mobile-card-wrapper"
-            style={{
-              zIndex: length - index,
-            }}
-          >
-            <motion.div
-              style={{
-                scale: shouldReduceMotion ? 1 : smoothScale,
-                y: shouldReduceMotion ? 0 : smoothY,
-                top: `calc(-6vh + ${index * 25}px)`, // ✨ MATCHES FEATURESECTION CENTER OFFSET
-                position: 'relative',
-                transform: 'translateZ(0)',
-                willChange: 'transform',
-              }}
-              className={`card-outer ${card.outerClass} mobile-card-gpu`}
-            >
-              <div className={`card ${card.cardClass}`}>
-                <div className="card__icon-wrapper">
-                  <img
-                    src={card.icon}
-                    alt={`${card.titleHighlight} Icon`}
-                    className="card__icon"
-                  />
-                </div>
-
-                <div className="card__content">
-                  <h3 className="card__title">
-                    {card.title}{' '}
-                    <span className={card.titleColor}>{card.titleHighlight}</span>
-                  </h3>
-                  <p className={`card__subtitle ${card.subtitleColor}`}>{card.subtitle}</p>
-                  <p className="card__description">{card.description}</p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+          <Card
+            key={`mobile-${i}`}
+            i={i}
+            card={card}
+            progress={scrollYProgress}
+            range={[i * (1 / cardsData.length), 1]}
+            targetScale={targetScale}
+          />
         );
       })}
-
-      <div style={{ height: '100vh' }} />
     </div>
   );
 };
 
 const AboutHero: React.FC = () => {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [isClient, setIsClient] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
-
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 1024);
     };
-
     checkMobile();
     window.addEventListener('resize', checkMobile);
-
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  return (
-    <section className="about-hero">
-      <div className="about-hero__container">
-        <div className="about-hero__header">
-          <h1 className="about-hero__title">WE ARE MAKING TECHNOLOGY</h1>
-          <h2 className="about-hero__subtitle">
-            SIMPLE, SECURE, AND <br /> SCALABLE
-          </h2>
-        </div>
+  if (!isClient) return null;
 
-        {!isClient ? (
-          <DesktopCardsView />
-        ) : isMobile ? (
-          <MobileCardsView />
-        ) : (
-          <DesktopCardsView />
-        )}
-      </div>
+  return (
+    <section className="about-hero-section">
+      {isMobile ? <MobileCardsView /> : <DesktopCardsView />}
     </section>
   );
 };
