@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import './AboutHero.scss';
 
 interface CardData {
@@ -21,37 +21,37 @@ const cardsData: CardData[] = [
     icon: '/logo/vision.svg',
     title: 'OUR',
     titleHighlight: 'VISION',
-    titleColor: 'text-purple',
+    titleColor: 'about-text-purple',
     subtitle: 'SECURE. ACCESS. EMPOWER',
-    subtitleColor: 'text-cyan',
+    subtitleColor: 'about-text-cyan',
     description:
       'To build a future where technology feels secure, accessible, and empowering for everyone — from startups to enterprises.',
-    cardClass: 'card--vision',
-    outerClass: 'card-outer--vision',
+    cardClass: 'about-card--vision',
+    outerClass: 'about-card-outer--vision',
   },
   {
     icon: '/logo/mission.svg',
     title: 'OUR',
     titleHighlight: 'MISSION',
-    titleColor: 'text-cyan',
+    titleColor: 'about-text-cyan',
     subtitle: 'SIMPLIFY. SECURE. SCALE',
-    subtitleColor: 'text-purple',
+    subtitleColor: 'about-text-purple',
     description:
       "At CyberFort Tech, we're on a mission to make cutting-edge technology simple, safe, and scalable. We exist to protect digital assets, bridge skill gaps, and fuel innovation across cybersecurity, AI, blockchain, and data science — empowering businesses to grow with confidence and clarity.",
-    cardClass: 'card--mission',
-    outerClass: 'card-outer--mission',
+    cardClass: 'about-card--mission',
+    outerClass: 'about-card-outer--mission',
   },
   {
     icon: '/logo/value.svg',
     title: 'OUR',
     titleHighlight: 'VALUE',
-    titleColor: 'text-cyan',
+    titleColor: 'about-text-purple',
     subtitle: 'PRECISION. TRUST. PROGRESS',
-    subtitleColor: 'text-cyan',
+    subtitleColor: 'about-text-cyan',
     description:
       'We safeguard what matters, innovate fearlessly, and keep technology human — reliable, affordable, and built for tomorrow.',
-    cardClass: 'card--value',
-    outerClass: 'card-outer--value',
+    cardClass: 'about-card--value',
+    outerClass: 'about-card-outer--value',
   },
 ];
 
@@ -59,18 +59,23 @@ const DesktopCardsView: React.FC = () => {
   return (
     <div className="about-hero__cards">
       {cardsData.map((card, index) => (
-        <div key={index} className={`card-outer ${card.outerClass}`}>
-          <div className={`card ${card.cardClass}`}>
-            <div className="card__icon-wrapper">
-              <img src={card.icon} alt={`${card.titleHighlight} Icon`} className="card__icon" />
+        <div key={index} className={`about-card-outer ${card.outerClass}`}>
+          <div className={`about-card ${card.cardClass}`}>
+            <div className="about-card__icon-wrapper">
+              <div className="about-rhombus-stack">
+                <div className="about-rhombus-layer"></div>
+                <div className="about-rhombus-layer"></div>
+                <div className="about-rhombus-layer"></div>
+              </div>
+              <img src={card.icon} alt={`${card.titleHighlight} Icon`} className="about-card__icon" />
             </div>
 
-            <div className="card__content">
-              <h3 className="card__title">
+            <div className="about-card__content">
+              <h3 className="about-card__title">
                 {card.title} <span className={card.titleColor}>{card.titleHighlight}</span>
               </h3>
-              <p className={`card__subtitle ${card.subtitleColor}`}>{card.subtitle}</p>
-              <p className="card__description">{card.description}</p>
+              <p className={`about-card__subtitle ${card.subtitleColor}`}>{card.subtitle}</p>
+              <p className="about-card__description">{card.description}</p>
             </div>
           </div>
         </div>
@@ -79,75 +84,82 @@ const DesktopCardsView: React.FC = () => {
   );
 };
 
-const MobileCardsView: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const shouldReduceMotion = useReducedMotion();
+interface CardProps {
+  i: number;
+  card: CardData;
+  progress: MotionValue<number>;
+  range: [number, number];
+  targetScale: number;
+}
 
+const Card: React.FC<CardProps> = ({ i, card, progress, range, targetScale }) => {
+  const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
+    target: container,
+    offset: ['start end', 'start start'],
   });
 
-  const springConfig = { stiffness: 250, damping: 35 };
-  const smoothProgress = useSpring(scrollYProgress, springConfig);
+  const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div ref={containerRef} className="about-hero__cards-mobile">
-      {cardsData.map((card, index) => {
-        const length = cardsData.length;
-        const start = index * 0.22;
-        const end = 1;
-        const targetScale = shouldReduceMotion ? 1 : 1 - (length - 1 - index) * 0.055;
+    <div ref={container} className="about-card-container">
+      <motion.div 
+        className={`about-card-outer ${card.outerClass}`}
+        style={{ 
+          scale,
+          top: `calc(5vh + ${i * 60}px)`,
+        }}
+      >
+        <div className={`about-card ${card.cardClass}`}>
+          <div className="about-card__icon-wrapper">
+            <div className="about-rhombus-stack">
+              <div className="about-rhombus-layer"></div>
+              <div className="about-rhombus-layer"></div>
+              <div className="about-rhombus-layer"></div>
+            </div>
+            <img
+              src={card.icon}
+              alt={`${card.titleHighlight} Icon`}
+              className="about-card__icon"
+            />
+          </div>
 
-        const scale = useTransform(smoothProgress, [start, end], [1, targetScale]);
-        const y = useTransform(smoothProgress, [start, end], [0, -100]);
+          <div className="about-card__content">
+            <h3 className="about-card__title">
+              {card.title}{' '}
+              <span className={card.titleColor}>{card.titleHighlight}</span>
+            </h3>
+            <p className={`about-card__subtitle ${card.subtitleColor}`}>{card.subtitle}</p>
+            <p className="about-card__description">{card.description}</p>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
-        const smoothScale = useSpring(scale, springConfig);
-        const smoothY = useSpring(y, springConfig);
+const MobileCardsView: React.FC = () => {
+  const container = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ['start start', 'end end'],
+  });
 
+  return (
+    <div ref={container} className="about-hero__cards-mobile">
+      {cardsData.map((card, i) => {
+        const targetScale = 1 - (cardsData.length - i) * 0.02;
         return (
-          <motion.div
-            key={index}
-            className="mobile-card-wrapper"
-            style={{
-              zIndex: length - index,
-            }}
-          >
-            <motion.div
-              style={{
-                scale: shouldReduceMotion ? 1 : smoothScale,
-                y: shouldReduceMotion ? 0 : smoothY,
-                top: `calc(-6vh + ${index * 25}px)`, // ✨ MATCHES FEATURESECTION CENTER OFFSET
-                position: 'relative',
-                transform: 'translateZ(0)',
-                willChange: 'transform',
-              }}
-              className={`card-outer ${card.outerClass} mobile-card-gpu`}
-            >
-              <div className={`card ${card.cardClass}`}>
-                <div className="card__icon-wrapper">
-                  <img
-                    src={card.icon}
-                    alt={`${card.titleHighlight} Icon`}
-                    className="card__icon"
-                  />
-                </div>
-
-                <div className="card__content">
-                  <h3 className="card__title">
-                    {card.title}{' '}
-                    <span className={card.titleColor}>{card.titleHighlight}</span>
-                  </h3>
-                  <p className={`card__subtitle ${card.subtitleColor}`}>{card.subtitle}</p>
-                  <p className="card__description">{card.description}</p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+          <Card
+            key={`mobile-${i}`}
+            i={i}
+            card={card}
+            progress={scrollYProgress}
+            range={[i * (1 / cardsData.length), 1]}
+            targetScale={targetScale}
+          />
         );
       })}
-
-      <div style={{ height: '100vh' }} />
     </div>
   );
 };
