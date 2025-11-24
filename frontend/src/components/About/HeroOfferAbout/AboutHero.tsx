@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
-import './AboutHero.scss';
+import styles from './AboutHero.module.scss';
 
 interface CardData {
   icon: string;
@@ -19,8 +19,7 @@ const cardsData: CardData[] = [
     title: 'OUR',
     titleHighlight: 'VISION',
     subtitle: 'SECURE. ACCESS. EMPOWER',
-    description:
-      'To build a future where technology feels secure, accessible, and empowering for everyone — from startups to enterprises.',
+    description: 'To build a future where technology feels secure, accessible, and empowering for everyone — from startups to enterprises.',
     cardClass: 'card-vision',
   },
   {
@@ -28,8 +27,7 @@ const cardsData: CardData[] = [
     title: 'OUR',
     titleHighlight: 'MISSION',
     subtitle: 'SIMPLIFY. SECURE. SCALE',
-    description:
-      "At CyberFort Tech, we're on a mission to make cutting-edge technology simple, safe, and scalable. We exist to protect digital assets, bridge skill gaps, and fuel innovation across cybersecurity, AI, and blockchain.",
+    description: "At CyberFort Tech, we're on a mission to make cutting-edge technology simple, safe, and scalable. We exist to protect digital assets, bridge skill gaps, and fuel innovation across cybersecurity, AI, and blockchain.",
     cardClass: 'card-mission',
   },
   {
@@ -37,44 +35,38 @@ const cardsData: CardData[] = [
     title: 'OUR',
     titleHighlight: 'VALUE',
     subtitle: 'PRECISION. TRUST. PROGRESS',
-    description:
-      'We safeguard what matters, innovate fearlessly, and keep technology human — reliable, affordable, and built for tomorrow.',
+    description: 'We safeguard what matters, innovate fearlessly, and keep technology human — reliable, affordable, and built for tomorrow.',
     cardClass: 'card-value',
   },
 ];
 
-// --- Icon Stack Component ---
-const IconStack = ({ icon, title, customClass }: { icon: string, title: string, customClass: string }) => (
-  <div className={`icon-wrapper ${customClass}`}>
-    <div className="light-beam"></div>
-    <div className="rhombus-stack">
-      <div className="rhombus-layer"></div>
-      <div className="rhombus-layer"></div>
-      <div className="rhombus-layer"></div>
+const IconStack = ({ icon, title, customClass }: { icon: string; title: string; customClass: string }) => (
+  <div className={`${styles['icon-wrapper']} ${styles[customClass]}`}>
+    <div className={styles['light-beam']}></div>
+    <div className={styles['about-rhombus-stack']}>
+      <div className={styles['about-rhombus-layer']}></div>
+      <div className={styles['about-rhombus-layer']}></div>
+      <div className={styles['about-rhombus-layer']}></div>
     </div>
-    <img className="icon" src={icon} alt={title} />
+    <img className={styles.icon} src={icon} alt={title} />
   </div>
 );
 
-// --- Desktop View (Grid with Stagger) ---
 const DesktopCardsView: React.FC = () => {
   return (
-    <div className="about-grid">
+    <div className={styles['about-grid']}>
       {cardsData.map((card, i) => (
-        <div key={`desktop-${i}`} className={`about-card ${card.cardClass}`}>
-          <div className="card-inner">
-            {/* Icon stays centered */}
+        <div key={`desktop-${i}`} className={`${styles['about-card']} ${styles[card.cardClass]}`}>
+          <div className={styles['about-card-inner']}>
             <IconStack icon={card.icon} title={card.titleHighlight} customClass={card.cardClass} />
-            
-            {/* Text content aligns left */}
-            <div className="text-content">
-              <h3 className="card-title">
-                {card.title} <span className="highlight-text">{card.titleHighlight}</span>
+            <div className={styles['text-content']}>
+              <h3 className={styles['card-title']}>
+                {card.title} <span className={styles['highlight-text']}>{card.titleHighlight}</span>
               </h3>
-              <div className="subtitle-wrapper">
-                <span className="card-subtitle">{card.subtitle}</span>
+              <div className={styles['subtitle-wrapper']}>
+                <span className={styles['card-subtitle']}>{card.subtitle}</span>
               </div>
-              <p className="card-desc">{card.description}</p>
+              <p className={styles['card-desc']}>{card.description}</p>
             </div>
           </div>
         </div>
@@ -83,7 +75,6 @@ const DesktopCardsView: React.FC = () => {
   );
 };
 
-// --- Mobile View (Stacked Scroll) ---
 interface CardProps {
   i: number;
   card: CardData;
@@ -102,24 +93,24 @@ const Card: React.FC<CardProps> = ({ i, card, progress, range, targetScale }) =>
   const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div ref={container} className="card-container">
-      <motion.div 
-        className={`about-card ${card.cardClass}`}
-        style={{ 
+    <div ref={container} className={styles['card-container']}>
+      <motion.div
+        className={`${styles['about-card']} ${styles[card.cardClass]}`}
+        style={{
           scale,
-          top: `calc(10vh + ${i * 60}px)`, 
+          top: `calc(10vh + ${i * 60}px)`,
         }}
       >
-        <div className="card-inner">
+        <div className={styles['about-card-inner']}>
           <IconStack icon={card.icon} title={card.titleHighlight} customClass={card.cardClass} />
-          <div className="text-content">
-            <h3 className="card-title">
-                {card.title} <span className="highlight-text">{card.titleHighlight}</span>
+          <div className={styles['text-content']}>
+            <h3 className={styles['card-title']}>
+              {card.title} <span className={styles['highlight-text']}>{card.titleHighlight}</span>
             </h3>
-            <div className="subtitle-wrapper">
-               <span className="card-subtitle">{card.subtitle}</span>
+            <div className={styles['subtitle-wrapper']}>
+              <span className={styles['card-subtitle']}>{card.subtitle}</span>
             </div>
-            <p className="card-desc">{card.description}</p>
+            <p className={styles['card-desc']}>{card.description}</p>
           </div>
         </div>
       </motion.div>
@@ -135,7 +126,7 @@ const MobileCardsView: React.FC = () => {
   });
 
   return (
-    <div ref={container} className="about-grid-mobile">
+    <div ref={container} className={styles['about-grid-mobile']}>
       {cardsData.map((card, i) => {
         const targetScale = 1 - (cardsData.length - i) * 0.05;
         return (
@@ -170,15 +161,14 @@ const AboutHero: React.FC = () => {
   if (!isClient) return null;
 
   return (
-    <section className="about-hero-section">
-      {/* --- NEW HERO HEADER CONTENT --- */}
-      <div className="hero-header">
-        <div className="ambient-glow"></div>
-        <h1 className="hero-title">WE ARE MAKING TECHNOLOGY</h1>
-        <h1 className="hero-title">
-          <span className="gradient-text">SIMPLE, SECURE, AND</span>
+    <section className={styles['about-hero-section']}>
+      <div className={styles['hero-header']}>
+        <div className={styles['ambient-glow']}></div>
+        <h1 className={styles['hero-title']}>WE ARE MAKING TECHNOLOGY</h1>
+        <h1 className={styles['hero-title']}>
+          <span className={styles['gradient-text']}>SIMPLE, SECURE, AND</span>
           <br />
-          <span className="gradient-text">SCALABLE</span>
+          <span className={styles['gradient-text']}>SCALABLE</span>
         </h1>
       </div>
 
