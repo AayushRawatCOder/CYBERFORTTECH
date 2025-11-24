@@ -94,6 +94,7 @@ a {
 }
 
 .galleryCard {
+  position: relative;
   padding: 18px;
   background: #000000;
   border-radius: 32px;
@@ -102,7 +103,36 @@ a {
   flex-shrink: 0;
   height: 200px;
   width: 300px;
+  overflow: visible;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.4)
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 1;
+    z-index: 2;
+  }
+  
+  .cardInner {
+    position: relative;
+    z-index: 3;
+  }
 }
+
 
 .cardInner {
   background: #000000;
@@ -121,6 +151,8 @@ a {
     .galleryCardImage {
       transform: scale(1.05);
       filter: brightness(1.1);
+
+      
     }
 
     .cardOverlay {

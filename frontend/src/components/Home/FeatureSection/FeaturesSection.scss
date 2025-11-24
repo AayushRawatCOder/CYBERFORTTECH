@@ -1072,19 +1072,19 @@ $card-border-radius: 20px;
     }
 
     &:nth-child(2) {
-      min-height: 480px;
+      height: 500px;
       align-self: center;
-      margin-top: -125px;
+      margin-top: -120px;
     }
 
     &:nth-child(4),
     &:nth-child(6) {
-      min-height: 480px;
+      height: 500px;
     }
 
     &:nth-child(5) {
-      min-height: 600px;
-      margin-top: -120px;
+      min-height: 610px;
+      margin-top: -110px;
     }
 
     &:hover {
@@ -1146,7 +1146,7 @@ $card-border-radius: 20px;
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 1;
   z-index: 1;
 }
 
