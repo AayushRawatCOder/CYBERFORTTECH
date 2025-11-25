@@ -8,6 +8,7 @@ import HeroSection from "../../components/home/HeroSection/HeroSection"
 import ImpactStats from "../../components/home/ImpactStats/ImpactStats"
 import SecuritySolutions from "../../components/home/SecuritySolutions/SecuritySolution"
 import SuccessStories from "../../components/home/Testimonial/SuccessStories"
+import ThreatMap from "../../components/Home/ThreatMap/ThreatMap"
 import styles from "./HomePage.module.scss"
 
 const HomePage = () => {
@@ -16,6 +17,7 @@ const HomePage = () => {
       <HeroSection/>
       <div className={styles.leftGlow}>
         <ClientSection/>
+        <ThreatMap/>
       </div>
       <FeaturesSection/>
       <div className={styles.centerGlow}>
