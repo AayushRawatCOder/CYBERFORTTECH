@@ -133,7 +133,9 @@ $card-border-radius: 28px;
     max-width: $cards-width;
     margin: 0 auto;
     padding: 0 20px;
-    align-items: start;
+    
+    // FIX: Changed from 'start' to 'stretch' to equalize card heights
+    align-items: stretch; 
 
     @media (max-width: 1400px) {
       max-width: 1200px;
@@ -149,7 +151,8 @@ $card-border-radius: 28px;
       grid-template-columns: repeat(2, 1fr);
       gap: 32px;
       max-width: 800px;
-      align-items: stretch;
+      // FIX: Ensure stretch behavior on tablet
+      align-items: stretch; 
     }
 
     @media (max-width: 600px) {
@@ -182,28 +185,33 @@ $card-border-radius: 28px;
   position: relative;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   animation: fadeInUp 0.8s ease-out backwards;
+  
+  // FIX: Added these 3 lines to ensure the wrapper fills the grid cell
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   &::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: $card-border-radius;
-  padding: 1.5px;
-  background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.4),
-      rgba(255, 255, 255, 0.1),
-      rgba(255, 255, 255, 0.4)
-    );
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  opacity: 1;
-  z-index: 1;
-}
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: $card-border-radius;
+    padding: 1.5px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.4),
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.4)
+      );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 1;
+    z-index: 1;
+  }
 
   @media (max-width: 600px) {
     border-radius: 24px;
@@ -255,7 +263,11 @@ $card-border-radius: 28px;
   flex-direction: column;
   gap: 28px; // Reduced gap
   position: relative;
+  
+  // FIX: Ensures the inner card expands to fill the outer wrapper
   height: 100%;
+  flex: 1; 
+  
   min-height: 380px; // Added min-height for consistency
 
   @media (max-width: 1200px) {

@@ -1,5 +1,60 @@
 /* Navbar.module.scss */
 
+/* Navbar.module.scss */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  // Remove 'width: 100%' and use right: 0 instead.
+  // width: 100% ignores scrollbars and can cause overflow.
+  right: 0; 
+  width: auto; 
+  
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.3s;
+  
+  /* CRITICAL: Ensures padding/borders don't add to width */
+  box-sizing: border-box; 
+}
+
+/* ... keep your .scrolled, .mobileOpen etc ... */
+
+/* DELETE the duplicate .navbar block at the bottom of your file */
+/* DELETE THIS BLOCK DOWN HERE:
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+*/
+.scrolled {
+  background: rgba(10, 10, 10, 0.98);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.mobileOpen {
+  .mobileNav {
+    display: block;
+  }
+}
+
+// .navContainer {
+//   max-width: 1400px;
+//   margin: 0 auto;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   height: 70px;
+//   padding: 0 2rem;
+//   @media (max-width: 1024px) { padding: 0 1.5rem; }
+//   @media (max-width: 480px) { padding: 0 1rem; height: 60px; }
+// }
+/* Navbar.module.scss - Updated */
 .navbar {
   position: fixed;
   top: 0;
@@ -11,15 +66,10 @@
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255,255,255,0.08);
   transition: all 0.3s;
-}
-.scrolled {
-  background: rgba(10, 10, 10, 0.98);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-.mobileOpen {
-  .mobileNav {
-    display: block;
-  }
+  
+  /* Add these to prevent overflow */
+  margin: 0;
+  padding: 0;
 }
 
 .navContainer {
@@ -30,10 +80,19 @@
   justify-content: space-between;
   height: 70px;
   padding: 0 2rem;
+  
+  /* Prevent horizontal overflow */
+  box-sizing: border-box;
+  width: 100%;
+  
   @media (max-width: 1024px) { padding: 0 1.5rem; }
   @media (max-width: 480px) { padding: 0 1rem; height: 60px; }
 }
 
+/* Add this to handle any potential body overflow */
+.bodyNoScroll {
+  overflow: hidden;
+}
 .logoContainer {
   display: flex;
   align-items: center;
@@ -309,4 +368,26 @@
     font-size: 0.95rem;
     margin-bottom: 3px;
   }
+}
+// .navbar {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   z-index: 999;
+// }
+.mobileNav {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+  background: rgba(14, 14, 14, 0.97);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.mobileNav.open {
+  max-height: 500px; // enough space for all links
+  opacity: 1;
+  padding: 1.2rem 0;
 }

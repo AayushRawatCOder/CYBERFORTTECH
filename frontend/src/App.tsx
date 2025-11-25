@@ -17,6 +17,7 @@ function App() {
       <div className="App">
         <ErrorBoundary>
           <Navbar />
+          <div style={{ height: "70px" }}></div>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<Servicespage/>} />

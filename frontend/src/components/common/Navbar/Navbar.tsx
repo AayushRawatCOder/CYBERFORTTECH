@@ -27,10 +27,18 @@ const Navbar: React.FC = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // useEffect(() => {
+  //   setIsOpen(false);
+  //   setActiveDropdown(null);
+  // }, [location.pathname]);
+
   useEffect(() => {
-    setIsOpen(false);
-    setActiveDropdown(null);
-  }, [location.pathname]);
+  if (isOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+}, [isOpen]);
 
   const isActivePath = (path: string) =>
     path === "/" ? location.pathname === path : location.pathname.startsWith(path);
@@ -120,8 +128,10 @@ const Navbar: React.FC = () => {
           </button>
         </div>
       </div>
-      {isOpen && (
-        <div className={styles.mobileNav}>
+      {/* {isOpen && (
+        <div className={styles.mobileNav}> */}
+        <div className={`${styles.mobileNav} ${isOpen ? styles.open : ""}`}>
+
           <Link
             to="/"
             className={`${styles.mobileNavLink} ${isActivePath("/") ? styles.active : ""}`}
@@ -182,7 +192,7 @@ const Navbar: React.FC = () => {
             <button className={`${styles.authButton} ${styles.login}`}>LOG IN</button>
           </div>
         </div>
-      )}
+      {/* )} */}
     </nav>
   );
 };
