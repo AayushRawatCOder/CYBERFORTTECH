@@ -36,10 +36,24 @@ body {
   .faqSection,
   .contactFormSection {
     width: 100vw;
-    margin-left: calc(50% - 50vw);
+    margin-left: 0;
   }
 }
 
+@media (max-width: 500px) {
+  .heroSection,
+  .clientSection,
+  .featureSection,
+  .impactStats,
+  .securitySolutions,
+  .homeGallery,
+  .successStories,
+  .faqSection,
+  .contactFormSection {
+    width: 100vw;
+    margin-left: 0;
+  }
+}
 
 
 .heroGlow {
