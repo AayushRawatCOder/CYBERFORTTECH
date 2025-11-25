@@ -3,6 +3,8 @@ import styles from "./HeroSection.module.scss";
 import shieldlogo from "../../../assets/images/Centre.png";
 import flagIcon from "../../../assets/images/Group 80.png";
 import academyIcon from "../../../assets/images/Group 80 (1).png";
+import flagIconMobile from "../../../assets/images/Group 80 Mobile.png";
+import academyIconMobile from "../../../assets/images/flagicon Mobile.png";
 import chatIcon from "../../../assets/images/Group 78.png";
 import dangerlines from "../../../assets/images/danger.png";
 import rightlines from "../../../assets/images/right.png";
@@ -26,10 +28,12 @@ const HeroSection: React.FC = () => (
 
         <div className={styles.ctaCard}>
           <div className={styles.ctaRow}>
-            <img src={flagIcon} alt="CTF" className={styles.ctaIconImg} />
+            <img src={flagIcon} alt="CTF" className={`${styles.ctaIconImg} ${styles.desktop}`} />
+            <img src={flagIconMobile} alt="CTF" className={`${styles.ctaIconImg} ${styles.mobile}`} />
           </div>
           <div className={styles.ctaRow}>
-            <img src={academyIcon} alt="Academy" className={styles.ctaIconImg} />
+            <img src={academyIcon} alt="Academy" className={`${styles.ctaIconImg} ${styles.desktop}`} />
+            <img src={academyIconMobile} alt="Academy" className={`${styles.ctaIconImg} ${styles.mobile}`} />
           </div>
         </div>
       </div>

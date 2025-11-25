@@ -227,26 +227,34 @@
     justify-content: center;
   }
 
+.ctaIconImg {
+  &.desktop {
+    display: block;
+    width: 140px;  // desktop size
+    height: 80px;
+  }
+  
+  &.mobile {
+    display: none;
+    width: 80px;  // mobile size, smaller
+    height: 60px;
+  }
+}
+
+@media (max-width: 950px) {
   .ctaIconImg {
-    width: 150px;
-    height: auto;
-    object-fit: contain;
-    transition: all 0.25s ease;
-    cursor: pointer;
-
-    @media (max-width: 950px) {
-      width: 80px;
-      height: 60px;
-      padding: 14px;
-      border-radius: 12px;
+    &.desktop {
+      display: none;
+      width: 150px;
     }
-
-    @media (max-width: 650px) {
-      width: 55px;
-      height: 55px;
-      padding: 12px;
+    
+    &.mobile {
+      display: block;
+      width: 80px;
     }
   }
+}
+
 }
 
 .centerCard {
