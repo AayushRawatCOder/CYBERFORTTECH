@@ -964,6 +964,7 @@ $card-border-radius: 28px;
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+  opacity: 1;
   
   @media (max-width: 600px) {
     border-radius: 24px;
@@ -974,7 +975,7 @@ $card-border-radius: 28px;
   }
 }
 
-.card-inner {
+.about-card-inner {
   padding: 30px 24px 40px;
   flex: 1; // Allows inner to grow with content
   display: flex;
@@ -982,12 +983,8 @@ $card-border-radius: 28px;
   position: relative;
   z-index: 2;
   border-radius: calc($card-border-radius - 2px);
-  // Dark radial gradient background
-  background: radial-gradient(
-    100% 100% at 50% 0%,
-    rgba(30, 30, 30, 0.4) 0%,
-    rgba(0, 0, 0, 0.6) 100%
-  );
+  overflow: hidden;
+  background: rgba(15, 15, 15, 1);
   
   @media (max-width: 1200px) {
     padding: 24px 20px 32px;
@@ -1052,7 +1049,7 @@ $card-border-radius: 28px;
 }
 
 // Integrated rhombus stack from second SCSS, adapted to class names
-.rhombus-stack {
+.about-rhombus-stack {
   position: absolute;
   top: 100%; // Adjusted to fit within wrapper
   left: 50%;
@@ -1078,7 +1075,7 @@ $card-border-radius: 28px;
   }
 }
 
-.rhombus-layer {
+.about-rhombus-layer {
   position: absolute;
   inset: 0;
   border-radius: 16px;
@@ -1102,16 +1099,16 @@ $card-border-radius: 28px;
   }
 }
 
-.rhombus-layer:nth-child(1) {
+.about-rhombus-layer:nth-child(1) {
   transform: translateZ(0px);
   z-index: 3;
-  background: linear-gradient(135deg, rgba(31, 30, 30, 0.932) -0.24%, rgba(27, 26, 26, 0.12) 55.21%, rgba(0, 0, 0, 0.6) 99.76%);
+ background: linear-gradient(135deg, rgba(13, 12, 12, 0.25) -0.24%, rgba(49, 48, 48, 0.12) 55.21%, rgba(35, 34, 34, 0.6) 99.76%);
   border: 0.5px solid;
   border-image-source: linear-gradient(65.13deg, rgba(110, 110, 110, 0.4) 50.73%, #000000 99.04%);
   border-image-slice: 1;
   
   @media (max-width: 1024px) {
-    background: linear-gradient(135deg, rgba(50, 50, 50, 0.95) -0.24%, rgba(40, 40, 40, 0.35) 55.21%, rgba(20, 20, 20, 0.75) 99.76%);
+    background: linear-gradient(135deg, rgba(13, 12, 12, 0.25) -0.24%, rgba(49, 48, 48, 0.12) 55.21%, rgba(35, 34, 34, 0.6) 99.76%);
   }
   
   @media (min-width: 1025px) {
@@ -1121,14 +1118,14 @@ $card-border-radius: 28px;
   }
 }
 
-.rhombus-layer:nth-child(2) { 
+.about-rhombus-layer:nth-child(2) { 
   transform: translateZ(-25px);
   z-index: 2;
-  background: linear-gradient(135deg, rgba(72, 71, 71, 0.237) -0.24%, rgba(0, 0, 0, 0.12) 55.21%, rgba(2, 2, 2, 0.6) 99.76%);
+  background: linear-gradient(135deg, rgba(43, 40, 40, 0.25) -0.24%, rgba(56, 54, 54, 0.12) 55.21%, rgba(51, 50, 50, 0.6) 99.76%);
   border: none;
   
   @media (max-width: 1024px) {
-    background: linear-gradient(135deg, rgba(90, 90, 90, 0.35) -0.24%, rgba(30, 30, 30, 0.25) 55.21%, rgba(15, 15, 15, 0.7) 99.76%);
+    background: linear-gradient(135deg, rgba(43, 40, 40, 0.25) -0.24%, rgba(56, 54, 54, 0.12) 55.21%, rgba(51, 50, 50, 0.6) 99.76%);
   }
   
   @media (min-width: 1025px) {
@@ -1138,15 +1135,15 @@ $card-border-radius: 28px;
   }
 }
 
-.rhombus-layer:nth-child(3) { 
+.about-rhombus-layer:nth-child(3) { 
   transform: translateZ(-50px);
   z-index: 1;
   opacity: 0.9;
-  background: linear-gradient(135deg, rgba(46, 46, 46, 0.25) -0.24%, rgba(0, 0, 0, 0.12) 55.21%, rgba(8, 8, 8, 0.6) 99.76%);
+  background: linear-gradient(135deg, rgba(45, 43, 43, 0.25) -0.24%, rgba(5, 5, 5, 0.12) 55.21%, rgba(58, 55, 55, 0.6) 99.76%);
   border: none;
   
   @media (max-width: 1024px) {
-    background: linear-gradient(135deg, rgba(70, 70, 70, 0.4) -0.24%, rgba(25, 25, 25, 0.25) 55.21%, rgba(10, 10, 10, 0.75) 99.76%);
+    background: linear-gradient(135deg, rgba(45, 43, 43, 0.25) -0.24%, rgba(5, 5, 5, 0.12) 55.21%, rgba(58, 55, 55, 0.6) 99.76%);
   }
   
   @media (min-width: 1025px) {
@@ -1329,92 +1326,19 @@ $card-border-radius: 28px;
   }
 }
 
-/* --- Color Themes --- */
-// VISION (Left) - Cyan & Purple
-.card-vision {
-  .highlight-text {
-    background: linear-gradient(90deg, #A855F7, #d8b4fe);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
  
-  .light-beam {
-    position: absolute;
-    bottom: 0; left: 50%;
-    width: 100px; height: 250px;
-    background: linear-gradient(to bottom, rgba(168, 85, 247, 0.3) 0%, transparent 100%);
-    transform: translateX(-50%);
-    filter: blur(25px);
-    transition: all 0.5s ease;
-  }
-  .icon { filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.4)); }
-  
-  .card-title {
-    color: $color-purple;
-  }
-  
-  .card-subtitle {
-    color: $color-cyan;
-  }
-}
 
-// MISSION (Middle) - Cyan
-.card-mission {
-  .highlight-text {
-    background: linear-gradient(90deg, #06B6D4, #67e8f9);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .light-beam {
-    position: absolute;
-    bottom: 0; left: 50%;
-    width: 100px; height: 250px;
-    background: linear-gradient(to bottom, rgba(6, 182, 212, 0.3) 0%, transparent 100%);
-    transform: translateX(-50%);
-    filter: blur(25px);
-    transition: all 0.5s ease;
-  }
-  .icon { filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.4)); }
   
   .card-title {
-    color: $color-cyan;
+    color: white;
   }
   
   .card-subtitle {
-    color: $color-purple;
+    color: white;
   }
-  
-  .text-content {
-    gap: 20px;
-  }
-}
 
-// VALUE (Right) - Pink/Purple
-.card-value {
-  .highlight-text {
-    background: linear-gradient(90deg, #EC4899, #fbcfe8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .light-beam {
-    position: absolute;
-    bottom: 0; left: 50%;
-    width: 100px; height: 250px;
-    background: linear-gradient(to bottom, rgba(236, 72, 153, 0.3) 0%, transparent 100%);
-    transform: translateX(-50%);
-    filter: blur(25px);
-    transition: all 0.5s ease;
-  }
-  .icon { filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.4)); }
-  
-  .card-title {
-    color: $color-purple;
-  }
-  
-  .card-subtitle {
-    color: $color-cyan;
-  }
-}
+
+
 
 // Animations
 @keyframes fadeInDown {

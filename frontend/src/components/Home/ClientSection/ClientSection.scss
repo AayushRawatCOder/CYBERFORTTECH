@@ -8,16 +8,6 @@
   overflow: hidden;
   box-sizing: border-box;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-  }
-
   @media (max-width: 768px) {
     padding: 60px 20px;
   }
@@ -50,7 +40,7 @@
 .logos-wrapper {
   display: flex;
   gap: 40px;
-  height: 600px;
+  height: 800px;
   overflow: hidden;
   position: relative;
   box-sizing: border-box;
@@ -72,38 +62,19 @@
     padding: 20px 0;
   }
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    z-index: 2;
-    pointer-events: none;
-  }
 
   @media (min-width: 769px) {
+    &::before { top: 0; }
+    &::after { bottom: 0; transform: rotate(180deg); }
     &::before,
-    &::after {
-      left: 0;
-      right: 0;
-      height: 100px;
-    }
-
-    &::before {
-      top: 0;
-    }
-
-    &::after {
-      bottom: 0;
-    }
+    &::after { left: 0; right: 0; height: 100px; }
   }
 
   @media (max-width: 768px) {
+    &::before { left: 0; background: linear-gradient(to right, rgb(0,0,0) 0%, transparent 100%); }
+    &::after { right: 0; transform: rotate(180deg); }
     &::before,
-    &::after {
-      top: 0;
-      bottom: 0;
-      width: 60px;
-    }
+    &::after { top: 0; bottom: 0; width: 60px; }
   }
 }
 
@@ -146,44 +117,26 @@
   display: flex;
   gap: 20px;
   white-space: nowrap;
+  animation-play-state: running;
 
   @media (max-width: 480px) {
     gap: 15px;
   }
-
-  &:hover {
-    animation-play-state: paused;
-  }
 }
 
 .logo-row-rtl .logo-track-mobile {
-  animation: scrollRightToLeft 25s linear infinite;
-
-  @media (max-width: 480px) {
-    animation-duration: 20s;
-  }
+  animation: scrollRightToLeft 40s linear infinite;
 }
 
 .logo-row-ltr .logo-track-mobile {
-  animation: scrollLeftToRight 25s linear infinite;
-
-  @media (max-width: 480px) {
-    animation-duration: 20s;
-  }
+  animation: scrollLeftToRight 40s linear infinite;
 }
 
 .logo-track {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  animation-duration: 30s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  box-sizing: border-box;
-
-  &:hover {
-    animation-play-state: paused;
-  }
+  animation: 40s linear infinite;
 }
 
 .left-column .logo-track {
@@ -195,60 +148,44 @@
 }
 
 @keyframes scrollDown {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(calc(-100% / 3));
-  }
+  from { transform: translateY(0); }
+  to { transform: translateY(-33.333%); }
 }
 
 @keyframes scrollUp {
-  0% {
-    transform: translateY(calc(-100% / 3));
-  }
-  100% {
-    transform: translateY(0);
-  }
+  from { transform: translateY(-33.333%); }
+  to { transform: translateY(0); }
 }
 
 @keyframes scrollRightToLeft {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @keyframes scrollLeftToRight {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0);
-  }
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
 }
 
 .logo-item {
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 25px 20px;
-  background: rgba(17, 24, 39, 0.4);
-  border-radius: 8px;
+  background: rgba(245, 245, 245, 0.05);
   border: 1px solid rgba(55, 65, 81, 0.25);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   min-height: 100px;
   cursor: pointer;
+  flex-shrink: 0;
   box-sizing: border-box;
 
   @media (max-width: 768px) {
     min-width: 140px;
     padding: 20px 25px;
     min-height: 90px;
-    flex-shrink: 0;
   }
 
   @media (max-width: 480px) {
@@ -257,21 +194,12 @@
     min-height: 80px;
   }
 
-  &:hover,
-  &:active {
-    background: rgba(30, 41, 59, 0.6);
-    border-color: rgba(99, 102, 241, 0.4);
+  &:hover {
     transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
-
-    img {
-      filter: none;
-    }
   }
 
   img {
     max-width: 100%;
-    width: 100%;
     height: auto;
     max-height: 50px;
     filter: brightness(0) invert(1);
@@ -306,16 +234,14 @@
 
 .stats-container {
   position: relative;
+  min-height: 280px;
   box-sizing: border-box;
-
-  @media (min-width: 769px) {
-    min-height: 280px;
-  }
 
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
     gap: 80px;
+    min-height: auto;
   }
 
   @media (max-width: 480px) {
@@ -325,35 +251,31 @@
 
 .stat-item {
   width: 100%;
-  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+  pointer-events: none;
 
-  @media (min-width: 769px) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    pointer-events: none;
-
-    &.active {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   @media (max-width: 768px) {
     position: relative;
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+    pointer-events: auto;
   }
 }
 
 .client-count {
   font-size: clamp(60px, 9vw, 110px);
   font-weight: 600;
-  color: #a78bfa;
   margin: 0 0 8px 0;
   line-height: 1;
   letter-spacing: -3px;
@@ -361,7 +283,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 
   @media (max-width: 768px) {
     font-size: clamp(56px, 12vw, 90px);
@@ -380,7 +301,6 @@
   color: #f3f4f6;
   margin: 0 0 24px 0;
   letter-spacing: -0.5px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 
   @media (max-width: 768px) {
     font-size: clamp(26px, 6vw, 40px);
@@ -399,13 +319,11 @@
   line-height: 1.7;
   margin: 0;
   font-weight: 300;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 
   @media (max-width: 768px) {
     font-size: clamp(14px, 3.5vw, 16px);
     line-height: 1.6;
-    width: 200px;
-    max-width: 400px;
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
   }

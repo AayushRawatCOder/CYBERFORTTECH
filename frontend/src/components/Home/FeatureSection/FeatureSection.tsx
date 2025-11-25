@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
-import './FeaturesSection.scss';
+import styles from './FeaturesSection.module.scss';
 
 interface Feature {
   Icon: string;
@@ -57,36 +57,31 @@ const features: Feature[] = [
   },
 ];
 
-// --- Component for the Icon Stack Visual ---
 const IconStack = ({ icon, title }: { icon: string, title: string }) => (
-  <div className="icon-wrapper">
-    {/* The fading floor light */}
-    <div className="light-beam"></div>
-    
-    {/* The Glass Stack */}
-    <div className="rhombus-stack">
-      <div className="rhombus-layer"></div>
-      <div className="rhombus-layer"></div>
-      <div className="rhombus-layer"></div>
+  <div className={styles['icon-wrapper']}>
+    <div className={styles['light-beam']}></div>
+    <div className={styles['rhombus-stack']}>
+      <div className={styles['rhombus-layer']}></div>
+      <div className={styles['rhombus-layer']}></div>
+      <div className={styles['rhombus-layer']}></div>
     </div>
-    
-    <img className="icon" src={icon} alt={title} />
+    <img className={styles.icon} src={icon} alt={title} />
   </div>
 );
 
 const DesktopFeaturesView: React.FC = () => {
   return (
-    <div className="features-grid">
+    <div className={styles['features-grid']}>
       {features.map((feature, i) => (
-        <div key={`desktop-${i}`} className={`feature-card ${feature.cardClass}`}>
-          <div className="card-inner">
-            <div className="card-highlight">
+        <div key={`desktop-${i}`} className={`${styles['feature-card']} ${styles[feature.cardClass]}`}>
+          <div className={styles['card-inner']}>
+            <div className={styles['card-highlight']}>
               <span>{feature.highlight}</span>
             </div>
             <IconStack icon={feature.Icon} title={feature.title} />
-            <div className="text-content">
-              <h3 className="card-title">{feature.title}</h3>
-              <p className="card-desc">{feature.description}</p>
+            <div className={styles['text-content']}>
+              <h3 className={styles['card-title']}>{feature.title}</h3>
+              <p className={styles['card-desc']}>{feature.description}</p>
             </div>
           </div>
         </div>
@@ -95,72 +90,6 @@ const DesktopFeaturesView: React.FC = () => {
   );
 };
 
-// interface CardProps {
-//   i: number;
-//   feature: Feature;
-//   progress: MotionValue<number>;
-//   range: [number, number];
-//   targetScale: number;
-// }
-
-// const Card: React.FC<CardProps> = ({ i, feature, progress, range, targetScale }) => {
-//   const container = useRef<HTMLDivElement>(null);
-//   const { scrollYProgress } = useScroll({
-//     target: container,
-//     offset: ['start end', 'start start'],
-//   });
-
-//   const scale = useTransform(progress, range, [1, targetScale]);
-
-//   return (
-//     <div ref={container} className="card-container">
-//       <motion.div 
-//         className={`feature-card ${feature.cardClass}`}
-//         style={{ 
-//           scale,
-//           top: `calc(10vh + ${i * 25}px)`,
-//         }}
-//       >
-//         <div className="card-inner">
-//           <div className="card-highlight">
-//             <span>{feature.highlight}</span>
-//           </div>
-//           <IconStack icon={feature.Icon} title={feature.title} />
-//           <div className="text-content">
-//             <h3 className="card-title">{feature.title}</h3>
-//             <p className="card-desc">{feature.description}</p>
-//           </div>
-//         </div>
-//       </motion.div>
-//     </div>
-//   );
-// };
-
-// const MobileFeaturesView: React.FC = () => {
-//   const container = useRef<HTMLDivElement>(null);
-//   const { scrollYProgress } = useScroll({
-//     target: container,
-//     offset: ['start start', 'end end'],
-//   });
-
-//   return (
-//     <div ref={container} className="features-grid-mobile">
-//       {features.map((feature, i) => {
-//         const targetScale = 1 - (features.length - i) * 0.05;
-//         return (
-//           <Card
-//             key={`mobile-${i}`}
-//             i={i}
-//             feature={feature}
-//             progress={scrollYProgress}
-//             range={[i * (1 / features.length), 1]}
-//             targetScale={targetScale}
-//           />
-//         );
-//       })}
-//     </div>
-//   );
-// };
 interface CardProps {
   i: number;
   feature: Feature;
@@ -179,24 +108,22 @@ const Card: React.FC<CardProps> = ({ i, feature, progress, range, targetScale })
   const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div ref={container} className="card-container">
-      <motion.div 
-        className={`feature-card ${feature.cardClass}`}
-        style={{ 
+    <div ref={container} className={styles['card-container']}>
+      <motion.div
+        className={`${styles['feature-card']} ${styles[feature.cardClass]}`}
+        style={{
           scale,
-          // THIS IS THE KEY CHANGE FOR STACKING VISIBILITY:
-          // We increase the multiplier to 80px so the "Pill" header stays visible
-          top: `calc(5vh + ${i * 80}px)`, 
+          top: `calc(5vh + ${i * 80}px)`,
         }}
       >
-        <div className="card-inner">
-          <div className="card-highlight">
+        <div className={styles['card-inner']}>
+          <div className={styles['card-highlight']}>
             <span>{feature.highlight}</span>
           </div>
           <IconStack icon={feature.Icon} title={feature.title} />
-          <div className="text-content">
-            <h3 className="card-title">{feature.title}</h3>
-            <p className="card-desc">{feature.description}</p>
+          <div className={styles['text-content']}>
+            <h3 className={styles['card-title']}>{feature.title}</h3>
+            <p className={styles['card-desc']}>{feature.description}</p>
           </div>
         </div>
       </motion.div>
@@ -212,9 +139,8 @@ const MobileFeaturesView: React.FC = () => {
   });
 
   return (
-    <div ref={container} className="features-grid-mobile">
+    <div ref={container} className={styles['features-grid-mobile']}>
       {features.map((feature, i) => {
-        // Gentle scaling so the back cards don't disappear
         const targetScale = 1 - (features.length - i) * 0.02;
         return (
           <Card
@@ -230,6 +156,7 @@ const MobileFeaturesView: React.FC = () => {
     </div>
   );
 };
+
 const FeaturesSection: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isClient, setIsClient] = useState(false);
@@ -249,11 +176,11 @@ const FeaturesSection: React.FC = () => {
   }
 
   return (
-    <section className="features-section">
-      <div className="section-title">
+    <section className={styles['features-section']}>
+      <div className={styles['section-title']}>
         <h1>
-          <span className="line-1">SECURITY</span>
-          <span className="line-2">THAT SCALES WITH YOU.</span>
+          <span className={styles['line-1']}>SECURITY</span>
+          <span className={styles['line-2']}>THAT SCALES WITH YOU.</span>
         </h1>
         <p>
           Every feature at CyberFort Tech is built with one goal: making cybersecurity effortless, adaptive, and always reliable.

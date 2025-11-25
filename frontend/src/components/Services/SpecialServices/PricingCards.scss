@@ -68,19 +68,29 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  
 }
 
 .pricing-card::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   border-radius: 20px;
-  padding: 2px;
-  background: linear-gradient(135deg, rgba(254, 143, 235, 0.75) 0%, rgba(1, 230, 221, 0.15) 100%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  padding: 1.5px;
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.4)
+    );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+  opacity: 1;
+  z-index: 1;
 }
 
 .pricing-card:hover {
