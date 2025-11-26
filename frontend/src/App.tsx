@@ -8,6 +8,7 @@ import PartenerPage from './(routes)/Partner/PartenerPage';
 import HomePage from './(routes)/Home/HomePage';
 import Aboutus from './(routes)/About/Aboutus';
 import CourseHero from './components/courses/hero/courseshero';
+import IndustryImmersion from './(routes)/IndustryImmersion/IndustryImmersion';
 // import './App.css'
 
 
@@ -25,6 +26,7 @@ function App() {
              <Route path="/courses" element={<CourseHero/>} />
             <Route path="/partners" element={<PartenerPage/>} />
             <Route path="/about" element={<Aboutus/>} />
+            <Route path="/IndustryImmersion" element={<IndustryImmersion/>} />
           </Routes>
           <Footer/>
         </ErrorBoundary>
