@@ -1,8 +1,23 @@
 import styles from './CourseCards.module.scss';
 
+// Import icons with unique names
+import CalendarIcon from "../../../assets/icons/CelenderIcon.png";
+import ThunderIcon from "../../../assets/icons/ThunderIcon.png";
+import TimeIcon from "../../../assets/icons/TimeIcon.png";
+import PersonIcon from "../../../assets/icons/PersonIcon.png";
+import StarIcon from "../../../assets/icons/StarIcon.png";
+import ArchivedIcon from "../../../assets/icons/ArchivedIcon.png";
+
+// Import course images
+import Course1 from "../../../assets/images/Course1.png";
+import Course2 from "../../../assets/images/Course2.png";
+import Course3 from "../../../assets/images/Course3.png";
+import Course4 from "../../../assets/images/Course4.png";
+import Course5 from "../../../assets/images/Course5.png";
+
 const courses = [
   {
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80',
+    image: Course1,
     level: 'ADVANCED',
     category: 'DATA SCIENCE',
     rating: 4.7,
@@ -17,7 +32,7 @@ const courses = [
     discount: '20% off'
   },
   {
-    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80',
+    image: Course2,
     level: 'BEGINNER',
     category: 'DATA SCIENCE',
     rating: 4.3,
@@ -32,7 +47,7 @@ const courses = [
     discount: '18% off'
   },
   {
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80',
+    image: Course3,
     level: 'INTERMEDIATE',
     category: 'CYBERSECURITY',
     rating: 4.6,
@@ -47,7 +62,7 @@ const courses = [
     discount: '16% off'
   },
   {
-    image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&q=80',
+    image: Course4,
     level: 'ADVANCED',
     category: 'DATA ANALYTICS',
     rating: 4.8,
@@ -62,7 +77,7 @@ const courses = [
     discount: '17% off'
   },
   {
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&q=80',
+    image: Course5,
     level: 'BEGINNER',
     category: 'DEVELOPMENT',
     rating: 4.2,
@@ -77,7 +92,7 @@ const courses = [
     discount: '29% off'
   },
   {
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80',
+    image: Course1,
     level: 'INTERMEDIATE',
     category: 'CYBERSECURITY',
     rating: 4.6,
@@ -97,75 +112,68 @@ export default function CourseCards() {
   return (
     <section className={styles.whyPartnerSection}>
       <div className={styles.container}>
-        {/* <div className={styles.header}>
-          <h2 className={styles.title}>
-            <span className={styles.colorful}>Explore</span>
-            <span className={styles.highlight}> Internships</span>
-          </h2>
-          <p className={styles.subtitle}>
-            Choose a program and start your data-driven career.
-          </p>
-        </div> */}
         <div className={styles.grid}>
           {courses.map((course, i) => (
             <div className={styles.cardOuter} key={i}>
               <div className={styles.cardInner}>
-                <div style={{ width: '100%', borderRadius: 20, overflow: 'hidden', marginBottom: 16, position: 'relative' }}>
-                  <img src={course.image} alt={course.title} style={{ width: '100%', height: 140, objectFit: 'cover' }} />
-                  <span
-                    style={{
-                      position: 'absolute',
-                      top: 12,
-                      right: 14,
-                      background: course.level === 'ADVANCED'
-                        ? 'rgba(0,255,0,0.15)'
-                        : course.level === 'BEGINNER'
-                        ? 'rgba(255,165,0,0.17)'
-                        : 'rgba(23,200,255,0.12)',
-                      color: course.level === 'ADVANCED'
-                        ? '#66ffa2'
-                        : course.level === 'BEGINNER'
-                        ? '#ffa500'
-                        : '#17c8ff',
-                      fontWeight: 700,
-                      fontSize: 12,
-                      padding: '6px 16px',
-                      borderRadius: 8,
-                      border: '1px solid rgba(200,200,255,0.11)'
-                    }}
-                  >{course.level}</span>
+                <div className={styles.imageWrapper}>
+                  <img 
+                    src={course.image} 
+                    alt={course.title} 
+                    className={styles.courseImage}
+                  />
+                  <span className={`${styles.levelBadge} ${
+                    course.level === 'ADVANCED' 
+                      ? styles.advanced 
+                      : course.level === 'BEGINNER' 
+                      ? styles.beginner 
+                      : styles.intermediate
+                  }`}>
+                    {course.level}
+                  </span>
                 </div>
+                
                 <span className={styles.category}>{course.category}</span>
-                <div style={{ display: 'flex', gap: 8, margin: '8px 0' }}>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 13 }}>
-                    <span style={{ color: '#00ffea', fontSize: '1em' }}>★</span>
+                
+                <div className={styles.metaRow}>
+                  <span className={styles.ratingBadge}>
+                    <img src={StarIcon} alt="rating" className={styles.icon} />
                     <span>{course.rating}</span>
                   </span>
-                  <span style={{
-                    background: 'rgba(77,70,50,0.33)',
-                    color: '#fffde9',
-                    fontWeight: 400,
-                    borderRadius: 6,
-                    fontSize: 12,
-                    display: 'flex',
-                    alignItems: 'center',
-                    padding: '0 8px'
-                  }}>
-                    ⚡{course.seatsLeft} seats left
+                  <span className={styles.seatsBadge}>
+                    <img src={ThunderIcon} alt="seats" className={styles.icon} />
+                    {course.seatsLeft} seats left
+                  </span>
+                  <span className={styles.archivedBadge}>
+                    <img src={ArchivedIcon} alt="archived" className={styles.icon} />
                   </span>
                 </div>
+                
                 <h3 className={styles.cardTitle}>{course.title}</h3>
-                <div style={{ display: 'flex', gap: 12, margin: '8px 0' }}>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 13, color: '#d6dbed' }}>🕐 {course.duration}</span>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 13, color: '#d6dbed' }}>📅 {course.startDate}</span>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 13, color: '#d6dbed' }}>👥 {course.participants}</span>
+                
+                <div className={styles.metaRow}>
+                  <span className={styles.infoBadge}>
+                    <img src={TimeIcon} alt="duration" className={styles.infoBadgeicon} />
+                    {course.duration}
+                  </span>
+                  <span className={styles.infoBadge}>
+                    <img src={CalendarIcon} alt="start date" className={styles.infoBadgeicon} />
+                    {course.startDate}
+                  </span>
+                  <span className={styles.infoBadge}>
+                    <img src={PersonIcon} alt="participants" className={styles.infoBadgeicon} />
+                    {course.participants}
+                  </span>
                 </div>
+                
                 <p className={styles.cardDescription}>{course.description}</p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '12px 0 6px 0' }}>
+                
+                <div className={styles.priceRow}>
                   <span className={styles.price}>₹{course.price}</span>
                   <span className={styles.originalPrice}>₹{course.originalPrice}</span>
                   <span className={styles.discount}>{course.discount}</span>
                 </div>
+                
                 <button className={styles.enrollBtn}>ENROLL NOW</button>
               </div>
             </div>

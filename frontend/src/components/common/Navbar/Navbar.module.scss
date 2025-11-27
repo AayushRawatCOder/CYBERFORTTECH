@@ -1,60 +1,5 @@
 /* Navbar.module.scss */
 
-/* Navbar.module.scss */
-
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  // Remove 'width: 100%' and use right: 0 instead.
-  // width: 100% ignores scrollbars and can cause overflow.
-  right: 0; 
-  width: auto; 
-  
-  z-index: 1000;
-  background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  transition: all 0.3s;
-  
-  /* CRITICAL: Ensures padding/borders don't add to width */
-  box-sizing: border-box; 
-}
-
-/* ... keep your .scrolled, .mobileOpen etc ... */
-
-/* DELETE the duplicate .navbar block at the bottom of your file */
-/* DELETE THIS BLOCK DOWN HERE:
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-}
-*/
-.scrolled {
-  background: rgba(10, 10, 10, 0.98);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-.mobileOpen {
-  .mobileNav {
-    display: block;
-  }
-}
-
-// .navContainer {
-//   max-width: 1400px;
-//   margin: 0 auto;
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   height: 70px;
-//   padding: 0 2rem;
-//   @media (max-width: 1024px) { padding: 0 1.5rem; }
-//   @media (max-width: 480px) { padding: 0 1rem; height: 60px; }
-// }
-/* Navbar.module.scss - Updated */
 .navbar {
   position: fixed;
   top: 0;
@@ -62,14 +7,21 @@
   right: 0;
   z-index: 1000;
   background: rgba(10, 10, 10, 0.95);
-  width: 100%;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255,255,255,0.08);
   transition: all 0.3s;
-  
-  /* Add these to prevent overflow */
-  margin: 0;
-  padding: 0;
+  box-sizing: border-box;
+}
+
+.scrolled {
+  background: rgba(10, 10, 10, 0.98);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.mobileOpen {
+  .mobileNav {
+    display: block;
+  }
 }
 
 .navContainer {
@@ -80,8 +32,6 @@
   justify-content: space-between;
   height: 70px;
   padding: 0 2rem;
-  
-  /* Prevent horizontal overflow */
   box-sizing: border-box;
   width: 100%;
   
@@ -89,29 +39,28 @@
   @media (max-width: 480px) { padding: 0 1rem; height: 60px; }
 }
 
-/* Add this to handle any potential body overflow */
-.bodyNoScroll {
-  overflow: hidden;
-}
 .logoContainer {
   display: flex;
   align-items: center;
   gap: 0.7rem;
   text-decoration: none;
 }
+
 .logoImage {
   height: 40px;
   width: auto;
   object-fit: contain;
 }
+
 .logoText {
   font-size: 1.25rem;
   font-weight: 600;
   color: #fff;
   letter-spacing: 0.5px;
 }
+
 .logoTextTech {
-  color: #e6e6e6; // neutral accent, not blue
+  color: #e6e6e6;
   font-weight: 700;
 }
 
@@ -137,15 +86,17 @@
   transition: color 0.3s;
   font-family: inherit;
 
-  &:hover { color: #fff; }
+  &:hover { 
+    color: #fff; 
+  }
 
-   &.active {
+  &.active {
     color: #fff;
 
     &::after {
       content: '';
       position: absolute;
-      left: -16px; /* Left side of nav item */
+      left: -16px;
       top: 50%;
       transform: translateY(-50%);
       width: 5px;
@@ -157,9 +108,11 @@
     }
   }
 }
+
 .dropdownContainer {
   position: relative;
 }
+
 .dropdownTrigger {
   display: flex;
   align-items: center;
@@ -170,14 +123,17 @@
   color: inherit;
   cursor: pointer;
 }
+
 .dropdownArrow {
   font-size: 0.7rem;
   margin-left: 2px;
   transition: transform 0.3s;
 }
+
 .rotated {
   transform: rotate(180deg);
 }
+
 .dropdownMenu {
   position: absolute;
   top: calc(100% + 1rem);
@@ -207,16 +163,22 @@
   transition: all 0.18s;
 
   &:hover {
-    background: rgba(243,157,76,0.09);
+    background: rgba(255,255,255,0.05);
     color: #fff;
   }
 
   &.active {
-    background: rgba(243,157,76,0.19);
-    color: #f2d891;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
   }
 }
-.itemIcon { font-size: 1.25rem; }
+
+.itemIcon { 
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
 .itemLabel {}
 
 .navActions {
@@ -248,16 +210,18 @@
     background: transparent;
 
     &:hover {
-      background: rgba(230,225,191,0.09);
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.3);
     }
   }
+
   &.login {
     color: white;
     border: none;
 
     &:hover {
       transform: translateY(-1px);
-      background: rgba(230,225,191,0.09);
+      background: rgba(255,255,255,0.05);
     }
   }
 }
@@ -279,22 +243,19 @@
 }
 
 .mobileNav {
-  display: none;
-  background: rgba(15,15,15,0.98);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding: 1.1rem 0;
-  animation: mobileMenuSlide 0.3s ease;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+  background: rgba(14, 14, 14, 0.97);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,0.15);
 }
 
-@keyframes mobileMenuSlide {
-  from {
-    opacity: 0;
-    transform: translateY(-13px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.mobileNav.open {
+  max-height: 500px;
+  opacity: 1;
+  padding: 1.2rem 0;
 }
 
 .mobileNavLink {
@@ -313,13 +274,13 @@
   transition: all 0.2s;
 
   &:hover {
-    background: rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.05);
     color: #fff;
   }
 
   &.active {
-    background: rgba(243,157,76,0.11);
-    color: #e5cc85;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
   }
 }
 
@@ -335,6 +296,7 @@
   margin-top: 0.25rem;
   border-radius: 7px;
 }
+
 .mobileDropdownItem {
   display: flex;
   align-items: center;
@@ -347,11 +309,15 @@
   transition: all 0.16s;
 
   &:hover {
-    background: rgba(243,157,76,0.09);
+    background: rgba(255,255,255,0.05);
     color: #fff;
   }
 
-  .itemIcon { font-size: 1.15rem; }
+  .itemIcon { 
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
 }
 
 .mobileAuthButtons {
@@ -368,26 +334,4 @@
     font-size: 0.95rem;
     margin-bottom: 3px;
   }
-}
-// .navbar {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   z-index: 999;
-// }
-.mobileNav {
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: max-height 0.35s ease, opacity 0.25s ease;
-  background: rgba(14, 14, 14, 0.97);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255,255,255,0.15);
-}
-
-.mobileNav.open {
-  max-height: 500px; // enough space for all links
-  opacity: 1;
-  padding: 1.2rem 0;
 }
