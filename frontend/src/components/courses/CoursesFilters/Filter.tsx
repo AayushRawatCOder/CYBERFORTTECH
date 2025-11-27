@@ -1,17 +1,83 @@
-import React from "react";
+// CoursesFilterPage.tsx
+import React, { useState } from "react";
 import styles from "./Filter.module.scss";
 import CourseCards from "../../common/CourseCards/CourseCards";
 
+interface FilterState {
+  sortBy: 'latest' | 'oldest';
+  categories: string[];
+  levels: string[];
+  priceRange: number;
+  searchQuery: string;
+  activeChips: string[];
+}
+
 export const CoursesFilterPage: React.FC = () => {
-  // Placeholder array – replace with real cards or props
-  const cards = Array.from({ length: 6 });
+  const [filters, setFilters] = useState<FilterState>({
+    sortBy: 'latest',
+    categories: [], // Empty to show all
+    levels: [], // Empty to show all
+    priceRange: 3000, // Max value to show all
+    searchQuery: '',
+    activeChips: []
+  });
+
+  const handleSortChange = (value: 'latest' | 'oldest') => {
+    setFilters(prev => ({ ...prev, sortBy: value }));
+  };
+
+  const handleCategoryToggle = (category: string) => {
+    setFilters(prev => ({
+      ...prev,
+      categories: prev.categories.includes(category)
+        ? prev.categories.filter(c => c !== category)
+        : [...prev.categories, category]
+    }));
+  };
+
+  const handleLevelToggle = (level: string) => {
+    setFilters(prev => ({
+      ...prev,
+      levels: prev.levels.includes(level)
+        ? prev.levels.filter(l => l !== level)
+        : [...prev.levels, level]
+    }));
+  };
+
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilters(prev => ({ ...prev, priceRange: Number(e.target.value) }));
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilters(prev => ({ ...prev, searchQuery: e.target.value }));
+  };
+
+  const handleChipRemove = (chip: string) => {
+    setFilters(prev => ({
+      ...prev,
+      activeChips: prev.activeChips.filter(c => c !== chip)
+    }));
+  };
+
+  const handleClearAll = () => {
+    setFilters({
+      sortBy: 'latest',
+      categories: [],
+      levels: [],
+      priceRange: 3000,
+      searchQuery: '',
+      activeChips: []
+    });
+  };
 
   return (
     <div className={styles.page}>
       <aside className={styles.sidebar}>
         <div className={styles.sidebarHeader}>
           <h2>Filters</h2>
-          <button className={styles.clearBtn}>Clear All</button>
+          <button className={styles.clearBtn} onClick={handleClearAll}>
+            Clear All
+          </button>
         </div>
 
         <button className={styles.topCoursesBtn}>View Top Courses</button>
@@ -19,11 +85,21 @@ export const CoursesFilterPage: React.FC = () => {
         <div className={styles.filterGroup}>
           <p className={styles.filterTitle}>Sort By</p>
           <label>
-            <input type="radio" name="sort" defaultChecked />
+            <input
+              type="radio"
+              name="sort"
+              checked={filters.sortBy === 'latest'}
+              onChange={() => handleSortChange('latest')}
+            />
             <span>Latest to Oldest</span>
           </label>
           <label>
-            <input type="radio" name="sort" />
+            <input
+              type="radio"
+              name="sort"
+              checked={filters.sortBy === 'oldest'}
+              onChange={() => handleSortChange('oldest')}
+            />
             <span>Oldest to Latest</span>
           </label>
         </div>
@@ -31,11 +107,19 @@ export const CoursesFilterPage: React.FC = () => {
         <div className={styles.filterGroup}>
           <p className={styles.filterTitle}>Category</p>
           <label>
-            <input type="checkbox" defaultChecked />
+            <input
+              type="checkbox"
+              checked={filters.categories.includes('Tech')}
+              onChange={() => handleCategoryToggle('Tech')}
+            />
             <span>Tech</span>
           </label>
           <label>
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              checked={filters.categories.includes('Non-Tech')}
+              onChange={() => handleCategoryToggle('Non-Tech')}
+            />
             <span>Non-Tech</span>
           </label>
         </div>
@@ -43,23 +127,41 @@ export const CoursesFilterPage: React.FC = () => {
         <div className={styles.filterGroup}>
           <p className={styles.filterTitle}>Level</p>
           <label>
-            <input type="checkbox" defaultChecked />
+            <input
+              type="checkbox"
+              checked={filters.levels.includes('Beginner')}
+              onChange={() => handleLevelToggle('Beginner')}
+            />
             <span>Beginner</span>
           </label>
           <label>
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              checked={filters.levels.includes('Intermediate')}
+              onChange={() => handleLevelToggle('Intermediate')}
+            />
             <span>Intermediate</span>
           </label>
           <label>
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              checked={filters.levels.includes('Advanced')}
+              onChange={() => handleLevelToggle('Advanced')}
+            />
             <span>Advanced</span>
           </label>
         </div>
 
         <div className={styles.filterGroup}>
           <p className={styles.filterTitle}>Price</p>
-          <input type="range" min={0} max={1600} />
-          <div className={styles.priceLabel}>₹0 - ₹1600</div>
+          <input
+            type="range"
+            min={0}
+            max={3000}
+            value={filters.priceRange}
+            onChange={handlePriceChange}
+          />
+          <div className={styles.priceLabel}>₹0 - ₹{filters.priceRange}</div>
         </div>
       </aside>
 
@@ -69,20 +171,28 @@ export const CoursesFilterPage: React.FC = () => {
             <input
               className={styles.searchInput}
               placeholder='Search "The Course" for you'
+              value={filters.searchQuery}
+              onChange={handleSearchChange}
             />
           </div>
-          <div className={styles.chipsWrapper}>
-            <button className={styles.chip}>Tech ✕</button>
-            <button className={styles.chip}>Beginner ✕</button>
-            <button className={styles.chip}>30–35 hours ✕</button>
-            <button className={styles.chip}>Online ✕</button>
-            <button className={styles.chip}>₹1500–3000 ✕</button>
-          </div>
+          {filters.activeChips.length > 0 && (
+            <div className={styles.chipsWrapper}>
+              {filters.activeChips.map((chip, index) => (
+                <button
+                  key={index}
+                  className={styles.chip}
+                  onClick={() => handleChipRemove(chip)}
+                >
+                  {chip} ✕
+                </button>
+              ))}
+            </div>
+          )}
           <button className={styles.categoriesBtn}>Categories ▾</button>
         </div>
 
         <section className={styles.cardsGrid}>
-          <CourseCards/>
+          <CourseCards filters={filters} />
         </section>
 
         <div className={styles.pagination}>
