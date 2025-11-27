@@ -1,78 +1,86 @@
 import React from 'react';
-import './CourseHero.scss';
+import style from './CourseHero.module.scss';
+
 
 const CourseHero = () => {
   return (
-    <section className="course-hero">
-      <div className="hero-content">
-        <h1 className="hero-title">
-          <span className="gradient-text">LEARN THE SKILLS FOR</span>
+    <>
+    <section className={style.courseHero}>
+      <div className={style.heroContent}>
+        <h1 className={style.heroTitle}>
+          <span className={style.gradientText}>LEARN THE SKILLS FOR</span>
           <br />
-          <span className="white-text">TOMORROW'S TECH LEADERS.</span>
+          <span className={style.whiteText}>TOMORROW'S TECH LEADERS.</span>
         </h1>
         
-        <p className="hero-subtitle">
+        <p className={style.heroSubtitle}>
           Learn from experts, work on real projects, and earn certifications that
           <br />
           put you ahead in Cybersecurity, AI, Blockchain, and Data Science.
         </p>
         
-        <button className="cta-button">EXPLORE PROGRAMS</button>
+        <button className={style.ctaButton}>EXPLORE PROGRAMS</button>
         
-        <div className="stats-grid">
-          <div className="stat-item">
-            <h2 className="stat-number">600K+</h2>
-            <p className="stat-label">Satisfied students</p>
+        <div className={style.statsGrid}>
+          <div className={style.statItem}>
+            <h2 className={style.statNumber}>600K</h2>
+            <p className={style.statLabel}>Satisfied students</p>
           </div>
-          <div className="stat-divider"></div>
-          <div className="stat-item">
-            <h2 className="stat-number">200M+</h2>
-            <p className="stat-label">Workshops</p>
+          <div className={style.statDivider}></div>
+          <div className={style.statItem}>
+            <h2 className={style.statNumber}>200M</h2>
+            <p className={style.statLabel}>Workshops</p>
           </div>
-          <div className="stat-divider"></div>
-          <div className="stat-item">
-            <h2 className="stat-number">4.5/5</h2>
-            <p className="stat-label">Webinars</p>
+          <div className={style.statDivider}></div>
+          <div className={style.statItem}>
+            <h2 className={`${style.statNumber} ${style.rating}`}>4.5/5</h2>
+            <p className={style.statLabel}>Webinars</p>
           </div>
-          <div className="stat-divider"></div>
-          <div className="stat-item">
-            <h2 className="stat-number">1.3M+</h2>
-            <p className="stat-label">Industry Partners</p>
+          <div className={style.statDivider}></div>
+          <div className={style.statItem}>
+            <h2 className={style.statNumber}>1.3M</h2>
+            <p className={style.statLabel}>Industry Partners</p>
           </div>
         </div>
       </div>
-      
-      <div className="course-card">
-        <div className="card-header">
-          <button className="nav-btn prev">‹</button>
-          <div className="card-info">
-            <span className="course-type">Advanced<br />AI Program</span>
-            <div className="info-item">
-              <span className="info-label">Course Duration</span>
-              <span className="info-value">35 HOURS</span>
+     
+      <div className={style.courseCard}>
+        <div className={style.cardHeader}>
+          <button className={`${style.navBtn} ${style.prev}`}>‹</button>
+          <div className={style.cardInfo}>
+            <span className={style.courseType}>Advanced<br />AI Program</span>
+            <div className={style.infoGroup}>
+              <div className={style.infoItem}>
+                <span className={style.infoLabel}>Course Duration</span>
+                <span className={style.infoValue}>35 HOURS</span>
+              </div>
+              <div className={style.infoItem}>
+                <span className={style.infoLabel}>Starts on</span>
+                <span className={style.infoValue}>AUG 09, 2025</span>
+              </div>
+              <div className={style.infoItem}>
+                <span className={style.infoLabel}>Level</span>
+                <span className={style.infoValue}>INTERMEDIATE</span>
+              </div>
+              <div className={style.infoItem}>
+                <span className={style.infoLabel}>Mode</span>
+                <span className={style.infoValue}>ONLINE</span>
+              </div>
             </div>
-            <div className="info-item">
-              <span className="info-label">Starts on</span>
-              <span className="info-value">AUG 09, 2025</span>
+            <div className={style.actionGroup}>
+              <div className={style.fastFilling}>
+                <span className={style.lightning}>⚡</span>
+                <span>Fast Filling</span>
+              </div>
+              <button className={style.enrollBtn}>ENROLL NOW</button>
             </div>
-            <div className="info-item">
-              <span className="info-label">Level</span>
-              <span className="info-value">INTERMEDIATE</span>
-            </div>
-            <div className="info-item">
-              <span className="info-label">Mode</span>
-              <span className="info-value">ONLINE</span>
-            </div>
-            <div className="fast-filling">
-              <span className="lightning">⚡</span>
-              <span>Fast Filling</span>
-            </div>
-            <button className="enroll-btn">ENROLL NOW</button>
           </div>
-          <button className="nav-btn next">›</button>
+          <button className={`${style.navBtn} ${style.next}`}>›</button>
         </div>
       </div>
     </section>
+   
+    </>
   );
 };
 
