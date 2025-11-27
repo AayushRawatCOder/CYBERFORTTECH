@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Darker+Grotesque:wght@300;400;500;600&display=swap');
+
+.whyPartnerSection {
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+  font-family: 'Tomorrow', sans-serif;
+}
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+.colorful {
+  background: linear-gradient(180deg, #01E6DD 0%, #FE8FEB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.highlight {
+  color: #ffffff;
+}
+.subtitle {
+  font-size: 1rem;
+  color: #94a3b8;
+  font-weight: 400;
+  font-family: 'Darker Grotesque', sans-serif;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 24px;
+  padding: 1rem 0;
+}
+.cardOuter {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 14px;
+  position: relative;
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s;
+  backdrop-filter: blur(10px);
+  min-width: 300px;
+  max-width: 390px;
+  margin: 0 auto;
+  overflow: hidden;
+   &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.8),
+      transparent
+    );
+    animation: shine 2.5s infinite;
+    pointer-events: none;
+    border-radius: 24px;
+    filter: blur(8px);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 2px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.4)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.7;
+    transition: opacity 0.4s ease;
+  }
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(77, 208, 225, 0.25);
+  }
+}
+.cardInner {
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 1);
+  border-radius: 24px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  gap: 12px;
+  box-sizing: border-box;
+  font-family: 'Darker Grotesque', sans-serif;
+  color: #fff;
+}
+.category {
+  color: #01E6DD;
+  font-weight: 600;
+  font-size: 0.91rem;
+  font-family: 'Tomorrow', sans-serif;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: 'Tomorrow', sans-serif;
+}
+.cardDescription {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #e0e4f7;
+  font-family: 'Darker Grotesque', sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+.price {
+  font-size: 1.62rem;
+  font-weight: 700;
+  color: #fff;
+  font-family: 'Tomorrow', sans-serif;
+}
+.originalPrice {
+  font-size: 1.08rem;
+  color: #8e9299;
+  text-decoration: line-through;
+  font-family: 'Tomorrow', sans-serif;
+}
+.discount {
+  padding: 3px 10px;
+  background: linear-gradient(135deg, #ff6b00, #ff9500);
+  color: #28231e;
+  font-size: 0.79rem;
+  font-weight: 700;
+  border-radius: 6px;
+  font-family: 'Tomorrow', sans-serif;
+}
+.enrollBtn {
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid rgba(77, 208, 225, 0.2);
+  border-bottom: 3px solid #4dd0e1;
+  background: rgba(10, 15, 20, 0.6);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-top: auto;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #4dd0e1, transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #4dd0e1;
+    filter: blur(8px);
+    opacity: 0.6;
+  }
+
+  &:hover {
+    background: rgba(77, 208, 225, 0.08);
+    border-bottom-color: #00e5ff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(77, 208, 225, 0.4);
+
+    &::before {
+      opacity: 1;
+    }
+
+    &::after {
+      opacity: 1;
+      filter: blur(12px);
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+@media (max-width: 768px) {
+  .whyPartnerSection {
+    padding: 3rem 1.5rem;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .cardInner {
+    padding: 28px;
+  }
+}
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.35rem;
+  }
+  .cardInner {
+    padding: 18px;
+  }
+}

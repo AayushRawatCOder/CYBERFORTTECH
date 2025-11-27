@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
 
   const educationItems = [
     { href: "/courses", label: "COURSES", icon: "📚" },
-    { href: "/internships", label: "INDUSTRY IMMERSION", icon: "🏢" },
+    { href: "/IndustryImmersion", label: "INDUSTRY IMMERSION", icon: "🏢" },
     { href: "/certificate", label: "CERTIFICATE VERIFICATION", icon: "🎓" },
   ];
 
