@@ -1,14 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Darker+Grotesque:wght@300;400;500;600&display=swap');
 
-// --- Base styles provided by the user ---
-
 .whyPartnerSection {
   padding: 5rem 2rem;
   position: relative;
   overflow: hidden;
-
-  // Added background color for the section for context
-  background-color: #0d0d0d; 
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 
   &::before {
     content: '';
@@ -23,6 +21,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .header {
@@ -58,9 +57,8 @@
 
 .grid {
   display: grid;
-  // Adjusted grid columns to fit 4 cards across on large screens
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
   padding: 1rem 0;
 }
 
@@ -71,32 +69,7 @@
   position: relative;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
-  // Removed fixed width/min-width to allow the grid to control size
-  width: 100%; 
-  min-width: unset; 
-  flex-shrink: 0;
   overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.8),
-      transparent
-    );
-    // Removed 'shine' animation for a static design match, but keeping for reference if needed
-    // animation: shine 2.5s infinite; 
-    pointer-events: none;
-    border-radius: 24px;
-    filter: blur(8px);
-    opacity: 0; // Hide shine effect unless activated by hover/interaction
-  }
 
   &::after {
     content: '';
@@ -128,14 +101,12 @@
   }
 }
 
-
 .cardInner {
   width: 100%;
   height: 100%;
-  // Adjusted inner background to match the dark color of the image
-  background: #101010; 
-  border-radius: 12px; // Adjusted border radius to fit inside the outer 24px
-  padding: 24px; // Slightly reduced padding for a tighter look
+  background: rgba(15, 15, 15, 1);
+  border-radius: 24px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -156,37 +127,16 @@
   }
 }
 
-.iconWrapper {
-  width: 50px; // Slightly smaller wrapper to match image
-  height: 50px;
-  border-radius: 10px; // Slightly smaller radius
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-  flex-shrink: 0;
-  // Base styles for the icon wrapper to incorporate glow and background transparency
-  background: rgba(255, 255, 255, 0.05); 
-  border: 1px solid rgba(255, 255, 255, 0.1); 
-  
-  // Adjusted SVG filter for a more prominent glow
-  svg {
-    filter: drop-shadow(0 0 5px currentColor); 
-    font-size: 24px; // Placeholder size
-    font-weight: 700;
+
+.iconSvg {
+  width: 52px;
+  height: 52px;
+  transition: filter 0.3s ease;
+
+  .cardOuter:hover & {
+    filter: drop-shadow(0 4px 12px currentColor);
   }
 }
-
-.icon {
-  // Styling for the placeholder text/icon inside the wrapper
-  font-size: 20px; 
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 
 .cardContent {
   display: flex;
@@ -195,16 +145,17 @@
 }
 
 .cardTitle {
-  font-size: 1.15rem; // Slightly smaller title
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 600;
   color: #ffffff;
   position: relative;
   z-index: 1;
   margin: 0;
+  font-family: 'Tomorrow', sans-serif;
 }
 
 .cardDescription {
-  font-size: 0.95rem; // Slightly smaller description
+  font-size: 1rem;
   line-height: 1.5;
   color: rgba(245, 245, 245, 0.6);
   position: relative;
@@ -214,62 +165,16 @@
   margin: 0;
 }
 
-// --- Specific Color Classes for Icon Wrapper ---
-// The unique colors are achieved by applying specific box-shadows and text colors.
-
-.iconYellow {
-  color: #fcd34d; /* Amber-400 */
-  box-shadow: 0 0 15px rgba(252, 211, 77, 0.4);
-}
-
-.iconCyan {
-  color: #22d3ee; /* Cyan-400 */
-  box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
-}
-
-.iconGreen {
-  color: #4ade80; /* Green-400 */
-  box-shadow: 0 0 15px rgba(74, 222, 128, 0.4);
-}
-
-.iconOrange {
-  color: #fb923c; /* Orange-400 */
-  box-shadow: 0 0 15px rgba(251, 146, 60, 0.4);
-}
-
-.iconPink {
-  color: #e879f9; /* Pink-400 */
-  box-shadow: 0 0 15px rgba(232, 121, 249, 0.4);
-}
-
-.iconAqua {
-  color: #06b6d4; /* Teal-400 */
-  box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
-}
-
-.iconPurple {
-  color: #a78bfa; /* Violet-400 */
-  box-shadow: 0 0 15px rgba(167, 139, 250, 0.4);
-}
-
-.iconRed {
-  color: #f87171; /* Red-400 */
-  box-shadow: 0 0 15px rgba(248, 113, 113, 0.4);
-}
-
-// --- Media Queries ---
 
 @media (max-width: 1200px) {
   .grid {
-    // Switch to 3 columns on slightly smaller screens
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 900px) {
   .grid {
-    // Switch to 2 columns
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -283,14 +188,8 @@
   }
 
   .grid {
-    // Switch to 1 column on mobile
     grid-template-columns: 1fr;
     gap: 1.5rem;
-  }
-
-  .cardOuter {
-    width: 100%;
-    height: auto;
   }
 
   .cardInner {
@@ -306,93 +205,14 @@
   .iconWrapper {
     width: 50px;
     height: 50px;
-    border-radius: 10px;
-
-    svg {
-      width: 24px;
-      height: 24px;
-    }
   }
   
+  .iconSvg {
+    width: 28px;
+    height: 28px;
+  }
+
   .cardInner {
     padding: 24px;
   }
 }
-@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Darker+Grotesque:wght@300;400;500;600&display=swap');
-
-// ... (Existing styles for .whyPartnerSection, .container, .grid, .cardOuter, .cardInner)
-
-.iconWrapper {
-  width: 50px; 
-  height: 50px;
-  border-radius: 10px; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-  flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.05); 
-  border: 1px solid rgba(255, 255, 255, 0.1); 
-  // Base color for any elements inside that rely on 'currentColor'
-  color: white; 
-}
-
-// --- NEW STYLES for SVG ---
-.iconSvg {
-  width: 28px;
-  height: 28px;
-  // Use filter to create the glow effect on the SVG itself
-  filter: drop-shadow(0 0 5px currentColor); 
-  // IMPORTANT: The actual color of the SVG is controlled by its parent's 'color' property (via currentColor)
-  // or via the inline style passed in the TSX (as shown in the DummySvg).
-}
-// --- END NEW STYLES for SVG ---
-
-
-// ... (Existing styles for .cardTitle, .cardDescription)
-
-// --- Specific Color Classes for Icon Wrapper ---
-// The 'color' property set here will be picked up by the SVG's 'currentColor'
-
-.iconYellow {
-  color: #fcd34d; /* Amber-400 */
-  box-shadow: 0 0 15px rgba(252, 211, 77, 0.4);
-}
-
-.iconCyan {
-  color: #22d3ee; /* Cyan-400 */
-  box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
-}
-
-.iconGreen {
-  color: #4ade80; /* Green-400 */
-  box-shadow: 0 0 15px rgba(74, 222, 128, 0.4);
-}
-
-.iconOrange {
-  color: #fb923c; /* Orange-400 */
-  box-shadow: 0 0 15px rgba(251, 146, 60, 0.4);
-}
-
-.iconPink {
-  color: #e879f9; /* Pink-400 */
-  box-shadow: 0 0 15px rgba(232, 121, 249, 0.4);
-}
-
-.iconAqua {
-  color: #06b6d4; /* Teal-400 */
-  box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
-}
-
-.iconPurple {
-  color: #a78bfa; /* Violet-400 */
-  box-shadow: 0 0 15px rgba(167, 139, 250, 0.4);
-}
-
-.iconRed {
-  color: #f87171; /* Red-400 */
-  box-shadow: 0 0 15px rgba(248, 113, 113, 0.4);
-}
-
-// ... (Rest of the Media Queries)

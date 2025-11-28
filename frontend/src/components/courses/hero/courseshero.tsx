@@ -44,40 +44,50 @@ const CourseHero = () => {
         </div>
       </div>
      
-      <div className={style.courseCard}>
-        <div className={style.cardHeader}>
-          <button className={`${style.navBtn} ${style.prev}`}>‹</button>
-          <div className={style.cardInfo}>
-            <span className={style.courseType}>Advanced<br />AI Program</span>
-            <div className={style.infoGroup}>
-              <div className={style.infoItem}>
-                <span className={style.infoLabel}>Course Duration</span>
-                <span className={style.infoValue}>35 HOURS</span>
-              </div>
-              <div className={style.infoItem}>
-                <span className={style.infoLabel}>Starts on</span>
-                <span className={style.infoValue}>AUG 09, 2025</span>
-              </div>
-              <div className={style.infoItem}>
-                <span className={style.infoLabel}>Level</span>
-                <span className={style.infoValue}>INTERMEDIATE</span>
-              </div>
-              <div className={style.infoItem}>
-                <span className={style.infoLabel}>Mode</span>
-                <span className={style.infoValue}>ONLINE</span>
-              </div>
-            </div>
-            <div className={style.actionGroup}>
-              <div className={style.fastFilling}>
-                <span className={style.lightning}>⚡</span>
-                <span>Fast Filling</span>
-              </div>
-              <button className={style.enrollBtn}>ENROLL NOW</button>
-            </div>
-          </div>
-          <button className={`${style.navBtn} ${style.next}`}>›</button>
-        </div>
+<div className={style.courseCard}>
+  <div className={style.cardHeader}>
+    <button className={style.navBtn}>‹</button>
+
+    <div className={style.cardInfo}>
+      <span className={style.courseType}>
+        Advanced
+        <br />
+        AI Program
+      </span>
+
+      <div className={style.infoItem}>
+        <span className={style.infoLabel}>Course Duration</span>
+        <span className={style.infoValue}>35 HOURS</span>
       </div>
+
+      <div className={style.infoItem}>
+        <span className={style.infoLabel}>Starts on</span>
+        <span className={style.infoValue}>AUG 09, 2025</span>
+      </div>
+
+      <div className={style.infoItem}>
+        <span className={style.infoLabel}>Level</span>
+        <span className={style.infoValue}>INTERMEDIATE</span>
+      </div>
+
+      <div className={style.infoItem}>
+        <span className={style.infoLabel}>Mode</span>
+        <span className={style.infoValue}>ONLINE</span>
+      </div>
+
+      <div className={style.actionGroup}>
+        <div className={style.fastFilling}>
+          <span className={style.lightning}>⚡</span>
+          <span>Fast Filling</span>
+        </div>
+        <button className={style.enrollBtn}>ENROLL NOW</button>
+      </div>
+    </div>
+
+    <button className={style.navBtn}>›</button>
+  </div>
+</div>
+
     </section>
    
     </>
