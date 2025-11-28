@@ -16,11 +16,11 @@ const Aboutus = () => {
         <AboutHero />
       </div>
 
-      <div className={styles.heroGlow}>
+      <div>
         <OfferSection />
       </div>
 
-      <div className={styles.leftGlow}>
+      <div>
         <JourneySection />
       </div>
 

@@ -1,0 +1,414 @@
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@800&family=Inter:wght@400;700;800&display=swap');
+
+/* ===== ROOT SECTION ===== */
+.journeyTimeline {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 40px 24px 80px;
+
+  /* Ambient glow under arc */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 35vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140%;
+    height: 60vh;
+    pointer-events: none;
+    filter: blur(80px);
+    z-index: 1;
+  }
+}
+
+/* Vignette overlay */
+.journeyTimeline__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ===== CONTAINER ===== */
+.journeyTimeline__container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 3;
+  box-sizing: border-box;
+}
+
+/* ===== HEADER ===== */
+.journeyTimeline__header {
+  text-align: center;
+  margin-bottom: 8vh;
+  margin-top: 8vh;
+  position: relative;
+  z-index: 10;
+}
+
+.journeyTimeline__heading {
+  font-family: 'Tomorrow', 'Inter', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 48px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 16px 0;
+
+  background: linear-gradient(180deg, #01E6DD 0%, #FE8FEB 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.journeyTimeline__subtitle {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(233, 238, 242, 0.65);
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ===== ARC SVG ===== */
+.journeyTimeline__arcContainer {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 2; 
+  display: flex;
+  justify-content: center;
+  height: 1200px;
+}
+
+.journeyTimeline__arc {
+  width: 100%;
+  max-width: 1600px;
+  height: auto;
+}
+
+/* ===== SIDE YEARS ===== */
+.journeyTimeline__sideYears {
+  position: relative;
+  z-index: 5;
+}
+
+.yearItem {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Inter', system-ui, sans-serif;
+  pointer-events: none;
+
+  &--left {
+    left: 0%;
+    top: -32vh;
+    transform: rotate(-22deg);
+    align-items: flex-start;
+  }
+
+  &--right {
+    right: 0%;
+    top: -32vh;
+    transform: rotate(22deg);
+    align-items: flex-end;
+  }
+}
+
+.yearItem__number {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.18);
+  margin-bottom: 8px;
+}
+
+.yearItem__desc {
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(233, 238, 242, 0.12);
+  max-width: 120px;
+  margin: 0;
+  text-align: inherit;
+}
+
+/* ===== CENTER ACTIVE CONTENT ===== */
+.activeContent {
+  position: relative;
+  text-align: center;
+  margin-top: 45vh;
+  z-index: 10;
+  isolation: isolate; 
+}
+
+.activeContent__year {
+  font-family: 'Inter', 'Tomorrow', system-ui, sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  color: #e6f3f8;
+  letter-spacing: 0.02em;
+}
+
+.activeContent__desc {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(233, 238, 242, 0.7);
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes contentEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes contentExit {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.96);
+  }
+}
+
+/* ===== NAVIGATION BUTTONS ===== */
+.navButton {
+  position: absolute;
+  bottom: 40px;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: rgba(18, 18, 18, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+
+  transition: 
+    background 200ms ease,
+    box-shadow 220ms ease,
+    transform 180ms cubic-bezier(0.2, 0.9, 0.2, 1);
+
+  z-index: 20;
+
+  &:hover:not(:disabled) {
+    background: rgba(28, 28, 28, 0.7);
+    box-shadow: 
+      0 6px 18px rgba(140, 100, 255, 0.12),
+      0 2px 8px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(102, 222, 235, 0.6);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &--left {
+    left: 40px;
+  }
+
+  &--right {
+    right: 40px;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .activeContent {
+    animation: none !important;
+  }
+  
+  .navButton {
+    transition: none;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Tablet: 768px - 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .journeyTimeline__heading {
+    font-size: 40px;
+  }
+  
+  .journeyTimeline__arc {
+    transform: scale(0.95);
+  }
+  
+  .activeContent__year {
+    font-size: 42px;
+  }
+  
+  .yearItem__number {
+    font-size: 24px;
+  }
+  
+  .yearItem__desc {
+    font-size: 11px;
+    max-width: 100px;
+  }
+  
+  .yearItem {
+    &--left {
+      left: 6%;
+    }
+    
+    &--right {
+      right: 6%;
+    }
+  }
+}
+
+/* Mobile: < 768px */
+@media (max-width: 767px) {
+  .journeyTimeline {
+    padding: 40px 16px 60px;
+  }
+  
+  .journeyTimeline__header {
+    margin-bottom: 12vh;
+  }
+  
+  .journeyTimeline__heading {
+    font-size: 32px;
+  }
+  
+  .journeyTimeline__subtitle {
+    font-size: 14px;
+  }
+  
+  .journeyTimeline__arc {
+    transform: scale(0.85);
+  }
+  
+  .activeContent {
+    margin-top: 42vh;
+  }
+  
+  .activeContent__year {
+    font-size: 32px;
+  }
+  
+  .activeContent__desc {
+    font-size: 13px;
+    padding: 0 16px;
+  }
+  
+  .yearItem {
+    &--left {
+      left: 4%;
+      top: 22vh;
+      transform: rotate(-12deg);
+    }
+    
+    &--right {
+      right: 4%;
+      top: 22vh;
+      transform: rotate(12deg);
+    }
+  }
+  
+  .yearItem__number {
+    font-size: 22px;
+  }
+  
+  .yearItem__desc {
+    display: none;
+  }
+  
+  .navButton {
+    width: 48px;
+    height: 48px;
+    bottom: 24px;
+    
+    &--left {
+      left: 20px;
+    }
+    
+    &--right {
+      right: 20px;
+    }
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+/* Extra small mobile: < 480px */
+@media (max-width: 479px) {
+  .journeyTimeline__heading {
+    font-size: 28px;
+  }
+  
+  .activeContent__year {
+    font-size: 28px;
+  }
+  
+  .yearItem__number {
+    font-size: 20px;
+  }
+  
+  .navButton {
+    width: 44px;
+    height: 44px;
+  }
+}

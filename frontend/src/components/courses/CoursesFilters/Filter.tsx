@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import styles from "./Filter.module.scss";
 import CourseCards from "../../common/CourseCards/CourseCards";
+import CourseCardHeading from "../coursescardsheading/CourseCardsHeading";
 
 interface FilterState {
   sortBy: 'latest' | 'oldest';
@@ -71,6 +72,8 @@ export const CoursesFilterPage: React.FC = () => {
   };
 
   return (
+   <>
+   <CourseCardHeading/>
     <div className={styles.page}>
       <aside className={styles.sidebar}>
         <div className={styles.sidebarHeader}>
@@ -204,5 +207,6 @@ export const CoursesFilterPage: React.FC = () => {
         </div>
       </main>
     </div>
+   </>
   );
 };
