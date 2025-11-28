@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Darker+Grotesque:wght@300;400;500;600&display=swap');
+
+.whyPartnerSection {
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  background: transparent; // Changed to transparent to allow parent glow to show through
+
+//   &::before {
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     height: 3px;
+//     background: linear-gradient(90deg, transparent, rgba(1, 230, 221, 0.5), transparent);
+//   }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-family: 'Tomorrow', sans-serif;
+  position: relative;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.colorful {
+  background: linear-gradient(180deg, #01E6DD 0%, #FE8FEB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #94a3b8;
+  font-weight: 400;
+  font-family: 'Darker Grotesque', sans-serif;
+  line-height: 1.6;
+}
+
+// --- Navigation ---
+.navControls {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    gap: 12px;
+}
+
+.navBtn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    z-index: 10;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.4);
+        transform: scale(1.05);
+    }
+}
+
+// --- Carousel Track ---
+.carouselTrack {
+    display: flex;
+    gap: 24px; // Gap between cards
+    overflow-x: auto;
+    padding: 1rem 4px 2rem 4px;
+    scroll-behavior: smooth;
+    
+    // Hide Scrollbar strictly
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+// --- Card Layout (3 in view) ---
+.cardOuter {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 14px;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  
+  // --- KEY CALCULATION FOR 3 ITEMS ---
+  // (100% width - (Gap * 2)) / 3
+  flex: 0 0 calc((100% - 48px) / 3);
+  max-width: calc((100% - 48px) / 3);
+  
+  overflow: hidden;
+
+  // Shine Effect
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    animation: shine 2.5s infinite;
+    pointer-events: none;
+    border-radius: 24px;
+    filter: blur(8px);
+  }
+
+  // Border Gradient
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.7;
+    transition: opacity 0.4s ease;
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(77, 208, 225, 0.25);
+    &::after { opacity: 1; }
+  }
+}
+
+.cardInner {
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 1);
+  border-radius: 24px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 16px;
+  box-sizing: border-box;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(0, 212, 255, 0.05), transparent 60%);
+    pointer-events: none;
+  }
+}
+
+// --- Content Styles ---
+.imageWrapper {
+    width: 100%;
+    height: 220px;
+    border-radius: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.educatorImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    .cardOuter:hover & { transform: scale(1.05); }
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  z-index: 1;
+}
+
+.badgeRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.subjectBadge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    
+    &.cyber { background: rgba(0, 212, 255, 0.15); color: #00d4ff; }
+    &.hacking { background: rgba(0, 255, 157, 0.15); color: #00ff9d; }
+    &.ai { background: rgba(0, 153, 255, 0.15); color: #0099ff; }
+}
+
+.expBadge {
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: 13px;
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.cardTitle {
+  font-family: 'Tomorrow', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+}
+
+.cardDescription {
+  font-size: 1rem;
+  color: rgba(245, 245, 245, 0.6);
+  font-family: 'Darker Grotesque', sans-serif;
+  font-weight: 400;
+  margin: 0 0 16px 0;
+}
+
+.detailsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        font-family: 'Darker Grotesque', sans-serif;
+        font-size: 15px;
+        color: #94a3b8;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        &::before {
+            content: '•';
+            color: #555;
+            font-size: 1.2rem;
+            line-height: 0;
+        }
+    }
+}
+
+// @keyframes shine {
+//     0% { left: -100%; }
+//     20% { left: 100%; }
+//     100% { left: 100%; }
+// }
+
+// --- Responsive Logic ---
+
+@media (max-width: 1024px) {
+  // Tablet: Show 2 items
+  .cardOuter {
+    flex: 0 0 calc((100% - 24px) / 2);
+    max-width: calc((100% - 24px) / 2);
+  }
+}
+
+@media (max-width: 768px) {
+  .whyPartnerSection {
+    padding: 3rem 1.5rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+
+  .navControls {
+      position: relative;
+      justify-content: center;
+      margin-top: 20px;
+  }
+  
+  // Mobile: Show 1 item
+  .cardOuter {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
