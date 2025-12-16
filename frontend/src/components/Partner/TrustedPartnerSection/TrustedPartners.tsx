@@ -13,7 +13,6 @@ interface Logo {
 
 const TrustedPartners: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('technology');
-
   const logos: Logo[] = [
     { name: "sailpoint", path: "/company-logo/sailpoint.svg", category: "technology" },
     { name: "cieh", path: "/company-logo/cieh.svg", category: "education" },
@@ -36,20 +35,17 @@ const TrustedPartners: React.FC = () => {
     { name: "react2", path: "/company-logo/react.svg", category: "corporate" },
     { name: "securden", path: "/company-logo/securden-logo.svg", category: "government" },
   ];
-
   const categories = [
     { id: 'technology', label: 'TECHNOLOGY', icon: TechnologyIcon },
     { id: 'education', label: 'EDUCATION', icon: EducationIcon },
     { id: 'corporate', label: 'CORPORATE', icon: CorporateIcon },
     { id: 'government', label: 'GOVERNMENT', icon: GovernmentIcon },
   ];
-
   const filteredLogos = logos.filter(logo => logo.category === activeCategory);
   const rowCount = 2;
   const logosPerRow = Math.ceil(filteredLogos.length / rowCount);
   const row1Logos = filteredLogos.slice(0, logosPerRow);
   const row2Logos = filteredLogos.slice(logosPerRow);
-
   return (
     <section className={styles.trustedPartners}>
       <div className={styles.categoryTabs}>
@@ -64,7 +60,6 @@ const TrustedPartners: React.FC = () => {
           </button>
         ))}
       </div>
-
       <div className={styles.logosContainer}>
         <div className={`${styles.logoRow} ${styles.row1}`}>
           <div className={styles.logoTrack}>
@@ -75,7 +70,6 @@ const TrustedPartners: React.FC = () => {
             ))}
           </div>
         </div>
-
         <div className={`${styles.logoRow} ${styles.row2}`}>
           <div className={styles.logoTrack}>
             {[...row2Logos, ...row2Logos, ...row2Logos].map((logo, index) => (

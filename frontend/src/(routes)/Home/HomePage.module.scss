@@ -1,11 +1,64 @@
-.partnerPage {
+body {
   background: #0a0a0a;
-  overflow-x: hidden;
+}
+
+.partnerPage {
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: clip;
+  background: #0a0a0a;
+}
+
+.heroSection,
+.clientSection,
+.featureSection,
+.impactStats,
+.securitySolutions,
+.homeGallery,
+.successStories,
+.faqSection,
+.contactFormSection {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: transparent;
   position: relative;
 }
 
+@media (max-width: 900px) {
+  .heroSection,
+  .clientSection,
+  .featureSection,
+  .impactStats,
+  .securitySolutions,
+  .homeGallery,
+  .successStories,
+  .faqSection,
+  .contactFormSection {
+    width: 100vw;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .heroSection,
+  .clientSection,
+  .featureSection,
+  .impactStats,
+  .securitySolutions,
+  .homeGallery,
+  .successStories,
+  .faqSection,
+  .contactFormSection {
+    width: 100vw;
+    margin-left: 0;
+  }
+}
+
+
 .heroGlow {
   position: relative;
+    overflow: visible !important;
 }
 
 .heroGlow::before {
@@ -32,6 +85,7 @@
 
 .leftGlow {
   position: relative;
+    overflow: visible !important;
 }
 
 .leftGlow::before {
@@ -58,6 +112,7 @@
 
 .centerGlow {
   position: relative;
+    overflow: visible !important;
 }
 
 .centerGlow::before {
@@ -84,6 +139,7 @@
 
 .rightGlow {
   position: relative;
+    overflow: visible !important;
 }
 
 .rightGlow::before {

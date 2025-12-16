@@ -34,8 +34,8 @@ const defaultPricingTiers: PricingTier[] = [
     price: '₹0',
     period: '/m',
     description: 'Basic cyber visibility & threat scanning for small organizations',
-    gradient: 'linear-gradient(135deg, #115e59 0%, #134e4a 100%)',
-    borderColor: 'rgba(45, 212, 191, 0.3)',
+    gradient: 'linear-gradient(180deg, #01E6DD 0%, #064e3b 40%, #000000 100%)',
+    borderColor: 'linear-gradient(135deg, rgba(254, 143, 235, 0.75) 0%, rgba(1, 230, 221, 0.15) 100%)',
     features: [
       {
         category: 'Core Security',
@@ -51,26 +51,15 @@ const defaultPricingTiers: PricingTier[] = [
   }
 ];
 
-const getGradient = (color: string): string => {
-  const gradients: Record<string, string> = {
-    Emerald: 'linear-gradient(135deg, #10b981 0%, #047857 100%)',
-    Orange: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
-    Blue: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-    Purple: 'linear-gradient(135deg, #a855f7 0%, #9333ea 100%)',
-    Red: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
-  };
-  return gradients[color] || 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)';
+const getGradient = (color: string, popular: boolean): string => {
+  if (popular) {
+    return 'linear-gradient(180deg, #FE8FEB 0%, rgba(254, 143, 235, 0.5) 40%, #000000 100%)';
+  }
+  return 'linear-gradient(180deg, #01E6DD 0%, #064e3b 40%, #000000 100%)';
 };
 
-const getBorderColor = (color: string): string => {
-  const borders: Record<string, string> = {
-    Emerald: 'rgba(16, 185, 129, 0.3)',
-    Orange: 'rgba(249, 115, 22, 0.3)',
-    Blue: 'rgba(59, 130, 246, 0.3)',
-    Purple: 'rgba(168, 85, 247, 0.3)',
-    Red: 'rgba(239, 68, 68, 0.3)',
-  };
-  return borders[color] || 'rgba(107, 114, 128, 0.3)';
+const getBorderColor = (): string => {
+  return 'linear-gradient(135deg, rgba(254, 143, 235, 0.75) 0%, rgba(1, 230, 221, 0.15) 100%)';
 };
 
 const transformToTier = (plan: FeaturePlan): PricingTier => {
@@ -99,8 +88,8 @@ const transformToTier = (plan: FeaturePlan): PricingTier => {
     period,
     description: plan.description,
     popular,
-    // gradient: getGradient(plan.color),
-    // borderColor: getBorderColor(plan.color),
+    gradient: getGradient(plan.color, popular),
+    borderColor: getBorderColor(),
     features: plan.features,
     cta: plan.cta,
     icon: plan.icon,
@@ -148,27 +137,6 @@ const PricingCards: React.FC<PricingCardsProps> = ({ serviceKey, pricingData: pr
 
   return (
     <div className="pricing-container">
-      {isClient && (
-        <>
-          <div className="cyber-grid"></div>
-          <div className="cyber-particles">
-            {[...Array(30)].map((_, i) => (
-              <div
-                key={i}
-                className="particle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 10}s`,
-                  animationDuration: `${8 + Math.random() * 12}s`,
-                }}
-              />
-            ))}
-          </div>
-          <div className="scan-lines"></div>
-        </>
-      )}
-
       <div className="pricing-grid">
         {tiers.map((tier) => (
           <div
@@ -209,8 +177,6 @@ const PricingCards: React.FC<PricingCardsProps> = ({ serviceKey, pricingData: pr
                 {tier.cta ? tier.cta.toUpperCase() : 'GET STARTED'}
               </button>
             </div>
-
-            <div className={`card-glow ${hoveredCard === tier.id ? 'active' : ''}`}></div>
           </div>
         ))}
       </div>

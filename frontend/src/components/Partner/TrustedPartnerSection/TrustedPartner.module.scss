@@ -1,14 +1,26 @@
 .trustedPartners {
-  width: 100%;             
-  max-width: 1500px;        
-  margin: 0 auto;           
-  padding: 60px 0 100px;
+  width: 100%;        
+  max-width: 1500px;     
+  margin: 0 auto;        
+  padding: 60px 20px 100px;
   min-height: 600px;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  @media (max-width: 1024px) {
+    padding: 50px 20px 80px;
+    min-height: 500px;
+  }
+  @media (max-width: 768px) {
+    padding: 40px 16px 60px;
+    min-height: 400px;
+    max-width: 400px;
+  }
+  @media (max-width: 480px) {
+    padding: 30px 10px 50px;
+    min-height: 350px;
+  }
 }
-
 
 .categoryTabs {
   display: flex;
@@ -17,10 +29,19 @@
   margin-bottom: 60px;
   flex-wrap: wrap;
   padding: 0 20px;
-
+  @media (max-width: 1024px) {
+    gap: 16px;
+    margin-bottom: 50px;
+  }
   @media (max-width: 768px) {
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 40px;
+    padding: 0 8px;
+  }
+  @media (max-width: 480px) {
+    gap: 8px;
+    margin-bottom: 30px;
+    padding: 0 4px;
   }
 }
 
@@ -35,35 +56,58 @@
   align-items: center;
   gap: 10px;
   background: none;
-
+  border-radius: 8px;
+  color: #C7D2DD;
+  text-transform: uppercase;
+  white-space: nowrap;
   &:hover {
     background: rgba(40, 50, 65, 0.8);
     border-color: rgba(64, 224, 208, 0.4);
     transform: translateY(-2px);
   }
-
   &.active {
     background: rgba(40, 50, 65, 0.8);
-    border-color: rgba(64, 224, 208, 0.4);
+    border-color: #01E6DD;
     transform: translateY(-2px);
-    color: aqua;
+    color: #01E6DD;
   }
-  
-
+  @media (max-width: 1024px) {
+    padding: 12px 26px;
+    font-size: 0.85rem;
+    gap: 8px;
+  }
   @media (max-width: 768px) {
-    padding: 12px 24px;
-    font-size: 0.8rem;
-  }
-
-  @media (max-width: 480px) {
-    padding: 10px 18px;
+    padding: 10px 20px;
     font-size: 0.75rem;
+    letter-spacing: 0.8px;
+    gap: 6px;
+    border-radius: 6px;
+  }
+  @media (max-width: 480px) {
+    padding: 8px 14px;
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+    gap: 5px;
+    border-radius: 5px;
+  }
+  @media (max-width: 375px) {
+    padding: 7px 12px;
+    font-size: 0.6rem;
   }
 }
 
-.icon {
+.categoryIcon {
   width: 20px;
   height: 20px;
+  flex-shrink: 0;
+  @media (max-width: 768px) {
+    width: 16px;
+    height: 16px;
+  }
+  @media (max-width: 480px) {
+    width: 14px;
+    height: 14px;
+  }
 }
 
 .logosContainer {
@@ -73,11 +117,12 @@
   gap: 30px;
   position: relative;
   overflow: hidden;
-}
-
-.categoryIcon{
-    width:20px;
-    height: 20px;
+  @media (max-width: 768px) {
+    gap: 24px;
+  }
+  @media (max-width: 480px) {
+    gap: 20px;
+  }
 }
 
 .logoRow {
@@ -86,7 +131,6 @@
   position: relative;
   mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-
   &::before,
   &::after {
     content: '';
@@ -96,13 +140,17 @@
     width: 100px;
     z-index: 2;
     pointer-events: none;
+    @media (max-width: 768px) {
+      width: 60px;
+    }
+    @media (max-width: 480px) {
+      width: 40px;
+    }
   }
-
   &::before {
     left: 0;
     background: linear-gradient(to right, #0a0a0a, transparent);
   }
-
   &::after {
     right: 0;
     background: linear-gradient(to left, #0a0a0a, transparent);
@@ -111,15 +159,22 @@
 
 .logoTrack {
   display: flex;
-  gap: 30px;
+  gap: 10px;
   animation-duration: 40s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   will-change: transform;
-
+  @media (max-width: 1024px) {
+    gap: 8px;
+    animation-duration: 35s;
+  }
   @media (max-width: 768px) {
-    gap: 20px;
+    gap: 6px;
     animation-duration: 30s;
+  }
+  @media (max-width: 480px) {
+    gap: 4px;
+    animation-duration: 25s;
   }
 }
 
@@ -150,51 +205,50 @@
 }
 
 .logoItem {
-  background: rgba(30, 40, 55, 0.4);
-  padding: 30px 50px;
+  background: rgba(245, 245, 245, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 200px;
-  max-width: 200px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   flex-shrink: 0;
   box-sizing: border-box;
-
+  border-radius: 8px;
   &:hover {
-    background: rgba(40, 50, 65, 0.6);
-    border-color: rgba(64, 224, 208, 0.3);
     transform: scale(1.05);
   }
-
+  &:hover img {
+    opacity: 1;
+    filter: none;
+  }
   img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 80%;
+    max-height: 80%;
     width: auto;
     height: auto;
     object-fit: contain;
     filter: brightness(0) invert(1);
     opacity: 0.8;
-    transition: opacity 0.3s ease;
-
-    &:hover {
-      opacity: 1;
-    }
+    transition: all 0.3s ease;
   }
-
-  @media (max-width: 768px) {
-    padding: 25px 40px;
-    min-width: 180px;
-    max-width: 180px;
-    height: 100px;
-  }
-
-  @media (max-width: 480px) {
-    padding: 20px 30px;
-    min-width: 160px;
-    max-width: 160px;
+  @media (max-width: 1024px) {
+    width: 90px;
     height: 90px;
+  }
+  @media (max-width: 768px) {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+  }
+  @media (max-width: 480px) {
+    width: 70px;
+    height: 70px;
+    border-radius: 5px;
+  }
+  @media (max-width: 375px) {
+    width: 60px;
+    height: 60px;
   }
 }

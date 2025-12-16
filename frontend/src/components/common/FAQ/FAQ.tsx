@@ -56,32 +56,34 @@ const FAQ: React.FC = () => {
 
   return (
     <div className={styles.faqContainer}>
-      <div className={styles.faqHeader}>
-        <h2 className={styles.faqTitle}>FAQs</h2>
-        <p className={styles.faqSubtitle}>
-          Find your frequently<br />asked questions here.
-        </p>
-      </div>
+      <div className={styles.faqContent}>
+        <div className={styles.faqHeader}>
+          <h2 className={styles.faqTitle}>FAQs</h2>
+          <p className={styles.faqSubtitle}>
+            Find your frequently<br />asked questions here.
+          </p>
+        </div>
 
-      <div className={styles.faqList}>
-        {faqData.map((faq, index) => (
-          <div key={faq.id} className={styles.faqItem}>
-            <button
-              className={`${styles.faqQuestion} ${openIndex === index ? styles.active : ''}`}
-              onClick={() => toggleFAQ(index)}
-            >
-              <span>{faq.question}</span>
-              <span className={styles.icon}>
-                {openIndex === index ? '−' : '▼'}
-              </span>
-            </button>
-            {openIndex === index && (
-              <div className={styles.faqAnswer}>
-                {faq.answer}
-              </div>
-            )}
-          </div>
-        ))}
+        <div className={styles.faqList}>
+          {faqData.map((faq, index) => (
+            <div key={faq.id} className={styles.faqItem}>
+              <button
+                className={`${styles.faqQuestion} ${openIndex === index ? styles.active : ''}`}
+                onClick={() => toggleFAQ(index)}
+              >
+                <span>{faq.question}</span>
+                <span className={styles.icon}>
+                  {openIndex === index ? '−' : '▼'}
+                </span>
+              </button>
+              {openIndex === index && (
+                <div className={styles.faqAnswer}>
+                  {faq.answer}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

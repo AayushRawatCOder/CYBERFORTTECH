@@ -1,0 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@400;600;700;800&family=Darker+Grotesque:wght@300;400;500;600;700&display=swap');
+
+.courseHero {
+  height: 100vh;
+  padding: 40px 60px 0;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+}
+
+.heroContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.heroTitle {
+  font-family: 'Tomorrow', sans-serif;
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  text-align: center;
+  letter-spacing: -1px;
+
+  .gradientText {
+    background: linear-gradient(90deg, #e879f9 0%, #8b5cf6 30%, #22d3ee 70%, #14b8a6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+  }
+
+  .whiteText {
+    color: #ffffff;
+    display: inline-block;
+  }
+}
+
+.heroSubtitle {
+  font-family: 'Darker Grotesque', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.ctaButton {
+  font-family: 'Darker Grotesque', sans-serif;
+  background: #22d3ee;
+  color: #0a0e1a;
+  border: none;
+  padding: 14px 40px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto 40px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #06b6d4;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(34, 211, 238, 0.3);
+  }
+}
+
+.statsGrid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 0;
+  padding: 20px 0 32px;
+  flex-shrink: 0;
+}
+
+.statItem {
+  text-align: center;
+
+  .statNumber {
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+
+    &::after {
+      content: '+';
+      color: #22d3ee;
+      margin-left: 2px;
+    }
+  }
+
+  .rating::after {
+    content: none;
+  }
+
+  .statLabel {
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+}
+
+.statDivider {
+  width: 1px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* =======================
+   Course Card – full width
+   ======================= */
+
+.courseCard {
+  position: relative;
+  width: 100vw;              /* full viewport width */
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;        /* break out of centered container */
+  margin-right: -50vw;
+  background: rgba(26, 26, 26, 1);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 16px 0;
+  z-index: 2;
+}
+
+.cardHeader {
+  max-width: 1580px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.navBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.03);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+  }
+}
+
+.cardInfo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  font-family: 'Darker Grotesque', sans-serif;
+}
+
+/* Left title block */
+.courseType {
+  font-family: 'Tomorrow', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #f5f5f5;
+  padding-right: 32px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* Info blocks – ALL on one row */
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 32px;
+  position: relative;
+  width: 200px;
+}
+
+/* Vertical glass shine for every section except last infoItem */
+.infoItem:not(:last-of-type)::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  right: 0;
+  width: 1px;
+  height: calc(100% + 24px);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* CourseType gets same divider by wrapping it in an info-like container via border-right */
+.courseType::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  right: 0;
+  width: 1px;
+  height: calc(100% + 24px);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* Label + underline */
+.infoLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4px;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.infoLabel::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #22d3ee 0%, rgba(34, 211, 238, 0) 100%);
+}
+
+.infoValue {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+}
+
+/* Right action section (no divider after it) */
+.actionGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  white-space: nowrap;
+  padding-left: 32px;
+}
+
+/* Remove divider for last "info-like" block before actions if needed */
+.actionGroup::before {
+  content: '';
+  position: relative;
+}
+
+/* Fast filling + button */
+.fastFilling {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #3b2e17;
+  border: 1px solid #926f29;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fceb6a;
+
+  .lightning {
+    font-size: 14px;
+  }
+}
+
+.enrollBtn {
+  font-family: 'Darker Grotesque', sans-serif;
+  background: #22d3ee;
+  color: #0a0e1a;
+  border: none;
+  padding: 10px 22px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: #06b6d4;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(34, 211, 238, 0.3);
+  }
+}
+
+/* ============
+   Media queries
+   ============ */
+
+@media (max-width: 1200px) {
+  .heroTitle {
+    font-size: 52px;
+  }
+
+  .cardHeader {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 992px) {
+  .courseHero {
+    padding: 32px 32px 0;
+  }
+
+  .heroTitle {
+    font-size: 42px;
+  }
+
+  .statsGrid {
+    gap: 24px;
+  }
+
+  .cardHeader {
+    padding: 0 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .courseHero {
+    padding: 28px 20px 0;
+  }
+
+  .heroTitle {
+    font-size: 34px;
+  }
+
+  .heroSubtitle {
+    font-size: 16px;
+  }
+
+  .statsGrid {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .courseCard {
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 0 20px;
+  }
+
+  .cardInfo {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .courseType,
+  .infoItem {
+    padding: 0;
+  }
+
+  .courseType::after,
+  .infoItem::after {
+    display: none;
+  }
+
+  .actionGroup {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 28px;
+  }
+
+  .statsGrid {
+    gap: 16px;
+  }
+
+  .cardHeader {
+    padding: 0 16px;
+  }
+
+  .infoItem {
+    width: 100%;
+  }
+}

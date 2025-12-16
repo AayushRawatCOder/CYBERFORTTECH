@@ -168,9 +168,15 @@ const SuccessStories: React.FC = () => {
             alt={currentTestimonial.name}
             className={styles.authorImageLarge}
           />
-          <div className={styles.authorDetails}>
-            <h3 className={styles.authorNameLarge}>{currentTestimonial.name}</h3>
-            <p className={styles.authorTitleLarge}>{currentTestimonial.designation}</p>
+          <div className={styles.pagination}>
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                className={`${styles.dot} ${index === activeSlide ? styles.active : ''}`}
+                onClick={() => handleDotClick(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
           </div>
         </div>
 
@@ -185,15 +191,11 @@ const SuccessStories: React.FC = () => {
             </h2>
           </div>
 
-          <div className={styles.pagination}>
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                className={`${styles.dot} ${index === activeSlide ? styles.active : ''}`}
-                onClick={() => handleDotClick(index)}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
+          <div className={styles.divider}></div>
+
+          <div className={styles.authorDetails}>
+            <h3 className={styles.authorNameLarge}>{currentTestimonial.name}</h3>
+            <p className={styles.authorTitleLarge}>{currentTestimonial.designation}</p>
           </div>
         </div>
       </div>

@@ -1,166 +1,342 @@
-import React, { useState } from 'react';
-import './JourneySection.scss';
+import React, { useEffect, useState, useRef } from "react";
+import styles from "./JourneySection.module.scss";
 
-interface JourneyMilestone {
-  year: string;
-  description: string;
+/**
+ * JourneyTimeline Component
+ * 
+ * A futuristic timeline component with:
+ * - U-shaped glowing arc (inverted semi-circle)
+ * - Gradient heading with neon effects
+ * - Rotated year labels along the curve
+ * - Center active year content
+ * - Left/right navigation with smooth animations
+ * 
+ * Props:
+ * - timelineData: Record of years with descriptions
+ * - initialYear: Starting year (defaults to middle year)
+ */
+
+interface TimelineItem {
+  title?: string;
+  desc: string;
 }
 
-const JourneySection: React.FC = () => {
-  const milestones: JourneyMilestone[] = [
-    {
-      year: '2020',
-      description: 'CyberFort Tech was established with a vision to revolutionize cybersecurity education and training.'
-    },
-    {
-      year: '2021',
-      description: 'Launched our first comprehensive cybersecurity training platform with strategic industry partnerships.'
-    },
-    {
-      year: '2022',
-      description: 'Expanded operations globally, reaching students and professionals across 50+ countries worldwide.'
-    },
-    {
-      year: '2023',
-      description: 'Integrated advanced AI-powered learning tools and personalized adaptive training modules for enhanced learning.'
-    },
-    {
-      year: '2024',
-      description: 'Expanded our services with advanced cybersecurity training programs and launched enterprise security solutions.'
-    }
-  ];
+interface JourneyTimelineProps {
+  timelineData: Record<string, TimelineItem>;
+  initialYear?: string;
+}
 
-  const [currentIndex, setCurrentIndex] = useState(4); // Start with 2024
+// Demo data
+const DEFAULT_DATA: Record<string, TimelineItem> = {
+  "2023": {
+    desc: "Launched our foundation with core cybersecurity services and established partnerships with industry leaders.",
+  },
+  "2024": {
+    desc: "Expanded our services with advanced cybersecurity training programs and launched enterprise security solutions.",
+  },
+  "2025": {
+    desc: "Achieved industry recognition and scaled our platform to serve over 10,000 professionals globally.",
+  },
+};
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : milestones.length - 1));
+/**
+ * Utility: Get next/previous year keys with circular looping
+ */
+const getAdjacentKeys = (keys: string[], currentKey: string) => {
+  const currentIndex = keys.indexOf(currentKey);
+  const prevIndex = (currentIndex - 1 + keys.length) % keys.length;
+  const nextIndex = (currentIndex + 1) % keys.length;
+  
+  return {
+    prev: keys[prevIndex],
+    next: keys[nextIndex],
   };
+};
 
+export default function JourneySection({
+  timelineData = DEFAULT_DATA,
+  initialYear,
+}: JourneyTimelineProps) {
+  // Sort years chronologically
+  const years = Object.keys(timelineData).sort();
+  
+  // Initialize with middle year or provided initialYear
+  const startYear = initialYear && years.includes(initialYear) 
+    ? initialYear 
+    : years[Math.floor(years.length / 2)];
+  
+  const [activeYear, setActiveYear] = useState<string>(startYear);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [direction, setDirection] = useState<"left" | "right" | null>(null);
+  
+  // Refs for accessibility
+  const liveRegionRef = useRef<HTMLDivElement>(null);
+  
+  // Get adjacent years for display
+  const { prev: leftYear, next: rightYear } = getAdjacentKeys(years, activeYear);
+  
+  /**
+   * Animation flow:
+   * 1. Set animating flag to disable buttons
+   * 2. Set direction for exit animation
+   * 3. Wait for exit animation (300ms)
+   * 4. Change active year
+   * 5. Wait for enter animation (320ms)
+   * 6. Clear animating flag
+   */
+  const navigateTo = (targetYear: string, navDirection: "left" | "right") => {
+    if (isAnimating || targetYear === activeYear) return;
+    
+    setIsAnimating(true);
+    setDirection(navDirection);
+    
+    // Exit animation
+    setTimeout(() => {
+      setActiveYear(targetYear);
+      setDirection(null);
+    }, 300);
+    
+    // Enter animation complete
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 620);
+  };
+  
+  const handlePrevious = () => {
+    const { prev } = getAdjacentKeys(years, activeYear);
+    navigateTo(prev, "left");
+  };
+  
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev < milestones.length - 1 ? prev + 1 : 0));
+    const { next } = getAdjacentKeys(years, activeYear);
+    navigateTo(next, "right");
   };
-
-  const currentMilestone = milestones[currentIndex];
-
-  // Get year positions for display
-  const getYearPosition = (index: number) => {
-    const diff = index - currentIndex;
-    return diff;
-  };
-
+  
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        handlePrevious();
+      } else if (e.key === "ArrowRight") {
+        handleNext();
+      }
+    };
+    
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeYear, isAnimating]);
+  
+  // Update live region for screen readers
+  useEffect(() => {
+    if (liveRegionRef.current) {
+      liveRegionRef.current.textContent = `Year ${activeYear}: ${timelineData[activeYear].desc}`;
+    }
+  }, [activeYear, timelineData]);
+  
   return (
-    <section className="journey-section">
-      <div className="journey-section__container">
+    <section 
+      className={styles.journeyTimeline}
+      aria-label="Company Journey Timeline"
+    >
+      {/* Ambient glow backgrounds */}
+      <div className={styles.journeyTimeline__vignette} aria-hidden="true" />
+      
+      <div className={styles.journeyTimeline__container}>
         {/* Header */}
-        <div className="journey-section__header">
-          <h2 className="journey-section__title">
-            OUR <span className="text-cyan">JOURNEY</span>
-          </h2>
-          <p className="journey-section__subtitle">
-            From inception to becoming a leading<br />cybersecurity education platform.
+        <header className={styles.journeyTimeline__header}>
+          <h2 className={styles.journeyTimeline__heading}>OUR JOURNEY</h2>
+          <p className={styles.journeyTimeline__subtitle}>
+            From inception to becoming a leading cybersecurity education platform.
+          </p>
+        </header>
+        
+        {/* U-Shaped Arc SVG - ENHANCED GLOW */}
+        <div className={styles.journeyTimeline__arcContainer} aria-hidden="true">
+          <svg
+            className={styles.journeyTimeline__arc}
+            viewBox="0 0 1600 600"
+            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              {/* ENHANCED GLOW GRADIENT - #01E6DD to #FE8FEB */}
+              <linearGradient id="arcGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#01E6DD" stopOpacity="0.95" />
+                <stop offset="100%" stopColor="#FE8FEB" stopOpacity="0.95" />
+              </linearGradient>
+              
+              {/* ENHANCED GLOW FILTER - radial-like blur */}
+              <filter id="glowBlur" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="25" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+              
+              {/* Inner depth shadow gradient */}
+              <radialGradient id="depthGradient" cx="50%" cy="70%">
+                <stop offset="0%" stopColor="rgba(0,0,0,0.7)"/>
+                <stop offset="100%" stopColor="rgba(0,0,0,0)"/>
+              </radialGradient>
+            </defs>
+            
+            {/* Ambient glow base */}
+            <ellipse
+              cx="800"
+              cy="400"
+              rx="650"
+              ry="350"
+              fill="url(#depthGradient)"
+              opacity="0.5"
+            />
+            
+            {/* GLOWING ARC LAYER - wider stroke + enhanced blur */}
+            <path
+              d="M 150 320 A 650 650 0 0 0 1450 320"
+              fill="none"
+              stroke="url(#arcGradient)"
+              strokeWidth="42"
+              strokeLinecap="round"
+              filter="url(#glowBlur)"
+              opacity="0.85"
+            />
+            
+            {/* SOLID ARC LAYER - crisp definition */}
+            <path
+              d="M 150 320 A 650 650 0 0 0 1450 320"
+              fill="none"
+              stroke="url(#arcGradient)"
+              strokeWidth="36"
+              strokeLinecap="round"
+              opacity="1"
+            />
+            
+            {/* Inner solid arc */}
+            <path
+              d="M 200 305 A 590 590 0 0 0 1400 305"
+              fill="none"
+              stroke="rgba(255, 255, 255, 0.73)"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            
+            {/* Inner dashed arc */}
+            <path
+              d="M 210 305 A 590 590 0 0 0 1390 305"
+              fill="none"
+              stroke="rgba(255, 255, 255, 0.7)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeDasharray="8 6"
+            />
+            
+            {/* Depth ring (inner shadow effect) */}
+            <path
+              d="M 170 315 A 630 630 0 0 0 1430 315"
+              fill="none"
+              stroke="rgba(0,0,0,0.5)"
+              strokeWidth="50"
+              strokeLinecap="round"
+              opacity="0.4"
+            />
+          </svg>
+        </div>
+        
+        {/* Side Years (Left & Right) */}
+        <div className={styles.journeyTimeline__sideYears}>
+          {/* Left Year */}
+          <div className={`${styles.yearItem} ${styles['yearItem--left']}`}>
+            <div className={styles.yearItem__number}>{leftYear}</div>
+            <p className={styles.yearItem__desc}>
+              {timelineData[leftYear].desc}
+            </p>
+          </div>
+          
+          {/* Right Year */}
+          <div className={`${styles.yearItem} ${styles['yearItem--right']}`}>
+            <div className={styles.yearItem__number}>{rightYear}</div>
+            <p className={styles.yearItem__desc}>
+              {timelineData[rightYear].desc}
+            </p>
+          </div>
+        </div>
+        
+        {/* Center Active Year Content */}
+        <div 
+          className={`${styles.activeContent} ${
+            isAnimating ? styles['activeContent--animating'] : ''
+          } ${
+            direction ? styles[`activeContent--exit-${direction}`] : ''
+          }`}
+          role="region"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <div className={styles.activeContent__year}>{activeYear}</div>
+          <p className={styles.activeContent__desc}>
+            {timelineData[activeYear].desc}
           </p>
         </div>
-
-        {/* Journey Arc Visualization */}
-        <div className="journey-arc">
-          {/* SVG Arc with glow */}
-          <div className="journey-arc__glow-container">
-            <svg className="journey-arc__svg" viewBox="0 0 1000 550" preserveAspectRatio="xMidYMid meet">
-              <defs>
-                <linearGradient id="arcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#14b8a6" stopOpacity="0.8" />
-                  <stop offset="25%" stopColor="#06b6d4" stopOpacity="0.9" />
-                  <stop offset="50%" stopColor="#a855f7" stopOpacity="1" />
-                  <stop offset="75%" stopColor="#d946ef" stopOpacity="0.9" />
-                  <stop offset="100%" stopColor="#14b8a6" stopOpacity="0.8" />
-                </linearGradient>
-                <filter id="arcGlow">
-                  <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
-                  <feMerge>
-                    <feMergeNode in="coloredBlur"/>
-                    <feMergeNode in="coloredBlur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
-              </defs>
-              
-              {/* Main glowing arc */}
-              <path
-                className="journey-arc__path"
-                d="M 50 500 Q 500 50, 950 500"
-                fill="none"
-                stroke="url(#arcGradient)"
-                strokeWidth="3"
-                strokeDasharray="10 10"
-                filter="url(#arcGlow)"
-              />
-            </svg>
-          </div>
-
-          {/* Year markers on the arc */}
-          <div className="journey-arc__years">
-            {milestones.map((milestone, index) => {
-              const position = getYearPosition(index);
-              const isCenter = position === 0;
-              const isLeft = position < 0;
-              const isRight = position > 0;
-              const absPosition = Math.abs(position);
-              
-              let className = 'journey-arc__year';
-              if (isCenter) className += ' journey-arc__year--center';
-              else if (Math.abs(position) === 1) className += ' journey-arc__year--adjacent';
-              else className += ' journey-arc__year--far';
-              
-              if (isLeft) className += ' journey-arc__year--left';
-              if (isRight) className += ' journey-arc__year--right';
-
-              return (
-                <div
-                  key={milestone.year}
-                  className={className}
-                  style={{
-                    '--position': position,
-                    '--abs-position': absPosition
-                  } as React.CSSProperties}
-                >
-                  {milestone.year}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Center content - Active year and description */}
-          <div className="journey-arc__content" key={currentMilestone.year}>
-            <h3 className="journey-arc__active-year">{currentMilestone.year}</h3>
-            <p className="journey-arc__description">{currentMilestone.description}</p>
-          </div>
-        </div>
-
-        {/* Navigation arrows */}
-        <div className="journey-navigation">
-          <button 
-            className="journey-navigation__arrow journey-navigation__arrow--left"
-            onClick={handlePrev}
-            aria-label="Previous year"
+        
+        {/* Navigation Buttons */}
+        <button
+          className={`${styles.navButton} ${styles['navButton--left']}`}
+          onClick={handlePrevious}
+          disabled={isAnimating}
+          aria-label={`Navigate to previous year: ${leftYear}`}
+          tabIndex={0}
+        >
+          <svg 
+            width="22" 
+            height="22" 
+            viewBox="0 0 24 24" 
+            fill="none"
+            aria-hidden="true"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-
-          <button 
-            className="journey-navigation__arrow journey-navigation__arrow--right"
-            onClick={handleNext}
-            aria-label="Next year"
+            <path
+              d="M15 18L9 12L15 6"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+        
+        <button
+          className={`${styles.navButton} ${styles['navButton--right']}`}
+          onClick={handleNext}
+          disabled={isAnimating}
+          aria-label={`Navigate to next year: ${rightYear}`}
+          tabIndex={0}
+        >
+          <svg 
+            width="22" 
+            height="22" 
+            viewBox="0 0 24 24" 
+            fill="none"
+            aria-hidden="true"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        </div>
+            <path
+              d="M9 18L15 12L9 6"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+        
+        {/* Screen reader live region */}
+        <div 
+          ref={liveRegionRef}
+          className={styles['sr-only']}
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        />
       </div>
     </section>
   );
-};
-
-export default JourneySection;
+}

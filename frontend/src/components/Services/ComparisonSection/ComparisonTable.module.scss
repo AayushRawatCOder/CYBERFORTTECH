@@ -1,3 +1,341 @@
+// @import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+// .comparisonSection {
+//   max-width: 100%;
+//   margin: 0 auto;
+//   padding: 80px 40px;
+//   position: relative;
+//   overflow: hidden;
+// }
+
+// .header {
+//   text-align: center;
+//   margin-bottom: 60px;
+//   position: relative;
+//   z-index: 1;
+// }
+
+// .mainTitle {
+//   font-family: 'Tomorrow', sans-serif;
+//   font-size: 48px;
+//   font-weight: 700;
+//   color: #ffffff;
+//   margin: 0;
+//   letter-spacing: 2px;
+//   line-height: 1.2;
+//   text-transform: uppercase;
+// }
+
+// .titleHighlight {
+//   font-family: 'Tomorrow', sans-serif;
+//   font-size: 48px;
+//   font-weight: 700;
+//   background: linear-gradient(180deg, #01E6DD 0%, #FE8FEB 100%);
+//   -webkit-background-clip: text;
+//   -webkit-text-fill-color: transparent;
+//   background-clip: text;
+//   margin: 0 0 20px 0;
+//   letter-spacing: 2px;
+//   line-height: 1.2;
+//   text-transform: uppercase;
+// }
+
+// .subtitle {
+//   font-family: 'Inter', sans-serif;
+//   font-size: 14px;
+//   color: rgba(255, 255, 255, 0.6);
+//   line-height: 1.6;
+//   margin: 0;
+//   font-weight: 300;
+// }
+
+// .tableWrapper {
+//   overflow-x: auto;
+//   border-radius: 0;
+//   background: transparent;
+//   position: relative;
+//   z-index: 1;
+// }
+
+// .comparisonTable {
+//   width: 100%;
+//   max-width: 1200px;
+//   margin: 0 auto;
+//   border-collapse: separate;
+//   border-spacing: 0;
+//   background: transparent;
+  
+//   thead tr {
+//     background: transparent;
+//   }
+  
+//   th {
+//     font-family: 'Tomorrow', sans-serif;
+//     font-size: 14px;
+//     font-weight: 600;
+//     text-transform: uppercase;
+//     letter-spacing: 1.5px;
+//     padding: 24px;
+//     text-align: center;
+//     background: #2a2a2a;
+//     vertical-align: middle;
+//     color: #ffffff;
+//     border: none;
+    
+//     &:first-child {
+//       border-radius: 0;
+//     }
+//   }
+  
+//   .featureHeader {
+//     text-align: left;
+//     color: #ffffff;
+//     background: #1f1f1f;
+//   }
+  
+//   .cyberfortHeader {
+//     background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+//     color: #ffffff;
+//     font-weight: 700;
+//   }
+  
+//   .competitorHeader {
+//     color: #ffffff;
+//     background: #2a2a2a;
+//   }
+  
+//   tbody tr {
+//     background: transparent;
+    
+//     &:hover {
+//       .featureCell {
+//         background: #222222;
+//       }
+//       .cyberfortCell {
+//         background: rgba(13, 95, 88, 0.9);
+//       }
+//       .competitorCell {
+//         background: #1f1f1f;
+//       }
+//     }
+//   }
+  
+//   td {
+//     font-family: 'Inter', sans-serif;
+//     padding: 24px;
+//     text-align: center;
+//     background: transparent;
+//     vertical-align: middle;
+//     border: none;
+//     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+//   }
+  
+//   .featureCell {
+//     text-align: left;
+//     font-size: 15px;
+//     font-weight: 400;
+//     color: #ffffff;
+//     background: #1a1a1a;
+//     transition: background 0.3s ease;
+//   }
+  
+//   .cyberfortCell {
+//     background: rgba(13, 95, 88, 0.7);
+//     transition: background 0.3s ease;
+//   }
+  
+//   .competitorCell {
+//     background: #1a1a1a;
+//     transition: background 0.3s ease;
+//   }
+// }
+
+// .checkIcon {
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 32px;
+//   height: 32px;
+//   background: #14b8a6;
+//   color: #ffffff;
+//   border-radius: 6px;
+//   font-size: 18px;
+//   font-weight: 700;
+// }
+
+// .checkIconCyberfort {
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 32px;
+//   height: 32px;
+//   background: #14b8a6;
+//   color: #ffffff;
+//   border-radius: 6px;
+//   font-size: 18px;
+//   font-weight: 700;
+// }
+
+// .crossIcon {
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 32px;
+//   height: 32px;
+//   background: #dc2626;
+//   color: #ffffff;
+//   border-radius: 6px;
+//   font-size: 18px;
+//   font-weight: 700;
+// }
+
+// .textValue {
+//   font-size: 16px;
+//   font-weight: 400;
+//   color: #ffffff;
+// }
+
+// .hideOnMobile {
+//   display: table-cell;
+// }
+
+// @media (max-width: 1200px) {
+//   .comparisonSection {
+//     padding: 70px 30px;
+//   }
+
+//   .mainTitle,
+//   .titleHighlight {
+//     font-size: 42px;
+//   }
+  
+//   .comparisonTable {
+//     th {
+//       padding: 20px;
+//       font-size: 13px;
+//     }
+    
+//     td {
+//       padding: 20px;
+//     }
+    
+//     .featureCell {
+//       font-size: 14px;
+//     }
+//   }
+  
+//   .textValue {
+//     font-size: 15px;
+//   }
+// }
+
+// @media (max-width: 768px) {
+//   .comparisonSection {
+//     padding: 50px 20px;
+//   }
+  
+//   .header {
+//     margin-bottom: 40px;
+//   }
+  
+//   .mainTitle,
+//   .titleHighlight {
+//     font-size: 32px;
+//   }
+  
+//   .subtitle {
+//     font-size: 13px;
+//   }
+  
+//   .tableWrapper {
+//     overflow-x: visible;
+//   }
+  
+//   .hideOnMobile {
+//     display: none;
+//   }
+  
+//   .comparisonTable {
+//     min-width: auto;
+//     width: 100%;
+    
+//     th {
+//       padding: 20px 16px;
+//       font-size: 12px;
+//       width: 50%;
+//     }
+    
+//     td {
+//       padding: 20px 16px;
+//       width: 50%;
+//     }
+    
+//     .featureCell {
+//       font-size: 13px;
+//       text-align: left;
+//     }
+    
+//     .cyberfortCell {
+//       text-align: center;
+//     }
+//   }
+  
+//   .checkIcon,
+//   .checkIconCyberfort,
+//   .crossIcon {
+//     width: 28px;
+//     height: 28px;
+//     font-size: 16px;
+//   }
+  
+//   .textValue {
+//     font-size: 14px;
+//   }
+// }
+
+// @media (max-width: 480px) {
+//   .comparisonSection {
+//     padding: 40px 16px;
+//   }
+  
+//   .mainTitle,
+//   .titleHighlight {
+//     font-size: 28px;
+//     letter-spacing: 1px;
+//   }
+  
+//   .subtitle {
+//     font-size: 12px;
+//   }
+  
+//   .comparisonTable {
+//     th {
+//       padding: 18px 12px;
+//       font-size: 11px;
+//       letter-spacing: 1px;
+//     }
+    
+//     td {
+//       padding: 18px 12px;
+//     }
+    
+//     .featureCell {
+//       font-size: 12px;
+//     }
+//   }
+  
+//   .checkIcon,
+//   .checkIconCyberfort,
+//   .crossIcon {
+//     width: 26px;
+//     height: 26px;
+//     font-size: 14px;
+//   }
+  
+//   .textValue {
+//     font-size: 13px;
+//   }
+// }
 @import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 .comparisonSection {
@@ -49,18 +387,39 @@
   font-weight: 300;
 }
 
-.tableWrapper {
-  overflow-x: auto;
-  border-radius: 0;
-  background: transparent;
+/* --- Responsive Table Wrapper --- */
+.tableContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   position: relative;
-  z-index: 1;
+  border-radius: 12px;
+  overflow: hidden; /* Rounds the corners of the scrollable area */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tableWrapper {
+  overflow-x: auto; /* Enables horizontal scroll */
+  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  width: 100%;
+  
+  /* Custom Scrollbar Styling */
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #0d9488;
+    border-radius: 4px;
+  }
 }
 
 .comparisonTable {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  min-width: 900px; /* Forces scroll if screen is smaller than this */
   border-collapse: separate;
   border-spacing: 0;
   background: transparent;
@@ -77,76 +436,84 @@
     letter-spacing: 1.5px;
     padding: 24px;
     text-align: center;
-    background: #2a2a2a;
     vertical-align: middle;
     color: #ffffff;
     border: none;
-    
-    &:first-child {
-      border-radius: 0;
-    }
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap; /* Prevents headers from wrapping awkwardly */
   }
   
   .featureHeader {
     text-align: left;
     color: #ffffff;
     background: #1f1f1f;
+    min-width: 200px;
   }
   
   .cyberfortHeader {
     background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
     color: #ffffff;
     font-weight: 700;
+    min-width: 160px;
   }
   
   .competitorHeader {
     color: #ffffff;
     background: #2a2a2a;
+    min-width: 160px;
   }
   
   tbody tr {
     background: transparent;
+    transition: background 0.2s;
     
     &:hover {
-      .featureCell {
-        background: #222222;
-      }
-      .cyberfortCell {
-        background: rgba(13, 95, 88, 0.9);
-      }
-      .competitorCell {
-        background: #1f1f1f;
+      background: rgba(255, 255, 255, 0.03);
+      
+      .stickyColumn {
+        background: #252525; /* Highlight sticky column on hover too */
       }
     }
   }
   
   td {
     font-family: 'Inter', sans-serif;
-    padding: 24px;
+    padding: 20px;
     text-align: center;
     background: transparent;
     vertical-align: middle;
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
-  
+
+  /* --- Sticky Column Logic --- */
+  .stickyColumn {
+    position: sticky;
+    left: 0;
+    z-index: 10;
+    /* Box shadow to create separation from scrolling content */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3); 
+  }
+
   .featureCell {
     text-align: left;
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 500;
     color: #ffffff;
-    background: #1a1a1a;
+    background: #1a1a1a; /* Must have background to cover scrolling items */
     transition: background 0.3s ease;
   }
   
   .cyberfortCell {
-    background: rgba(13, 95, 88, 0.7);
-    transition: background 0.3s ease;
+    background: rgba(13, 95, 88, 0.15); /* Subtle highlight for Cyberfort column */
+    border-left: 1px solid rgba(20, 184, 166, 0.2);
+    border-right: 1px solid rgba(20, 184, 166, 0.2);
+    font-weight: 600;
   }
   
   .competitorCell {
-    background: #1a1a1a;
-    transition: background 0.3s ease;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
   }
 }
 
@@ -156,11 +523,12 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  background: #14b8a6;
-  color: #ffffff;
+  background: #2a2a2a;
+  color: #14b8a6;
   border-radius: 6px;
   font-size: 18px;
   font-weight: 700;
+  border: 1px solid #14b8a6;
 }
 
 .checkIconCyberfort {
@@ -174,6 +542,7 @@
   border-radius: 6px;
   font-size: 18px;
   font-weight: 700;
+  box-shadow: 0 0 10px rgba(20, 184, 166, 0.4);
 }
 
 .crossIcon {
@@ -182,18 +551,20 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  background: #dc2626;
-  color: #ffffff;
+  background: rgba(220, 38, 38, 0.1);
+  color: #ef4444;
   border-radius: 6px;
   font-size: 18px;
   font-weight: 700;
 }
 
 .textValue {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
-  color: #ffffff;
+  color: #e5e5e5;
 }
+
+/* --- Responsive Breakpoints --- */
 
 @media (max-width: 1200px) {
   .comparisonSection {
@@ -203,25 +574,6 @@
   .mainTitle,
   .titleHighlight {
     font-size: 42px;
-  }
-  
-  .comparisonTable {
-    th {
-      padding: 20px;
-      font-size: 13px;
-    }
-    
-    td {
-      padding: 20px;
-    }
-    
-    .featureCell {
-      font-size: 14px;
-    }
-  }
-  
-  .textValue {
-    font-size: 15px;
   }
 }
 
@@ -243,13 +595,8 @@
     font-size: 13px;
   }
   
-  .tableWrapper {
-    overflow-x: scroll;
-  }
-  
+  /* On mobile, table cells can be smaller */
   .comparisonTable {
-    min-width: 900px;
-    
     th {
       padding: 16px;
       font-size: 12px;
@@ -261,18 +608,39 @@
     
     .featureCell {
       font-size: 13px;
+      padding-left: 16px;
     }
   }
   
   .checkIcon,
   .checkIconCyberfort,
   .crossIcon {
-    width: 28px;
-    height: 28px;
-    font-size: 16px;
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
   }
   
   .textValue {
-    font-size: 14px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .comparisonSection {
+    padding: 40px 16px;
+  }
+  
+  .mainTitle,
+  .titleHighlight {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  .comparisonTable {
+    /* Ensure the sticky column has enough width on very small screens */
+    .featureHeader, .featureCell {
+        min-width: 140px;
+        max-width: 140px;
+    }
   }
 }

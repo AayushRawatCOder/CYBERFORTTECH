@@ -7,6 +7,10 @@ import ServicesDetail from './(routes)/services/[slug]/page';
 import PartenerPage from './(routes)/Partner/PartenerPage';
 import HomePage from './(routes)/Home/HomePage';
 import Aboutus from './(routes)/About/Aboutus';
+import CourseHero from './components/courses/hero/courseshero';
+import IndustryImmersion from './(routes)/IndustryImmersion/IndustryImmersion';
+import CoursesPage from './(routes)/Courses/courses';
+// import './App.css'
 
 
 function App() {
@@ -15,12 +19,15 @@ function App() {
       <div className="App">
         <ErrorBoundary>
           <Navbar />
+          <div style={{ height: "70px" }}></div>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<Servicespage/>} />
             <Route path="/services/:slug" element={<ServicesDetail/>} />
+             <Route path="/courses" element={<CoursesPage/>} />
             <Route path="/partners" element={<PartenerPage/>} />
             <Route path="/about" element={<Aboutus/>} />
+            <Route path="/IndustryImmersion" element={<IndustryImmersion/>} />
           </Routes>
           <Footer/>
         </ErrorBoundary>

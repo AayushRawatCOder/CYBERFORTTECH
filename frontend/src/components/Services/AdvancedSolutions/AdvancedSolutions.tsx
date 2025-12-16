@@ -56,6 +56,9 @@ const AdvancedSolutions: React.FC<AdvancedSolutionsProps> = ({ serviceType }) =>
     );
   }
 
+  const topCards = solutions.length > 3 ? solutions.slice(0, -3) : solutions;
+  const bottomCards = solutions.length > 3 ? solutions.slice(-3) : [];
+
   return (
     <div className="advanced-solutions">
       <div className="container">
@@ -68,7 +71,7 @@ const AdvancedSolutions: React.FC<AdvancedSolutionsProps> = ({ serviceType }) =>
           </p>
         </div>
         <div className="solutions-grid">
-          {solutions.length > 3 && solutions.slice(0, solutions.length - 3).map((solution) => (
+          {topCards.map((solution) => (
             <div key={solution.id} className="cardOuter">
               {solution.isFree && <div className="free-badge">FREE</div>}
               <div className="cardInner">
@@ -81,8 +84,7 @@ const AdvancedSolutions: React.FC<AdvancedSolutionsProps> = ({ serviceType }) =>
                 <ul className="features-list">
                   {solution.features.map((feature, index) => (
                     <li key={index} className="feature-item">
-                      <span className="feature-icon">✓</span>
-                      {feature}
+                      <span className="feature-icon">✓ {feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -90,30 +92,31 @@ const AdvancedSolutions: React.FC<AdvancedSolutionsProps> = ({ serviceType }) =>
               </div>
             </div>
           ))}
-          <div className="bottom-cards-row">
-            {solutions.slice(-3).map((solution) => (
-              <div key={solution.id} className="cardOuter">
-                {solution.isFree && <div className="free-badge">FREE</div>}
-                <div className="cardInner">
-                  <h3 className="solution-title">{solution.title}</h3>
-                  <div className="solution-price">
-                    {solution.price}
-                    <span className="price-unit">/{solution.priceUnit}</span>
+          {bottomCards.length > 0 && (
+            <div className="bottom-cards-row">
+              {bottomCards.map((solution) => (
+                <div key={solution.id} className="cardOuter">
+                  {solution.isFree && <div className="free-badge">FREE</div>}
+                  <div className="cardInner">
+                    <h3 className="solution-title">{solution.title}</h3>
+                    <div className="solution-price">
+                      {solution.price}
+                      <span className="price-unit">/{solution.priceUnit}</span>
+                    </div>
+                    <p className="solution-description">{solution.description}</p>
+                    <ul className="features-list">
+                      {solution.features.map((feature, index) => (
+                        <li key={index} className="feature-item">
+                          <span className="feature-icon">✓ {feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <button className="btn-get-started">GET STARTED</button>
                   </div>
-                  <p className="solution-description">{solution.description}</p>
-                  <ul className="features-list">
-                    {solution.features.map((feature, index) => (
-                      <li key={index} className="feature-item">
-                        <span className="feature-icon">✓</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <button className="btn-get-started">GET STARTED</button>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

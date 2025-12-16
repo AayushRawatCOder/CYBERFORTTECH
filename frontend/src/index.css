@@ -46,9 +46,6 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -65,4 +62,26 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+/* Use this instead - it prevents horizontal scroll without breaking stacking */
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: clip; /* Use clip instead of hidden - less destructive */
+}
+
+html {
+  width: 100%;
+  max-width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root, .app {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
 }
